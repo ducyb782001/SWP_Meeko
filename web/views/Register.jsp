@@ -1,17 +1,14 @@
-<%-- 
-    Document   : Register
-    Created on : May 23, 2023, 11:42:08 PM
-    Author     : dell
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@ include file="../includes/header.jsp" %>
+<body>
+    <form>
+        H?*: <input type="text" name="email" required="true">
+        TÊN*: <input type="text" name="email" required="true">
+        S? ?I?N THO?I*: <input type="tel" name="email" required="true">
+        EMAIL*: <input type="email" name="email" required="true">
+        M?T KH?U*: <input type="password" name="email" required="true">
+        <button>T?o tài kh?an</button>
+    </form>
+    <button>Facebook</button>
+    <button>Google</button>
+</body>
+<%@ include file="../includes/footer.jsp" %>

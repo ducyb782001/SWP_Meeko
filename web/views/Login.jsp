@@ -1,14 +1,12 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link href="../css/layout.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
-        <%@ include file="../includes/header.jsp" %>
-        <h1>Hello World!</h1>
-        <%@ include file="../includes/footer.jsp" %>
-    </body>
-</html>
+<%@ include file="../includes/header.jsp" %>
+<body>
+    <form>
+        Email*: <input type="text" name="email" required="true">
+        M?t kh?u*: <input type="password" name="email" required="true">
+        <a>Quên m?t kh?u?</a>
+        <button>??ng nh?p</button>
+    </form>
+    <button>Facebook</button>
+    <button>Google</button>
+</body>
+<%@ include file="../includes/footer.jsp" %>
