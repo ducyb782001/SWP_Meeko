@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!-- footer.jsp -->
+ <!--Do CSS For footer later-->
 <footer class="footer">
     <div class="first-footer d-flex">
         <div class="container">
@@ -11,9 +12,9 @@
                             Liên hệ  
                         </span>
                     </h4>
-                    <ul>
+                    <ul class="list-unstyled">
                         <li>
-                            , Hà Nội
+                            Hà Nội
                         </li>
                         <li>
                             <a href="mailto:meeko.vn@gmail.com">meeko.vn@gmail.com</a>
