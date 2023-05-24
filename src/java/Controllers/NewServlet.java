@@ -44,7 +44,7 @@ public class NewServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.@
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -53,7 +53,7 @@ public class NewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("/views/Test.jsp").forward(request, response);  
+        request.getRequestDispatcher("/views/MainPage.jsp").forward(request, response);  
     } 
 
     /** 
