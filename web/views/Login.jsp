@@ -31,36 +31,41 @@
                                 aria-selected="false">Đăng kí</button>
                     </div>
                 </div>
-
                 <div class="tab-content" id="accountTabContent">
-                    <div class="tab-pane fade show active body-login-wrapper" id="pills-login" role="tabpanel"
-                         aria-labelledby="pills-login-tab">
-                        <h6>EMAIL <span class="text-danger">*</span></h6>
-                        <input type="text" class="form-control mb-3" placeholder="Nhập địa chỉ Email" aria-label="Username">
-                        <h6>MẬT KHẨU <span class="text-danger">*</span></h6>
-                        <input type="password" class="form-control mb-2" placeholder="Nhập Mật khẩu" aria-label="Username">
-                        <div class="mb-3">
-                            <a class="text-decoration-none forget-pass-btn">
-                                Quên mật khẩu?
-                            </a>
-                        </div>
-                        <button type="button" class="btn btn-dark w-100 mb-2">Đăng nhập</button>
-                        <div class="text-center commit-meeko mb-3">
-                            Meeko cam kết bảo mật và sẽ không bao giờ đăng<br />hay chia sẻ thông tin mà chưa có được sự
-                            đồng ý của bạn.
-                        </div>
-                        <div class=" d-flex justify-content-center position-relative mb-3">
-                            <div class="login-other-way rounded-pill">
-                                hoặc đăng nhập qua
+                    <!--Login form-->
+                    <form action="login" method="post">
+                        <div class="tab-pane fade show active body-login-wrapper" id="pills-login" role="tabpanel"
+                             aria-labelledby="pills-login-tab">
+                            <h6>EMAIL <span class="text-danger">*</span></h6>
+                            <input type="text" class="form-control mb-3" name="email" required
+                                   placeholder="Nhập địa chỉ Email" aria-label="Username">
+                            <h6>MẬT KHẨU <span class="text-danger">*</span></h6>
+                            <input type="password" class="form-control mb-2" name="pwd" required
+                                   placeholder="Nhập Mật khẩu" aria-label="Username">
+                            <div class="mb-3">
+                                <a class="text-decoration-none forget-pass-btn">
+                                    Quên mật khẩu?
+                                </a>
+                            </div>
+                            <button type="submit" class="btn btn-dark w-100 mb-2">Đăng nhập</button>
+                            <div class="text-center commit-meeko mb-3">
+                                Meeko cam kết bảo mật và sẽ không bao giờ đăng<br />hay chia sẻ thông tin mà chưa có được sự
+                                đồng ý của bạn.
+                            </div>
+                            <div class=" d-flex justify-content-center position-relative mb-3">
+                                <div class="login-other-way rounded-pill">
+                                    hoặc đăng nhập qua
+                                </div>
+                            </div>
+                            <div class="group-btn-login-social mb-3">
+                                <!-- Do login google here, change onclick and href  -->
+                                <a class="social-login--google" onclick="loginGoogle()"><img width="129px" height="37px"
+                                                                                             alt="google-login-button"
+                                                                                             src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
                             </div>
                         </div>
-                        <div class="group-btn-login-social mb-3">
-                            <!-- Do login google here, change onclick and href  -->
-                            <a class="social-login--google" onclick="loginGoogle()"><img width="129px" height="37px"
-                                                                                         alt="google-login-button"
-                                                                                         src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
-                        </div>
-                    </div>
+                    </form>
+                    <!--Register form-->
                     <div class="tab-pane fade body-login-wrapper" id="pills-register" role="tabpanel"
                          aria-labelledby="pills-register-tab">
 
