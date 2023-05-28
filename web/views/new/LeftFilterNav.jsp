@@ -87,8 +87,6 @@
                        step="100">
             </div>
         </div>
-
         <button type="button" class="btn btn-dark mt-3">Lọc giá</button>
-
     </div>
 </div>
