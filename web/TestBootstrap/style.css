@@ -64,9 +64,6 @@
 }
 
 /* ----- v CAN BE DELETED v ----- */
-body {
-  background-color: #78909c;
-}
 
 .demo {
   padding-top: 60px;
@@ -340,3 +337,35 @@ body {
 }
 
 /* Blog Carousel */
+
+/*From now,  Style for cart  */
+
+.cart_quantity {
+  font-size: 12px;
+  font-weight: normal;
+  color: #333;
+}
+
+.img_item_in_cart {
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: cover;
+}
+
+.input_cart_width {
+  width: 100px;
+}
+
+/* CSS For hover to see more div  */
+.dropdown-item:hover {
+  background-color: lightsalmon;
+  color: #fff;
+}
+.dropdown .dropdown-menu {
+  display: none;
+}
+.dropdown:hover > .dropdown-menu,
+.dropend:hover > .dropdown-menu {
+  display: block;
+  margin-left: 0.125em;
+}
