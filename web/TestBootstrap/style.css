@@ -355,3 +355,17 @@
 .input_cart_width {
   width: 100px;
 }
+
+/* CSS For hover to see more div  */
+.dropdown-item:hover {
+  background-color: lightsalmon;
+  color: #fff;
+}
+.dropdown .dropdown-menu {
+  display: none;
+}
+.dropdown:hover > .dropdown-menu,
+.dropend:hover > .dropdown-menu {
+  display: block;
+  margin-left: 0.125em;
+}
