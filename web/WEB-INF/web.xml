@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>Controllers.Authenticate.LoginController</servlet-class>
+        <servlet-class>Controllers.Authenticate.loginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>test</servlet-name>
@@ -27,6 +27,10 @@
     <servlet>
         <servlet-name>ProductController</servlet-name>
         <servlet-class>Controllers.ProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>Controllers.HomeController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>ProductController</servlet-name>
         <url-pattern>/product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

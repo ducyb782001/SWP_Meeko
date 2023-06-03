@@ -2,7 +2,7 @@
 
 <!-- footer.jsp -->
  <!--Do CSS For footer later-->
-<footer class="footer">
+ <footer class="footer" style="background-color: whitesmoke">
     <div class="first-footer d-flex">
         <div class="container">
             <div class="row">
