@@ -10,19 +10,22 @@ import java.sql.Date;
  *
  * @author dell
  */
-public class Customer {
+public class User {
     private String customerId;
     private String fullName;
     private String phone;
+    private String email;
+    private String password;
     private Date dob;
     private String address;
+    private String avatar;
     private boolean status;
     private String description;
 
-    public Customer() {
+    public User() {
     }
 
-    public Customer(String customerId, String fullName, String phone, Date dob, String address, boolean status, String description) {
+    public User(String customerId, String fullName, String phone, Date dob, String address, boolean status, String description) {
         this.customerId = customerId;
         this.fullName = fullName;
         this.phone = phone;
@@ -30,6 +33,43 @@ public class Customer {
         this.address = address;
         this.status = status;
         this.description = description;
+    }
+
+    public User(String customerId, String fullName, String phone, String email, String password, Date dob, String address, String avatar, boolean status, String description) {
+        this.customerId = customerId;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.dob = dob;
+        this.address = address;
+        this.avatar = avatar;
+        this.status = status;
+        this.description = description;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getCustomerId() {

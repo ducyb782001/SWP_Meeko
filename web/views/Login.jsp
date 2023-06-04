@@ -29,9 +29,12 @@
                                 aria-selected="true">Đăng nhập</button>
                     </div>
                     <div class="col-6">
-                        <button class="btn-tab-login w-100" id="pills-register-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-register" type="button" role="tab" aria-controls="pills-register"
-                                aria-selected="false">Đăng kí</button>
+                        <form action="register" method="get">
+                            <button class="btn-tab-login w-100" id="pills-register-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-register" type="submit" role="tab" aria-controls="pills-register"
+                                    aria-selected="false">Đăng kí</button>
+
+                        </form>
                     </div>
                 </div>
                 <div class="tab-content" id="accountTabContent">

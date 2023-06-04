@@ -12,13 +12,13 @@ import java.sql.Date;
  */
 public class Order {
     private int orderId;
-    private Customer customer;
+    private User customer;
     private Employee employee;
     private Date dateTime;
     private PaymentMethod paymentMethod;
     private int status;
 
-    public Order(int orderId, Customer customer, Employee employee, Date dateTime, PaymentMethod paymentMethod, int status) {
+    public Order(int orderId, User customer, Employee employee, Date dateTime, PaymentMethod paymentMethod, int status) {
         this.orderId = orderId;
         this.customer = customer;
         this.employee = employee;
@@ -38,11 +38,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Customer getCustomer() {
+    public User getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(User customer) {
         this.customer = customer;
     }
 
