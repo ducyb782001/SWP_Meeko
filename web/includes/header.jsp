@@ -26,11 +26,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-lg-2 d-lg-flex d-none header-right justify-content-end gap-3">
+                    <div class="col-xl-2 col-lg-2 d-lg-flex align-items-center d-none header-right justify-content-end gap-3">
                         <div class="dropdown">
                             <i class="fa-regular fa-user fa-lg" data-bs-toggle="dropdown"></i>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Đăng nhập</a></li>
+                                <li><a class="dropdown-item" href="/login">Đăng nhập</a></li>
                                 <li><a class="dropdown-item" href="#">Đăng ký</a></li>
                             </ul>
                         </div>
