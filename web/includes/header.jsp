@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -31,7 +32,7 @@
                             <i class="fa-regular fa-user fa-lg" data-bs-toggle="dropdown"></i>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/login">Đăng nhập</a></li>
-                                <li><a class="dropdown-item" href="#">Đăng ký</a></li>
+                                <li><a class="dropdown-item" href="/register">Đăng ký</a></li>
                             </ul>
                         </div>
                         <i class="fa-regular fa-heart fa-lg"></i>

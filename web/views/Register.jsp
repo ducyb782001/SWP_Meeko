@@ -24,33 +24,38 @@
 
                 <div class="nav group-login-wrapper mb-2 row" id="accountTab" role="tablist">
                     <div class="col-6">
-                        <button class="btn-tab-login active w-100" id="pills-login-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-login" type="button" role="tab" aria-controls="pills-login"
-                                aria-selected="true">Đăng nhập</button>
+                        <button class="btn-tab-login w-100" id="pills-login-tab" data-bs-toggle="pill" data-bs-target="#pills-login" type="button" role="tab" aria-controls="pills-login" aria-selected="false" tabindex="-1">Đăng nhập</button>
                     </div>
                     <div class="col-6">
-                        <button class="btn-tab-login w-100" id="pills-register-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-register" type="button" role="tab" aria-controls="pills-register"
-                                aria-selected="false">Đăng kí</button>
+                        <button class="btn-tab-login w-100 active" id="pills-register-tab" data-bs-toggle="pill" data-bs-target="#pills-register" type="button" role="tab" aria-controls="pills-register" aria-selected="true">Đăng kí</button>
                     </div>
                 </div>
                 <div class="tab-content" id="accountTabContent">
-                    <!--Login form-->
+                    <!--Register form-->
                     <div class="tab-pane fade show active body-login-wrapper" id="pills-login" role="tabpanel"
                          aria-labelledby="pills-login-tab">
-                        <form action="login" method="post">
+                        <form action="login" method="register">
+                            <h6>HỌ <span class="text-danger">*</span></h6>
+                            <input type="text" class="form-control mb-3" placeholder="Nhập Họ"
+                                   aria-label="Username">
+                            <h6>TÊN <span class="text-danger">*</span></h6>
+                            <input type="text" class="form-control mb-3" placeholder="Nhập Tên"
+                                   aria-label="Username">
+                            <h6>SỐ ĐIỆN THOẠI <span class="text-danger">*</span></h6>
+                            <input type="text" class="form-control mb-3" placeholder="Nhập Số điện thoại"
+                                   aria-label="Username">
                             <h6>EMAIL <span class="text-danger">*</span></h6>
-                            <input type="text" class="form-control mb-3" name="email" required
-                                   placeholder="Nhập địa chỉ Email" aria-label="Username">
+                            <input type="text" class="form-control mb-3" placeholder="Nhập địa chỉ Email"
+                                   aria-label="Username">
                             <h6>MẬT KHẨU <span class="text-danger">*</span></h6>
-                            <input type="password" class="form-control mb-2" name="pwd" required
-                                   placeholder="Nhập Mật khẩu" aria-label="Username">
+                            <input type="password" class="form-control mb-2" placeholder="Nhập Mật khẩu"
+                                   aria-label="Username">
                             <div class="mb-3">
                                 <a class="text-decoration-none forget-pass-btn">
                                     Quên mật khẩu?
                                 </a>
                             </div>
-                            <button type="submit" class="btn btn-dark w-100 mb-2">Đăng nhập</button>
+                            <button type="button" class="btn btn-dark w-100 mb-2">Đăng nhập</button>
                             <div class="text-center commit-meeko mb-3">
                                 Meeko cam kết bảo mật và sẽ không bao giờ đăng<br />hay chia sẻ thông tin mà chưa có
                                 được sự

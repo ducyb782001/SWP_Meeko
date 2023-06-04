@@ -20,7 +20,6 @@
     </head>
     <body>
         <%@ include file="../includes/header.jsp" %>
-
         <!-- Carousel wrapper -->
         <div id="carousel-starter" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
