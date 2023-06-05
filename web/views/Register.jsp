@@ -38,27 +38,27 @@
                          aria-labelledby="pills-login-tab">
                         <form action="register" method="post">
                             <h6>HỌ & Tên<span class="text-danger">*</span></h6>
-                            <input type="text" name="fullName"
+                            <input type="text" name="fullName" required
                                    class="form-control mb-3" placeholder="Nhập Họ và Tên"
                                    aria-label="Username">
                             <h6>SỐ ĐIỆN THOẠI <span class="text-danger">*</span></h6>
-                            <input type="text" name="phone"
+                            <input type="text" name="phone" required
                                    class="form-control mb-3" placeholder="Nhập Số điện thoại"
                                    aria-label="Username">
                             <h6>EMAIL <span class="text-danger">*</span></h6>
-                            <input type="email" name="email"
+                            <input type="email" name="email" required
                                    class="form-control mb-3" placeholder="Nhập địa chỉ Email"
                                    aria-label="Username">
                             <h6>MẬT KHẨU <span class="text-danger">*</span></h6>
-                            <input type="password" name="password"
+                            <input type="password" name="password" required
                                    class="form-control mb-2" placeholder="Nhập Mật khẩu"
                                    aria-label="Username">
                             <h6>Địa chỉ<span class="text-danger">*</span></h6>
-                            <input type="text" name="address"
+                            <input type="text" name="address" required
                                    class="form-control mb-3" placeholder="Nhập địa chỉ"
                                    aria-label="Username">
                             <h6>Ngày sinh<span class="text-danger">*</span></h6>
-                            <input type="date" name="dob"
+                            <input type="date" name="dob" required
                                    class="form-control mb-3" placeholder="Nhập ngày sinh"
                                    aria-label="Username">
                             <button type="submit" class="btn btn-dark w-100 mb-2">Đăng ký</button>

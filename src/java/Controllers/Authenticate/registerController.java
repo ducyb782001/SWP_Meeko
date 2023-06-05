@@ -84,8 +84,9 @@ public class registerController extends HttpServlet {
         UserDAO uDao = new UserDAO();
         User uExist = uDao.getUserByEmail(user.getEmail());
         if (uExist == null) {
-            uDao.insertUser(user);
-            response.sendRedirect("home");
+//            uDao.insertUser(user);
+//            response.sendRedirect("home");
+            response.getWriter().println("oke");
         }else{
             response.getWriter().println("User is exist");
         }
