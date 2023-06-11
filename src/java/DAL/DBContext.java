@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  * @author dell
  */
 public class DBContext {
-    protected Connection connection;
+    protected  Connection connection;
     public DBContext()
     {
         //Edit user, pass, url variables to fit your system configuration
@@ -28,5 +28,10 @@ public class DBContext {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static void main(String[] args) {
+        DBContext db = new DBContext();
+        System.out.println(db.connection != null);
     }
 }
