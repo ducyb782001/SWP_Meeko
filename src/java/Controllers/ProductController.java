@@ -17,16 +17,18 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author dell
  */
-public class ProductController extends BaseAuthenticationController {
+public class ProductController extends HttpServlet {
 
     @Override
-    protected void processGet() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("views/Product/Products.jsp").forward(req, resp);
     }
 
     @Override
-    protected void processPost() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
+
+    
 
 }

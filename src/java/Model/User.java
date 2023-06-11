@@ -11,7 +11,7 @@ import java.sql.Date;
  * @author dell
  */
 public class User {
-    private String customerId;
+    private int customerId;
     private String fullName;
     private String phone;
     private String email;
@@ -19,64 +19,33 @@ public class User {
     private Date dob;
     private String address;
     private String avatar;
+    private Role role;
+    private User manager;
     private boolean status;
     private String description;
 
     public User() {
     }
 
-    public User(String customerId, String fullName, String phone, Date dob, String address, boolean status, String description) {
-        this.customerId = customerId;
-        this.fullName = fullName;
-        this.phone = phone;
-        this.dob = dob;
-        this.address = address;
-        this.status = status;
-        this.description = description;
-    }
-
-    public User(String customerId, String fullName, String phone, String email, String password, Date dob, String address, String avatar, boolean status, String description) {
+    public User(int customerId, String fullName, String phone, String email, Date dob, String address, String avatar, Role role, User manager, boolean status, String description) {
         this.customerId = customerId;
         this.fullName = fullName;
         this.phone = phone;
         this.email = email;
-        this.password = password;
         this.dob = dob;
         this.address = address;
         this.avatar = avatar;
+        this.role = role;
+        this.manager = manager;
         this.status = status;
         this.description = description;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -96,6 +65,22 @@ public class User {
         this.phone = phone;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Date getDob() {
         return dob;
     }
@@ -110,6 +95,30 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public User getManager() {
+        return manager;
+    }
+
+    public void setManager(User manager) {
+        this.manager = manager;
     }
 
     public boolean isStatus() {
@@ -127,5 +136,7 @@ public class User {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    
     
 }

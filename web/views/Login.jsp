@@ -30,8 +30,8 @@
                     </div>
                     <div class="col-6">
                         <form action="register" method="get">
-                            <button class="btn-tab-login w-100" data-bs-toggle="pill"
-                                    data-bs-target="#pills-register" type="submit" role="tab">Đăng kí</button>
+                            <button class="btn-tab-login w-100"
+                                    type="submit">Đăng kí</button>
 
                         </form>
                     </div>

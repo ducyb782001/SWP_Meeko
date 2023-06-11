@@ -69,7 +69,7 @@
                             </div>
                             <div class=" d-flex justify-content-center position-relative mb-3">
                                 <div class="login-other-way rounded-pill">
-                                    hoặc đăng ký qua
+                                    hoặc đăng nhập qua
                                 </div>
                             </div>
                             <div class="group-btn-login-social mb-3">

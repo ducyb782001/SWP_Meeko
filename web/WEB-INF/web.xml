@@ -36,6 +36,14 @@
         <servlet-name>registerController</servlet-name>
         <servlet-class>Controllers.Authenticate.registerController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logoutController</servlet-name>
+        <servlet-class>Controllers.Authenticate.logoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserInformationController</servlet-name>
+        <servlet-class>Controllers.User.UserInformationController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>registerController</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserInformationController</servlet-name>
+        <url-pattern>/userInformation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

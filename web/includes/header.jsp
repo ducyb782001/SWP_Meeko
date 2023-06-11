@@ -13,7 +13,7 @@ crossorigin="anonymous"></script>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-3 col-lg-3 d-lg-block d-none block-logo">
-                    <a href="/" class="logo">
+                    <a href="home" class="logo">
                         <img src="//bizweb.dktcdn.net/100/450/808/themes/855625/assets/logo.png?1681832246171"
                              alt="Meeko">
                     </a>
@@ -36,7 +36,8 @@ crossorigin="anonymous"></script>
                                 <li><a class="dropdown-item" href="/register">Đăng ký</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.account != null}">
-                                <li><a class="dropdown-item" href="/#">Xem thông tin</a></li>
+                                <li><a class="dropdown-item" onclick="getInformation()">${sessionScope.account.fullName}</a></li>
+                                <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
                                 </c:if>
                         </ul>
                     </div>
@@ -51,7 +52,7 @@ crossorigin="anonymous"></script>
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <div class="left-side d-flex justify-content-between align-items-center">
-                        <a href="/" class="logo d-lg-none d-block">
+                        <a href="home" class="logo d-lg-none d-block">
                             <img src="//bizweb.dktcdn.net/100/450/808/themes/855625/assets/logo.png?1681832246171"
                                  alt="Meeko">
                         </a>
@@ -68,10 +69,10 @@ crossorigin="anonymous"></script>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav navbar-home gap-4">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
+                                <a class="nav-link active" aria-current="page" href="home">Trang chủ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link dropdown-toggle" href="#">Sản phẩm</a>
+                                <a class="nav-link dropdown-toggle" href="product">Sản phẩm</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Premium</a>

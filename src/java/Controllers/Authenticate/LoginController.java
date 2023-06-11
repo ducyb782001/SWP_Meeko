@@ -73,20 +73,18 @@ public class loginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        User user = new User();
-        user.setEmail(request.getParameter("email"));
-        user.setPassword(request.getParameter("pwd"));
+        String email = request.getParameter("email");
+        String pwd = request.getParameter("pwd");
 
         UserDAO uDAO = new UserDAO();
-        user = uDAO.getEmployeeByEmailAndPwd(user);
+        User user = uDAO.doLogin(email,pwd);
         if (user != null) {
-            request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute("account", user);
             response.sendRedirect("home");
         } else {
             response.getWriter().print("Login Fail");
         }
     }
-
     /**
      * Returns a short description of the servlet.
      *

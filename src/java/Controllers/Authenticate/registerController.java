@@ -79,17 +79,7 @@ public class registerController extends HttpServlet {
         user.setPassword(request.getParameter("password"));
         user.setAddress(request.getParameter("address"));
         Date dob = Date.valueOf(request.getParameter("dob"));
-        user.setDob(dob);
-
-        UserDAO uDao = new UserDAO();
-        User uExist = uDao.getUserByEmail(user.getEmail());
-        if (uExist == null) {
-//            uDao.insertUser(user);
-//            response.sendRedirect("home");
-            response.getWriter().println("oke");
-        }else{
-            response.getWriter().println("User is exist");
-        }
+        
     }
 
     /**
