@@ -82,7 +82,8 @@ public class loginController extends HttpServlet {
             request.getSession().setAttribute("account", user);
             response.sendRedirect("home");
         } else {
-            response.getWriter().print("Login Fail");
+            request.setAttribute("isFail", true);
+            request.getRequestDispatcher("views/Login.jsp").forward(request, response);
         }
     }
     /**
