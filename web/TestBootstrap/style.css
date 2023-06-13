@@ -369,3 +369,23 @@
   display: block;
   margin-left: 0.125em;
 }
+
+/* Custom for product detail  */
+
+.custom_btn_add:hover {
+  background-color: #c83252 !important;
+}
+
+.custom_btn_buynow {
+  background-color: #c83252 !important;
+}
+
+.custom_btn_buynow:hover {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.custom__select__type.active {
+  color: #c83252 !important;
+  border: 1px solid #c83252 !important;
+}
