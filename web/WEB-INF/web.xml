@@ -52,6 +52,18 @@
         <servlet-name>UserProfileController</servlet-name>
         <servlet-class>Controllers.UserProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PremiumController</servlet-name>
+        <servlet-class>Controllers.PremiumController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderCustomer</servlet-name>
+        <servlet-class>Controllers.Order.OrderCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderDetail</servlet-name>
+        <servlet-class>Controllers.Order.OrderDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -103,6 +115,18 @@
     <servlet-mapping>
         <servlet-name>UserProfileController</servlet-name>
         <url-pattern>/userProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PremiumController</servlet-name>
+        <url-pattern>/premium</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderCustomer</servlet-name>
+        <url-pattern>/orderCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetail</servlet-name>
+        <url-pattern>/orderDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

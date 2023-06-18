@@ -61,7 +61,7 @@
                             <input type="text" name="address" value="${account.address}"
                                    class="form-control mb-3" placeholder="Nhập địa chỉ"
                                    aria-label="Username">
-                            <h6>Ngày sinh</h6>
+                            <h6>Ngày sinh <span class="text-danger">*</span></h6>
                             <input type="date" name="dob" max="${now}" required value="${account.dob}"
                                    class="form-control mb-3" placeholder="Nhập ngày sinh"
                                    aria-label="Username">

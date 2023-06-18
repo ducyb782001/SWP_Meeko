@@ -18,14 +18,14 @@
     <%@ include file="../../includes/header.jsp" %>
     <body>
         <div class="row container-home"
-             style="padding-left: 15%; padding-right: 64px; padding-top: 60px; padding-bottom: 60px; width: 100%;">
+             style="padding-left: 12%;padding-right: 64px; padding-top: 60px; padding-bottom: 60px; width: 100%;">
             <div class="col-lg-3 px-2">
                 <!-- Left section -->
                 <div class="nav group__left__account mb-3" style="display: block;" role="tablist">
-                    <h3 style="font-weight: 300;">
+                    <h4 style="font-weight: 200;">
                         TRANG TÀI KHOẢN
-                    </h3>
-                    <h5 style="font-weight: bold;">Xin chào, HaLan</h5>
+                    </h4>
+                    <h6 style="font-weight: bold;">Xin chào, ${sessionScope.account.fullName}!</h6>
                     <div class="mt-4 mb-2 active left__account" style="font-size: 17px;" data-bs-toggle="pill"
                          data-bs-target="#pills-accounts" type="button" role="tab">
                         Thông tin tài khoản
@@ -52,8 +52,10 @@
                         <h3 style="font-weight: 300;">
                             TRANG TÀI KHOẢN
                         </h3>
-                        <p class="mt-4"><span style="font-weight: bold;">Họ tên:</span> Hà Thị Hóa</p>
-                        <p><span style="font-weight: bold;">Email:</span> hoaha@gmail.com</p>
+                        <p class="mt-4"><span style="font-weight: bold;">Họ tên: </span>${sessionScope.account.fullName}</p>
+                        <p><span style="font-weight: bold;">Email:</span> ${sessionScope.account.email}</p>
+                        <p><span style="font-weight: bold;">Phone:</span> ${sessionScope.account.phone}</p>
+                        <p><span style="font-weight: bold;">Address:</span> ${sessionScope.account.address}</p>
                     </section>
 
                     <!-- This section is use for see cart tab  -->

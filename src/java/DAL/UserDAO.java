@@ -53,6 +53,7 @@ public class UserDAO extends DBContext {
             String sql = "SELECT [UserID]\n"
                     + "      ,[FullName]\n"
                     + "      ,[Email]\n"
+                    + "      ,[EmailID]\n"
                     + "      ,[Phone]\n"
                     + "      ,[DOB]\n"
                     + "      ,[Address]\n"
@@ -76,9 +77,9 @@ public class UserDAO extends DBContext {
 
                 return new User(rs.getInt("UserID"),
                         rs.getString("FullName"),
+                        rs.getString("Phone"),
                         rs.getString("Email"),
                         rs.getString("EmailID"),
-                        rs.getString("Phone"),
                         rs.getDate("DOB"),
                         rs.getString("Address"),
                         rs.getString("Avatar"),
@@ -155,9 +156,9 @@ public class UserDAO extends DBContext {
 
                 return new User(rs.getInt("UserID"),
                         rs.getString("FullName"),
+                        rs.getString("Phone"),
                         rs.getString("Email"),
                         rs.getString("EmailID"),
-                        rs.getString("Phone"),
                         rs.getDate("DOB"),
                         rs.getString("Address"),
                         rs.getString("Avatar"),

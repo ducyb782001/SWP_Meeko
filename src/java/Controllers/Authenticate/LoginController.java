@@ -6,6 +6,7 @@ package Controllers.Authenticate;
 
 import DAL.UserDAO;
 import Model.User;
+import Utils.EncodeMD5;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -73,9 +74,12 @@ public class loginController extends HttpServlet {
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String pwd = request.getParameter("pwd");
+        
+        EncodeMD5 encode = new EncodeMD5();
+        String encodePwd = encode.EncoderMD5(pwd);
 
         UserDAO uDAO = new UserDAO();
-        User user = uDAO.doLogin(email,pwd);
+        User user = uDAO.doLogin(email,encodePwd);
         if (user != null) {
             request.getSession().setAttribute("account", user);
             response.sendRedirect("home");

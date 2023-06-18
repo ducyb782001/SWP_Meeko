@@ -6,6 +6,7 @@ package Controllers.Authenticate;
 
 import DAL.UserDAO;
 import Model.User;
+import Utils.EncodeMD5;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -77,11 +78,13 @@ public class registerController extends HttpServlet {
             throws ServletException, IOException {
         UserDAO uDao = new UserDAO();
 
+        EncodeMD5 encode = new EncodeMD5();
+        
         User user = new User();
         user.setFullName(request.getParameter("fullName"));
         user.setPhone(request.getParameter("phone"));
         user.setEmail(request.getParameter("email"));
-        user.setPassword(request.getParameter("password"));
+        user.setPassword(encode.EncoderMD5(request.getParameter("password")));
         user.setAddress(request.getParameter("address"));
         Date dob = Date.valueOf(request.getParameter("dob"));
         user.setDob(dob);
