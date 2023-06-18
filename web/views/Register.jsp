@@ -59,7 +59,7 @@
                                    class="form-control mb-3" placeholder="Nhập địa chỉ"
                                    aria-label="Username">
                             <h6>Ngày sinh</h6>
-                            <input type="date" name="dob" max="${now}"
+                            <input type="date" name="dob" max="${now}" required
                                    class="form-control mb-3" placeholder="Nhập ngày sinh"
                                    aria-label="Username">
                             <button type="submit" class="btn btn-dark w-100 mb-2">Đăng ký</button>

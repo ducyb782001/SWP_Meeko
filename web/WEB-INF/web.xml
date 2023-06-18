@@ -44,6 +44,14 @@
         <servlet-name>emailLoginController</servlet-name>
         <servlet-class>Controllers.Authenticate.loginEmailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NotFound</servlet-name>
+        <servlet-class>Controllers.NotFound</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserProfileController</servlet-name>
+        <servlet-class>Controllers.UserProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -88,9 +96,20 @@
         <servlet-name>emailLoginController</servlet-name>
         <url-pattern>/emailLogin</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotFound</servlet-name>
+        <url-pattern>/notFound</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserProfileController</servlet-name>
+        <url-pattern>/userProfile</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <error-page>
+        
+    </error-page>
 </web-app>
