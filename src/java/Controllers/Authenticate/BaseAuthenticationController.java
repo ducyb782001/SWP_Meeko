@@ -4,7 +4,7 @@
  */
 package Controllers.Authenticate;
 
-import Model.Employee;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -22,8 +22,8 @@ public abstract class BaseAuthenticationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Employee e = (Employee) request.getSession().getAttribute("account");
-        if (e != null) {
+        User acc = (User) request.getSession().getAttribute("account");
+        if (acc != null) {
             processGet();
         } else {
             response.getWriter().print("Hay dang nhap!");
@@ -41,8 +41,8 @@ public abstract class BaseAuthenticationController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Employee e = (Employee) request.getSession().getAttribute("account");
-        if (e != null) {
+       User acc = (User) request.getSession().getAttribute("account");
+        if (acc != null) {
             processGet();
         } else {
             response.getWriter().print("Hay dang nhap!");

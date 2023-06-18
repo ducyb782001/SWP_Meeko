@@ -8,7 +8,7 @@ package Model;
  *
  * @author dell
  */
-public class Constants {
+public class Constant {
 
     public static String GOOGLE_CLIENT_ID = "583964261490-qa8kt76ed9evd3l597jn9hmsnrm6s97q.apps.googleusercontent.com";
 

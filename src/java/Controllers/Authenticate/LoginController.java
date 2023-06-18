@@ -4,9 +4,7 @@
  */
 package Controllers.Authenticate;
 
-import DAL.EmployeeDAO;
 import DAL.UserDAO;
-import Model.Employee;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -82,7 +80,8 @@ public class loginController extends HttpServlet {
             request.getSession().setAttribute("account", user);
             response.sendRedirect("home");
         } else {
-            response.getWriter().print("Login Fail");
+            request.setAttribute("isFail", true);
+            request.getRequestDispatcher("views/Login.jsp").forward(request, response);
         }
     }
     /**

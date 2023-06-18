@@ -38,11 +38,12 @@
                          aria-labelledby="pills-login-tab">
                         <form action="register" method="post">
                             <h6>HỌ & Tên<span class="text-danger">*</span></h6>
-                            <input type="text" name="fullName" required
+                            <input type="text" name="fullName" required maxlength="255" oninput="validateName(this)"
                                    class="form-control mb-3" placeholder="Nhập Họ và Tên"
                                    aria-label="Username">
+                            <span id="error-fullName" style="color: red; display: none;"></span>
                             <h6>SỐ ĐIỆN THOẠI <span class="text-danger">*</span></h6>
-                            <input type="text" name="phone" required
+                            <input type="text" name="phone" required oninput="validatePhone(this)"
                                    class="form-control mb-3" placeholder="Nhập Số điện thoại"
                                    aria-label="Username">
                             <h6>EMAIL <span class="text-danger">*</span></h6>
@@ -53,12 +54,12 @@
                             <input type="password" name="password" required
                                    class="form-control mb-2" placeholder="Nhập Mật khẩu"
                                    aria-label="Username">
-                            <h6>Địa chỉ<span class="text-danger">*</span></h6>
-                            <input type="text" name="address" required
+                            <h6>Địa chỉ</h6>
+                            <input type="text" name="address"
                                    class="form-control mb-3" placeholder="Nhập địa chỉ"
                                    aria-label="Username">
-                            <h6>Ngày sinh<span class="text-danger">*</span></h6>
-                            <input type="date" name="dob" required
+                            <h6>Ngày sinh</h6>
+                            <input type="date" name="dob" max="${now}"
                                    class="form-control mb-3" placeholder="Nhập ngày sinh"
                                    aria-label="Username">
                             <button type="submit" class="btn btn-dark w-100 mb-2">Đăng ký</button>
@@ -72,11 +73,13 @@
                                     hoặc đăng nhập qua
                                 </div>
                             </div>
+                        </form>
+                        <form action="loginEmail" method="post">
                             <div class="group-btn-login-social mb-3">
                                 <!-- Do login google here, change onclick and href  -->
-                                <a class="social-login--google" onclick="loginGoogle()"><img width="129px"
-                                                                                             height="37px" alt="google-login-button"
-                                                                                             src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
+                                <a class="social-login--google" href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:9999/loginEmail&response_type=code&client_id=583964261490-qa8kt76ed9evd3l597jn9hmsnrm6s97q.apps.googleusercontent.com&approval_prompt=force">
+                                    <img width="129px" height="37px" alt="google-login-button"
+                                         src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
                             </div>
                         </form>
                     </div>
@@ -111,6 +114,37 @@
                 document.documentElement.scrollTop = 0;
             }
 
+
+            var checkFullName = false;
+            var checkPassword = false;
+
+            function validatePhone(input) {
+                // Remove non-digit characters
+                var value = input.value.replace(/\D/g, '');
+
+                // Limit the length to 10 characters
+                if (value.length > 10) {
+                    value = value.slice(0, 10);
+                }
+
+                // Update the input value
+                input.value = value;
+            }
+
+            function validateName(input) {
+                var value = input.value;
+                var regex = /^[A-Za-z\s]+$/;
+
+                if (!regex.test(value)) {
+                    document.getElementById('error-fullName').textContent = "Tên của bạn không được có số và ký tự đặc biệt";
+                    document.getElementById('error-fullName').style.display = "block";
+                    checkFullName = true;
+                } else {
+                    document.getElementById('error-fullName').textContent = "";
+                    document.getElementById('error-fullName').style.display = "none";
+                    checkFullName = false;
+                }
+            }
         </script>
     </body>
 

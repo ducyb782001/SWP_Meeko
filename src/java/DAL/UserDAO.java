@@ -53,7 +53,6 @@ public class UserDAO extends DBContext {
             String sql = "SELECT [UserID]\n"
                     + "      ,[FullName]\n"
                     + "      ,[Email]\n"
-                    + "      ,[Password]\n"
                     + "      ,[Phone]\n"
                     + "      ,[DOB]\n"
                     + "      ,[Address]\n"
@@ -78,6 +77,7 @@ public class UserDAO extends DBContext {
                 return new User(rs.getInt("UserID"),
                         rs.getString("FullName"),
                         rs.getString("Email"),
+                        rs.getString("EmailID"),
                         rs.getString("Phone"),
                         rs.getDate("DOB"),
                         rs.getString("Address"),
@@ -96,4 +96,80 @@ public class UserDAO extends DBContext {
     private User getUserByID(int userID) {
         return null;
     }
+
+    public void insert(User user) {
+        try {
+            String sql = "INSERT INTO [User]\n"
+                    + "           ([FullName]\n"
+                    + "           ,[Email]\n"
+                    + "           ,[EmailID]\n"
+                    + "           ,[Password]\n"
+                    + "           ,[Phone]\n"
+                    + "           ,[DOB]\n"
+                    + "           ,[Address]\n"
+                    + "           ,[Avatar]\n"
+                    + "           ,[RoleID]\n"
+                    + "           ,[Status])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "		  ,?)";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, user.getFullName());
+            stm.setString(2, user.getEmail());
+            stm.setString(3, user.getEmailID());
+            stm.setString(4, user.getPassword());
+            stm.setString(5, user.getPhone());
+            stm.setDate(6, user.getDob());
+            stm.setString(7, user.getAddress());
+            stm.setString(8, null);
+            stm.setInt(9, 3);
+            stm.setBoolean(10, true);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public User getUserGoogle(String EmailID) {
+        try {
+            String sql = "SELECT *\n"
+                    + "  FROM [User] where EmailID like ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, EmailID);
+            ResultSet rs = stm.executeQuery();
+
+            RoleDAO rDao = new RoleDAO();
+
+            if (rs.next()) {
+
+                Role role = rDao.getRoleByID(rs.getInt("RoleID"));
+                User manager = getUserByID(rs.getInt("ManagerID"));
+
+                return new User(rs.getInt("UserID"),
+                        rs.getString("FullName"),
+                        rs.getString("Email"),
+                        rs.getString("EmailID"),
+                        rs.getString("Phone"),
+                        rs.getDate("DOB"),
+                        rs.getString("Address"),
+                        rs.getString("Avatar"),
+                        role,
+                        manager,
+                        rs.getBoolean("Status"),
+                        rs.getString("Description"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }

@@ -13,15 +13,15 @@ import java.sql.Date;
 public class Order {
     private int orderId;
     private User customer;
-    private Employee employee;
+    private User staff;
     private Date dateTime;
     private PaymentMethod paymentMethod;
     private int status;
 
-    public Order(int orderId, User customer, Employee employee, Date dateTime, PaymentMethod paymentMethod, int status) {
+    public Order(int orderId, User customer, User staff, Date dateTime, PaymentMethod paymentMethod, int status) {
         this.orderId = orderId;
         this.customer = customer;
-        this.employee = employee;
+        this.staff = staff;
         this.dateTime = dateTime;
         this.paymentMethod = paymentMethod;
         this.status = status;
@@ -46,12 +46,12 @@ public class Order {
         this.customer = customer;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public User getStaff() {
+        return staff;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setStaff(User staff) {
+        this.staff = staff;
     }
 
     public Date getDateTime() {
@@ -77,5 +77,7 @@ public class Order {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    
     
 }
