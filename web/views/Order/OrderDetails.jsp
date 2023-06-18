@@ -60,8 +60,8 @@
                     <h5>Tổng tiền:</h5>
                     <p style="color: #c83252; font-weight: bold; ">300000 đ</p>
                 </div>
-                <form action="orderCustomer" method="post">
-                    <button type="button" class="btn btn-danger w-100 mt-5">Thanh toán</button>
+                <form action="orderCustomer" method="get">
+                    <button type="submit" class="btn btn-danger w-100 mt-5">Thanh toán</button>
                 </form>
             </div>
         </div>
