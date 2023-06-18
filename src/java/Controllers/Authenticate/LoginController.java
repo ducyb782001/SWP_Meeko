@@ -4,9 +4,7 @@
  */
 package Controllers.Authenticate;
 
-import DAL.EmployeeDAO;
 import DAL.UserDAO;
-import Model.Employee;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -63,11 +63,13 @@
                                     hoặc đăng nhập qua
                                 </div>
                             </div>
+                        </form>
+                        <form action="loginEmail" method="post">
                             <div class="group-btn-login-social mb-3">
                                 <!-- Do login google here, change onclick and href  -->
-                                <a class="social-login--google" onclick="loginGoogle()"><img width="129px"
-                                                                                             height="37px" alt="google-login-button"
-                                                                                             src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
+                                <a class="social-login--google" href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:9999/loginEmail&response_type=code&client_id=583964261490-qa8kt76ed9evd3l597jn9hmsnrm6s97q.apps.googleusercontent.com&approval_prompt=force">
+                                    <img width="129px" height="37px" alt="google-login-button"
+                                                                                       src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
                             </div>
                         </form>
                     </div>

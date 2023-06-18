@@ -80,6 +80,10 @@ public class registerController extends HttpServlet {
         user.setAddress(request.getParameter("address"));
         Date dob = Date.valueOf(request.getParameter("dob"));
         
+        UserDAO uDao = new UserDAO();
+        uDao.insert(user);
+        request.getSession().setAttribute("register", "success");
+        response.sendRedirect("home");
     }
 
     /**

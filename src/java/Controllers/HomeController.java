@@ -10,6 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -28,6 +29,12 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        String regiester = (String) sesion.getAttribute("register");
+        if (regiester != null) {
+            request.setAttribute("msg", "Bạn đã đăng ký tài khoản thành công!");
+            sesion.setAttribute("register", null);
+        }
         request.getRequestDispatcher("views/HomePage.jsp").forward(request, response);
     }
 
