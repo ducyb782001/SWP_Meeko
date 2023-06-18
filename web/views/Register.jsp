@@ -37,14 +37,17 @@
                     <div class="tab-pane fade show active body-login-wrapper" id="pills-login" role="tabpanel"
                          aria-labelledby="pills-login-tab">
                         <form action="register" method="post">
+                            <c:if test="${isFail == true}">
+                                <p style="color: red">${msg}</p>
+                            </c:if>
                             <h6>HỌ & Tên<span class="text-danger">*</span></h6>
                             <input type="text" name="fullName" required maxlength="255" oninput="validateName(this)"
-                                   class="form-control mb-3" placeholder="Nhập Họ và Tên"
+                                   class="form-control mb-3" placeholder="Nhập Họ và Tên" value="${account.fullName}"
                                    aria-label="Username">
                             <span id="error-fullName" style="color: red; display: none;"></span>
                             <h6>SỐ ĐIỆN THOẠI <span class="text-danger">*</span></h6>
                             <input type="text" name="phone" required oninput="validatePhone(this)"
-                                   class="form-control mb-3" placeholder="Nhập Số điện thoại"
+                                   class="form-control mb-3" placeholder="Nhập Số điện thoại" value="${account.phone}"
                                    aria-label="Username">
                             <h6>EMAIL <span class="text-danger">*</span></h6>
                             <input type="email" name="email" required
@@ -55,11 +58,11 @@
                                    class="form-control mb-2" placeholder="Nhập Mật khẩu"
                                    aria-label="Username">
                             <h6>Địa chỉ</h6>
-                            <input type="text" name="address"
+                            <input type="text" name="address" value="${account.address}"
                                    class="form-control mb-3" placeholder="Nhập địa chỉ"
                                    aria-label="Username">
                             <h6>Ngày sinh</h6>
-                            <input type="date" name="dob" max="${now}" required
+                            <input type="date" name="dob" max="${now}" required value="${account.dob}"
                                    class="form-control mb-3" placeholder="Nhập ngày sinh"
                                    aria-label="Username">
                             <button type="submit" class="btn btn-dark w-100 mb-2">Đăng ký</button>

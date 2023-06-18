@@ -172,4 +172,20 @@ public class UserDAO extends DBContext {
         return null;
     }
 
+    public boolean isUserExist(String email) {
+        try {
+            String sql = "SELECT *\n"
+                    + "  FROM [User] where Email = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, email);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
 }

@@ -93,7 +93,7 @@
         <c:if test="${msg != null}">
             <script>
                 var x = document.getElementById("snackbar");
-                x.textContent = ${msg};
+                x.textContent = '${msg}';
                 x.className = "show";
                 setTimeout(function () {
                     x.className = x.className.replace("show", "");
@@ -112,11 +112,11 @@
             </div>
             <div class="carousel-inner carousel-starter">
                 <div class="carousel-item active">
-                    <img src="https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045-2.jpg" class="custom-img"
+                    <img src="https://bizweb.dktcdn.net/100/450/808/themes/855625/assets/slider_1.jpg?1681832246171" class="custom-img"
                          alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://baothainguyen.vn/file/oldimage/baothainguyen/UserFiles/image/d2(23).jpg"
+                    <img src="https://bizweb.dktcdn.net/100/450/808/themes/855625/assets/slider_2.jpg?1681832246171"
                          class="custom-img" alt="...">
                 </div>
                 <div class="carousel-item">
@@ -248,10 +248,6 @@
                     <img src="https://bizweb.dktcdn.net/100/450/808/themes/855625/assets/banneronly_2.jpg?1681832246171"
                          alt="only-in-meeko" class="w-100 d-block img-prd-only" />
                 </div>
-                <div class="col-12 col-sm-6 col-md-4">
-                    <img src="https://bizweb.dktcdn.net/100/450/808/themes/855625/assets/banneronly_3.jpg?1681832246171"
-                         alt="only-in-meeko" class="w-100 d-block img-prd-only" />
-                </div>
             </div>
         </section>
         <section class="blog-container container-home mb-5">
@@ -263,11 +259,11 @@
             <!-- Do tab for each carousel later, sample in login.html -->
             <ul class="nav nav-tabs d-flex justify-content-center align-items-center gap-4"
                 style="border-bottom: 0px solid transparent;">
-                <a href="#carousel-blog-1" data-bs-toggle="tab">Xây dựng mối quan hệ</a>
+                <a class="lnk-blog" href="#carousel-blog-1" data-bs-toggle="tab">Xây dựng mối quan hệ</a>
                 <div style="width: 1px; height: 18px; background-color: black;"></div>
-                <a href="#carousel-blog-2" data-bs-toggle="tab">Hạnh phúc từ bên trong</a>
+                <a class="lnk-blog" href="#carousel-blog-2" data-bs-toggle="tab">Hạnh phúc từ bên trong</a>
                 <div style="width: 1px; height: 18px; background-color: black;"></div>
-                <a href="#carousel-blog-3" data-bs-toggle="tab">Review những món quà</a>
+                <a class="lnk-blog" href="#carousel-blog-3" data-bs-toggle="tab">Review những món quà</a>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="carousel-blog-1">
@@ -281,7 +277,7 @@
                                 <i class="fa-solid fa-angle-right"></i>
                             </a>
                         </div>
-                        <div class="text-decoration-underline">Tất cả bài viết</div>
+                        <div class="text-decoration-underline" style="font-weight: bold; color: grey">Tất cả bài viết</div>
                     </div>
                     <div class="list-blog-slider">
                         <!-- list blog carousel wrapper -->

@@ -41,6 +41,9 @@
                     <div class="tab-pane fade show active body-login-wrapper" id="pills-login" role="tabpanel"
                          aria-labelledby="pills-login-tab">
                         <form action="login" method="post">
+                            <c:if test="${isFail == true}">
+                                <p style="color: red">Thông tin đăng nhập không chính xác.</p>
+                            </c:if>
                             <h6>EMAIL <span class="text-danger">*</span></h6>
                             <input type="text" class="form-control mb-3" name="email" required
                                    placeholder="Nhập địa chỉ Email" aria-label="Username">
@@ -69,7 +72,7 @@
                                 <!-- Do login google here, change onclick and href  -->
                                 <a class="social-login--google" href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:9999/loginEmail&response_type=code&client_id=583964261490-qa8kt76ed9evd3l597jn9hmsnrm6s97q.apps.googleusercontent.com&approval_prompt=force">
                                     <img width="129px" height="37px" alt="google-login-button"
-                                                                                       src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
+                                         src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
                             </div>
                         </form>
                     </div>

@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -58,6 +59,8 @@ public class registerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Date now = Date.valueOf(LocalDate.now());
+        request.setAttribute("now", now);
         request.getRequestDispatcher("/views/Register.jsp").forward(request, response);
     }
 
@@ -72,6 +75,8 @@ public class registerController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        UserDAO uDao = new UserDAO();
+
         User user = new User();
         user.setFullName(request.getParameter("fullName"));
         user.setPhone(request.getParameter("phone"));
@@ -79,11 +84,19 @@ public class registerController extends HttpServlet {
         user.setPassword(request.getParameter("password"));
         user.setAddress(request.getParameter("address"));
         Date dob = Date.valueOf(request.getParameter("dob"));
-        
-        UserDAO uDao = new UserDAO();
-        uDao.insert(user);
-        request.getSession().setAttribute("register", "success");
-        response.sendRedirect("home");
+        user.setDob(dob);
+
+        boolean isExist = uDao.isUserExist(user.getEmail());
+        if (isExist) {
+            request.getSession().setAttribute("isFail", true);
+            request.getSession().setAttribute("msg", "Email đã được đăng ký, vui lòng thử lại!");
+            request.setAttribute("account", user);
+            request.getRequestDispatcher("/views/Register.jsp").forward(request, response);
+        } else {
+            uDao.insert(user);
+            request.getSession().setAttribute("register", "success");
+            response.sendRedirect("home");
+        }
     }
 
     /**
