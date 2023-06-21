@@ -4,6 +4,12 @@
  */
 package Controllers;
 
+import DAL.BestSellerDAO;
+import DAL.CollectionDAO;
+import DAL.NewArrivalDAO;
+import Model.BestSeller;
+import Model.Collection;
+import Model.NewArrival;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +17,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
@@ -31,12 +38,33 @@ public class HomeController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
         String regiester = (String) sesion.getAttribute("register");
+
+        //get all collection
+        CollectionDAO clDao = new CollectionDAO();
+        ArrayList<Collection> collections = clDao.getAllCollection(true);
+
+        //get all new arrival product
+        NewArrivalDAO naDao = new NewArrivalDAO();
+        ArrayList<NewArrival> newArrivals = naDao.getAllNew(false, true);
+        
+        BestSellerDAO bDao = new BestSellerDAO();
+        ArrayList<BestSeller> bestSellers = bDao.getAllNew(false, true);
+        
         if (regiester != null) {
             request.setAttribute("msg", "Bạn đã đăng ký tài khoản thành công!");
             sesion.setAttribute("register", null);
         }
+        request.setAttribute("bestSellers", bestSellers);
+        request.setAttribute("collections", collections);
+        request.setAttribute("newArrivals", newArrivals);
         request.getRequestDispatcher("views/HomePage.jsp").forward(request, response);
     }
+//    
+//    public static void main(String[] args) {
+//        BestSellerDAO bDao = new BestSellerDAO();
+//        ArrayList<BestSeller> bestSellers = bDao.getAllNew(false, true);
+//        System.out.println(bestSellers.get(0).getProduct().getAvatar());
+//    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
