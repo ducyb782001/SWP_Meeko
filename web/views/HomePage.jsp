@@ -3,7 +3,7 @@
     Created on : May 23, 2023, 11:40:49 PM
     Author     : dell
 --%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -181,7 +181,8 @@
                             ${na.product.description}
                         </div>
                         <div class="prd-price">
-                            ${na.product.price}
+                            <fmt:formatNumber value="${na.product.price}" pattern="#,##0.000" var="formattedNumber" />
+                            ${formattedNumber}đ
                         </div>
                     </div>
                 </c:forEach>
@@ -219,7 +220,8 @@
                             ${bs.product.description}
                         </div>
                         <div class="prd-price">
-                            ${bs.product.price}
+                            <fmt:formatNumber value="${bs.product.price}" pattern="#,##0.000" var="formattedNumber" />
+                            ${formattedNumber}đ
                         </div>
                     </div>
                 </c:forEach>
@@ -237,6 +239,10 @@
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
                     <img src="https://bizweb.dktcdn.net/100/450/808/themes/855625/assets/banneronly_2.jpg?1681832246171"
+                         alt="only-in-meeko" class="w-100 d-block img-prd-only" />
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                    <img src="https://bizweb.dktcdn.net/100/450/808/themes/855625/assets/banneronly_3.jpg?1681832246171"
                          alt="only-in-meeko" class="w-100 d-block img-prd-only" />
                 </div>
             </div>

@@ -22,7 +22,7 @@
     </servlet>
     <servlet>
         <servlet-name>ProductController</servlet-name>
-        <servlet-class>Controllers.ProductController</servlet-class>
+        <servlet-class>Controllers.product.ProductController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HomeController</servlet-name>
@@ -63,6 +63,30 @@
     <servlet>
         <servlet-name>OrderDetail</servlet-name>
         <servlet-class>Controllers.Order.OrderDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchCollectionController</servlet-name>
+        <servlet-class>Controllers.product.SearchCollectionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductDetailsController</servlet-name>
+        <servlet-class>Controllers.product.ProductDetailsController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchBySubcategory</servlet-name>
+        <servlet-class>Controllers.product.SearchBySubcategoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeachCategoryController</servlet-name>
+        <servlet-class>Controllers.product.SeachCategoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchByTextController</servlet-name>
+        <servlet-class>Controllers.product.SearchByTextController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListAllProductController</servlet-name>
+        <servlet-class>Controllers.product.ListAllProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -127,6 +151,30 @@
     <servlet-mapping>
         <servlet-name>OrderDetail</servlet-name>
         <url-pattern>/orderDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCollectionController</servlet-name>
+        <url-pattern>/searchController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductDetailsController</servlet-name>
+        <url-pattern>/productDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchBySubcategory</servlet-name>
+        <url-pattern>/searchSubcategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeachCategoryController</servlet-name>
+        <url-pattern>/searchCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchByTextController</servlet-name>
+        <url-pattern>/searchByText</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListAllProductController</servlet-name>
+        <url-pattern>/listAllProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

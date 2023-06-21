@@ -20,11 +20,13 @@ crossorigin="anonymous"></script>
                 </div>
                 <div class="col-xl-7 col-lg-6 block-search">
                     <div class="input-search-wrapper">
-                        <input type="email" class="input-search rounded-pill" id="floatingInput"
-                               placeholder="Tìm kiếm...">
-                        <div class="search-icon">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </div>
+                        <form id="frm-seachtxt" action="searchByText" method="get">
+                            <input type="text" name="textSearch" class="input-search rounded-pill" id="floatingInput"
+                                   placeholder="Tìm kiếm...">
+                            <div class="search-icon" onclick="submitTxtSearch()">
+                                <i class="fa-solid fa-magnifying-glass" onclick="submitTxtSearch()"></i>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-xl-2 col-lg-2 d-lg-flex align-items-center d-none header-right justify-content-end gap-3">
@@ -180,7 +182,7 @@ crossorigin="anonymous"></script>
                         <!-- This section UL For each Category -->
                         <ul class="" style="list-style: none; padding-left: 0px;">
                             <li style="list-style: none;">
-                                <a class="heading__category" href="product">
+                                <a class="heading__category" href="listAllProduct">
                                     Tất cả sản phẩm
                                 </a>
                             </li>
@@ -282,6 +284,9 @@ crossorigin="anonymous"></script>
 
     function getInformation() {
         window.location.href = "userProfile";
+    }
+    function submitTxtSearch(){
+        document.getElementById('frm-seachtxt').submit();
     }
 </script>
 <script src="https://kit.fontawesome.com/8d39de38b8.js" crossorigin="anonymous"></script>

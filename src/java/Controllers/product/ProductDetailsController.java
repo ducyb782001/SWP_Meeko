@@ -2,28 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers;
+package Controllers.product;
 
-import DAL.BestSellerDAO;
-import DAL.CollectionDAO;
-import DAL.NewArrivalDAO;
-import Model.BestSeller;
-import Model.Collection;
-import Model.NewArrival;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
 
 /**
  *
  * @author dell
  */
-public class HomeController extends HttpServlet {
+public class ProductDetailsController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,39 +28,20 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
-        String regiester = (String) sesion.getAttribute("register");
-
-        //get all collection
-        CollectionDAO clDao = new CollectionDAO();
-        ArrayList<Collection> collections = clDao.getAllCollection(true);
-
-        //get all new arrival product
-        NewArrivalDAO naDao = new NewArrivalDAO();
-        ArrayList<NewArrival> newArrivals = naDao.getAllNew(false, true);
-        
-        //get all best seller product
-        BestSellerDAO bDao = new BestSellerDAO();
-        ArrayList<BestSeller> bestSellers = bDao.getAllNew(false, true);
-        
-        if (regiester != null) {
-            request.setAttribute("msg", "Bạn đã đăng ký tài khoản thành công!");
-            sesion.setAttribute("register", null);
+        response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ProductDetailsController</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ProductDetailsController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        
-        
-        
-        request.setAttribute("bestSellers", bestSellers);
-        request.setAttribute("collections", collections);
-        request.setAttribute("newArrivals", newArrivals);
-        request.getRequestDispatcher("views/HomePage.jsp").forward(request, response);
     }
-//    
-//    public static void main(String[] args) {
-//        BestSellerDAO bDao = new BestSellerDAO();
-//        ArrayList<BestSeller> bestSellers = bDao.getAllNew(false, true);
-//        System.out.println(bestSellers.get(0).getProduct().getAvatar());
-//    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -82,7 +55,8 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("views/Product/ProductDetails.jsp").forward(request, response);
+
     }
 
     /**
