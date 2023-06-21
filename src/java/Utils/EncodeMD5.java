@@ -22,8 +22,10 @@ public class EncodeMD5 {
             MessageDigest md = MessageDigest.getInstance("MD5");
 
             byte[] inputBytes = input.getBytes();
+            
             byte[] hashBytes = md.digest(inputBytes);
-
+            
+            
             StringBuilder sb = new StringBuilder();
             for (byte b : hashBytes) {
                 sb.append(String.format("%02x", b));
