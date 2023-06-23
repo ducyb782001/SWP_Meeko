@@ -10,16 +10,14 @@ package Model;
  */
 public class BestSeller {
     private Product product;
-    private boolean status;
-    private String description;
+    private boolean deleteFlag;
 
     public BestSeller() {
     }
 
-    public BestSeller(Product product, boolean status, String Description) {
+    public BestSeller(Product product, boolean deleteFlag) {
         this.product = product;
-        this.status = status;
-        this.description = Description;
+        this.deleteFlag = deleteFlag;
     }
 
     public Product getProduct() {
@@ -30,21 +28,15 @@ public class BestSeller {
         this.product = product;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isDeleteFlag() {
+        return deleteFlag;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setDeleteFlag(boolean deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String Description) {
-        this.description = Description;
-    }
+   
     
     
 }

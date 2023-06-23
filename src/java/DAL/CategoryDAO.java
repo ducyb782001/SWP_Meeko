@@ -37,8 +37,10 @@ public class CategoryDAO extends DBContext {
 
     public Category getCategoryByID(int CategoryID) {
         try {
-            String sql = "";
+            String sql = "SELECT *\n"
+                    + "  FROM [Categories] where CategoryID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, CategoryID);
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
                 return new Category(rs.getInt("CategoryID"),

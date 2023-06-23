@@ -4,48 +4,105 @@
  */
 package Model;
 
+import java.sql.Date;
+import java.util.ArrayList;
+
 /**
  *
  * @author dell
  */
 public class Product {
-    private String productId;
+
+    private int productId;
     private String name;
     private double price;
     private int quantity;
     private boolean status;
-    private String className;
+    private Type classType;
     private String classValue;
-    private Product productParent;
+    private Date createDate;
+    private Product parent;
     private Category category;
     private boolean isParent;
+    private String description;
+    private String avatar;
+    private ArrayList<Product> children = new ArrayList<>();
 
     public Product() {
     }
 
-    public Product(String productId, String name, double price, int quantity, boolean status, String className, String classValue, Product productParent, Category category, boolean isParent) {
+    public Product(int productId, String name, double price, int quantity, boolean status, Type classType, String classValue, Product productParent, Category category, boolean isParent, String description) {
         this.productId = productId;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.status = status;
-        this.className = className;
+        this.classType = classType;
         this.classValue = classValue;
-        this.productParent = productParent;
+        this.parent = productParent;
         this.category = category;
         this.isParent = isParent;
+        this.description = description;
     }
 
-    public String getProductId() {
+    public Product(int productId, String name, double price, int quantity, boolean status, Type classType, String classValue, Date createDate, Product productParent, Category category, boolean isParent, String description) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.status = status;
+        this.classType = classType;
+        this.classValue = classValue;
+        this.createDate = createDate;
+        this.parent = productParent;
+        this.category = category;
+        this.isParent = isParent;
+        this.description = description;
+    }
+
+    public Product(int productId, String name, double price, int quantity, boolean status, Type classType, String classValue, Date createDate, Product parent, Category category, boolean isParent, String description, String avatar) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.status = status;
+        this.classType = classType;
+        this.classValue = classValue;
+        this.createDate = createDate;
+        this.parent = parent;
+        this.category = category;
+        this.isParent = isParent;
+        this.description = description;
+        this.avatar = avatar;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
     public String getName() {
         return name;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public void setName(String name) {
@@ -76,12 +133,12 @@ public class Product {
         this.status = status;
     }
 
-    public String getClassName() {
-        return className;
+    public Type getClassType() {
+        return classType;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setClassType(Type classType) {
+        this.classType = classType;
     }
 
     public String getClassValue() {
@@ -92,12 +149,12 @@ public class Product {
         this.classValue = classValue;
     }
 
-    public Product getProductParent() {
-        return productParent;
+    public Product getParent() {
+        return parent;
     }
 
-    public void setProductParent(Product productParent) {
-        this.productParent = productParent;
+    public void setParent(Product parent) {
+        this.parent = parent;
     }
 
     public Category getCategory() {
@@ -115,6 +172,21 @@ public class Product {
     public void setIsParent(boolean isParent) {
         this.isParent = isParent;
     }
-    
-    
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ArrayList<Product> getChildren() {
+        return children;
+    }
+
+    public void setChildren(ArrayList<Product> children) {
+        this.children = children;
+    }
+
 }

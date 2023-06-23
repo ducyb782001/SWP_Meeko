@@ -4,7 +4,8 @@
  */
 package DAL;
 
-import Model.Collection;
+import Model.NewArrival;
+import Model.Product;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,22 +15,20 @@ import java.util.ArrayList;
  *
  * @author dell
  */
-public class CollectionDAO extends DBContext {
+public class NewArrivalDAO extends DBContext {
 
-    public ArrayList<Collection> getAllCollection(boolean status) {
-        ArrayList<Collection> list = new ArrayList<>();
+    public ArrayList<NewArrival> getAllNew(boolean deleteFlag, boolean productStatus) {
+        ArrayList<NewArrival> list = new ArrayList<>();
         try {
             String sql = "SELECT *\n"
-                    + "  FROM [Collections] where Status = ?";
+                    + "  FROM [New_Arrival] where deleteFlag = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setBoolean(1, status);
+            stm.setBoolean(1, deleteFlag);
             ResultSet rs = stm.executeQuery();
+            ProductDAO pDao = new ProductDAO();
             while (rs.next()) {
-                list.add(new Collection(rs.getInt("CollectionID"),
-                        rs.getString("CollectionName"),
-                        rs.getString("link"),
-                        rs.getBoolean("Status"),
-                        rs.getString("Description")));
+                Product product = pDao.getProductByID(rs.getInt("ProductID"), productStatus);
+                list.add(new NewArrival(product, deleteFlag));
             }
         } catch (SQLException e) {
             e.printStackTrace();

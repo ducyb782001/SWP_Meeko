@@ -3,7 +3,7 @@
     Created on : May 23, 2023, 11:40:49 PM
     Author     : dell
 --%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -137,30 +137,17 @@
 
         <div class="list-category">
             <div style="width: 2px; height: 80px; background-color: white;"></div>
-            <div class="category-item">
-                <img src="https://bizweb.dktcdn.net/thumb/compact/100/450/808/collections/10-37c9706f-413a-4123-b0d6-07905851440b.png?v=1648550713910"
-                     alt="for-him" style="width: 48px; height: 48px;" />
-                <p class="category-item-title">
-                    For him
-                </p>
-            </div>
-            <div style="width: 2px; height: 80px; background-color: white;"></div>
-            <div class="category-item">
-                <img src="https://bizweb.dktcdn.net/thumb/compact/100/450/808/collections/9-228daf39-c660-4d00-9cc0-b9bbdb8f0e1d.png?v=1648550696500"
-                     alt="for-him" style="width: 48px; height: 48px;" />
-                <p class="category-item-title">
-                    For her
-                </p>
-            </div>
-            <div style="width: 2px; height: 80px; background-color: white;"></div>
-            <div class="category-item">
-                <img src="https://bizweb.dktcdn.net/thumb/compact/100/450/808/collections/cuo-c-so-ng-thu-o-ng-nga-y.png?v=1648549034233"
-                     alt="for-him" style="width: 48px; height: 48px;" />
-                <p class="category-item-title">
-                    Thư giãn
-                </p>
-            </div>
-            <div style="width: 2px; height: 80px; background-color: white;"></div>
+            <c:forEach items="${collections}" var="c">
+                <div class="category-item text-center">
+                    <img src="${c.link}"
+                         alt="for-him" style="width: 48px; height: 48px;" /></br>
+                    <p class="category-item-title">
+                        ${c.collectionName}
+                    </p>
+                </div>
+                <div style="width: 2px; height: 80px; background-color: white;"></div>
+            </c:forEach>
+
         </div>
         <section class="new-product container-home">
             <div class="new-product-header d-flex justify-content-center align-items-center gap-5 mt-5 mb-5">
@@ -168,34 +155,37 @@
                 <h2 class="head-title">Sản phẩm mới</h2>
                 <div style="width: 80px; height: 1px; background-color: black;"></div>
             </div>
-            <div class="list-new-product row g-4">
-                <div class="col-6 col-md-3 product-cart-wrapper">
-                    <div class="position-relative">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
-                             alt="new-prd" class="product-card-img w-100 h-auto" />
-                        <div class="love-prd">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                  d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
-                                  fill="#333333"></path>
-                            </svg>
+            <div class="list-new-product row g-3">
+                <c:forEach items="${newArrivals}" var="na">
+                    <div class="col-6 col-md-3 product-cart-wrapper">
+                        <div class="position-relative">
+                            <img src="${na.product.avatar}"
+                                 alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" />
+                            <div class="love-prd">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                      fill="#333333"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="action-prd-cart">
+                            <i class="fa-solid fa-cart-plus fa-lg"></i>
+                        </div>
+
+                        <div class="prd-name">
+                            ${na.product.name}
+                        </div>
+                        <div class="prd-description">
+                            ${na.product.description}
+                        </div>
+                        <div class="prd-price">
+                            <fmt:formatNumber value="${na.product.price}" pattern="#,##0.000" var="formattedNumber" />
+                            ${formattedNumber}đ
                         </div>
                     </div>
-                    <div class="action-prd-cart">
-                        <i class="fa-solid fa-cart-plus fa-lg"></i>
-                    </div>
-
-                    <div class="prd-name">
-                        BÉ LỪA BÔNG WINNIE
-                    </div>
-                    <div class="prd-description">
-                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
-                    </div>
-                    <div class="prd-price">
-                        390000₫
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </section>
         <section class="hot-product container-home">
@@ -205,33 +195,36 @@
                 <div style="width: 80px; height: 1px; background-color: black;"></div>
             </div>
             <div class="list-hot-product row g-4">
-                <div class="col-6 col-md-3 product-cart-wrapper">
-                    <div class="position-relative">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
-                             alt="new-prd" class="product-card-img w-100 h-auto" />
-                        <div class="love-prd">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                  d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
-                                  fill="#333333"></path>
-                            </svg>
+                <c:forEach items="${bestSellers}" var="bs">
+                    <div class="col-6 col-md-3 product-cart-wrapper">
+                        <div class="position-relative">
+                            <img src="${bs.product.avatar}"
+                                 alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" />
+                            <div class="love-prd">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                      fill="#333333"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="action-prd-cart">
+                            <i class="fa-solid fa-cart-plus fa-lg"></i>
+                        </div>
+
+                        <div class="prd-name">
+                            ${bs.product.name}
+                        </div>
+                        <div class="prd-description">
+                            ${bs.product.description}
+                        </div>
+                        <div class="prd-price">
+                            <fmt:formatNumber value="${bs.product.price}" pattern="#,##0.000" var="formattedNumber" />
+                            ${formattedNumber}đ
                         </div>
                     </div>
-                    <div class="action-prd-cart">
-                        <i class="fa-solid fa-cart-plus fa-lg"></i>
-                    </div>
-
-                    <div class="prd-name">
-                        BÉ LỪA BÔNG WINNIE
-                    </div>
-                    <div class="prd-description">
-                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
-                    </div>
-                    <div class="prd-price">
-                        390000₫
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </section>
         <section class="only-in-meeko container-home">
@@ -246,6 +239,10 @@
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
                     <img src="https://bizweb.dktcdn.net/100/450/808/themes/855625/assets/banneronly_2.jpg?1681832246171"
+                         alt="only-in-meeko" class="w-100 d-block img-prd-only" />
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                    <img src="https://bizweb.dktcdn.net/100/450/808/themes/855625/assets/banneronly_3.jpg?1681832246171"
                          alt="only-in-meeko" class="w-100 d-block img-prd-only" />
                 </div>
             </div>
