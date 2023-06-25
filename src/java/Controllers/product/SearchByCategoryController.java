@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author dell
  */
-public class SearchBySubcategoryController extends HttpServlet {
+public class SearchByCategoryController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,19 +28,9 @@ public class SearchBySubcategoryController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SearchBySubcategory</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SearchBySubcategory at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        int categoryID = Integer.parseInt(request.getParameter("categoryID"));
+        ProductController productController = new ProductController();
+        productController.searchCategory(categoryID, request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,9 +45,7 @@ public class SearchBySubcategoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int subCategoryID = Integer.parseInt(request.getParameter("subCategoryID"));
-        ProductController productController = new ProductController();
-        productController.searchSubCategory(subCategoryID, request, response);
+        processRequest(request, response);
     }
 
     /**

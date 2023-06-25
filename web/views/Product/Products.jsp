@@ -82,7 +82,7 @@
                                                 a link for the current page--%>
                                     <c:forEach begin="1" end="${noOfPages}" var="i">
                                         <c:choose>
-                                            <c:when test="${currentPage eq i}">
+                                            <c:when test="${currentPage eq i}"> 
                                                 <li class="page-item"><a class="page-link bg-light" href="#">${i}</a></li>
                                                 </c:when>
                                                 <c:otherwise>

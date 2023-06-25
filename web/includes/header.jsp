@@ -186,64 +186,24 @@ crossorigin="anonymous"></script>
                                     Tất cả sản phẩm
                                 </a>
                             </li>
-                            <li style="list-style: none;">
-                                <a class="heading__category">
-                                    Mềm mại
-                                </a>
-                                <!-- This section UL For each Sub-category -->
-                                <ul style="list-style: none; padding-left: 0px; margin-top: 12px;">
-                                    <!-- For loop from here  -->
-                                    <li style="list-style: none; margin-bottom: 8px;">
-                                        <a class="heading__sub_category">
-                                            Gấu bông
+                            <c:forEach items="${sessionScope.tags}" var="t">
+                                <ul class="" style="list-style: none; padding-left: 0px;">
+                                    <li style="list-style: none;">
+                                        <a class="heading__category" href="searchByTag?tagID=${t.tagId}">
+                                            ${t.tagName}
                                         </a>
                                     </li>
-                                    <li style="list-style: none; margin-bottom: 8px;">
-                                        <a class="heading__sub_category">
-                                            Gối ôm
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li style="list-style: none; margin-top: 22px;">
-                                <a class="heading__category">
-                                    Thư giãn
-                                </a>
-                                <!-- This section UL For each Sub-category -->
-                                <ul style="list-style: none; padding-left: 0px; margin-top: 12px;">
-                                    <!-- For loop from here  -->
-                                    <li style="list-style: none; margin-bottom: 8px;">
-                                        <a class="heading__sub_category">
-                                            Đèn ngủ
-                                        </a>
-                                    </li>
-                                    <li style="list-style: none; margin-bottom: 8px;">
-                                        <a class="heading__sub_category">
-                                            Máy phun sương
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li style="list-style: none; margin-top: 22px;">
-                                <a class="heading__category">
-                                    Cuộc sống thường ngày
-                                </a>
-                                <!-- This section UL For each Sub-category -->
-                                <ul style="list-style: none; padding-left: 0px; margin-top: 12px;">
-                                    <!-- For loop from here  -->
-                                    <li style="list-style: none; margin-bottom: 8px;">
-                                        <a class="heading__sub_category">
-                                            Cốc
-                                        </a>
-                                    </li>
-                                    <li style="list-style: none; margin-bottom: 8px;">
-                                        <a class="heading__sub_category">
-                                            Bình nước
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
+                                    <ul style="list-style: none; padding-left: 0px; margin-top: 12px;">
+                                        <c:forEach var="c" items="${t.categories}">
+                                            <li style="list-style: none; margin-bottom: 8px;">
+                                                <a class="heading__sub_category" href="searchByCategory?categoryID=${c.categoryId}">
+                                                    ${c.categoryName}
+                                                </a>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+                                </c:forEach>
+                            </ul>
                         </ul>
                     </div>
                     <div class="col-9 row" style="height: 100%; overflow: hidden;">
@@ -285,7 +245,7 @@ crossorigin="anonymous"></script>
     function getInformation() {
         window.location.href = "userProfile";
     }
-    function submitTxtSearch(){
+    function submitTxtSearch() {
         document.getElementById('frm-seachtxt').submit();
     }
 </script>

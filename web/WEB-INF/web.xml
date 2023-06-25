@@ -73,20 +73,20 @@
         <servlet-class>Controllers.product.ProductDetailsController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SearchBySubcategory</servlet-name>
-        <servlet-class>Controllers.product.SearchBySubcategoryController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SeachCategoryController</servlet-name>
-        <servlet-class>Controllers.product.SeachCategoryController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SearchByTextController</servlet-name>
         <servlet-class>Controllers.product.SearchByTextController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListAllProductController</servlet-name>
         <servlet-class>Controllers.product.ListAllProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchByTagController</servlet-name>
+        <servlet-class>Controllers.product.SearchByTagController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchByCategoryController</servlet-name>
+        <servlet-class>Controllers.product.SearchByCategoryController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -161,20 +161,20 @@
         <url-pattern>/productDetails</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SearchBySubcategory</servlet-name>
-        <url-pattern>/searchSubcategory</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SeachCategoryController</servlet-name>
-        <url-pattern>/searchCategory</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>SearchByTextController</servlet-name>
         <url-pattern>/searchByText</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListAllProductController</servlet-name>
         <url-pattern>/listAllProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchByTagController</servlet-name>
+        <url-pattern>/searchByTag</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchByCategoryController</servlet-name>
+        <url-pattern>/searchByCategory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -137,24 +137,24 @@ public class ProductDAO extends DBContext {
     }
 
     public ArrayList<Product> getAllProduct(int offset, int recordsPerPage,
-            int collectionID, int subcategoryID, int categoryID, String textSearch,
+            int collectionID, int categoryID, int tagID, String textSearch,
             double minPrice, double maxPrice, boolean status) {
         ArrayList<Product> list = new ArrayList<>();
         try {
             HashMap<Integer, Object> setter = new HashMap<>();
             int count = 1;
-            String sql = "SELECT p.*\n"
-                    + "  FROM [Products] p\n"
-                    + "  left join Product_Collection pc\n"
-                    + "  on pc.ProductId = p.ProductId\n"
-                    + "  left join Collections c\n"
-                    + "  on c.CollectionID = pc.CollectionId\n"
-                    + "  left join Categories cg \n"
-                    + "  on cg.CategoryID = p.ProductId\n"
-                    + "  left join Categories parentCg\n"
-                    + "  on parentCg.CategoryID = cg.ParentID\n"
+            String sql = "SELECT Distinct p.Name\n"
+                    + "FROM [Products] p\n"
+                    + "left join Product_Collection pc\n"
+                    + "on pc.ProductId = p.ProductId\n"
+                    + "left join Collections c\n"
+                    + "on c.CollectionID = pc.CollectionId\n"
+                    + "left join Categories cg\n"
+                    + "on cg.CategoryID = p.CategoryId\n"
+                    + "left join Tags t\n"
+                    + "on t.TagId = cg.TagId\n"
                     + "Where p.IsParent = 1 and p.Status = ?\n"
-                    + "  and p.Price >= ? and p.Price <= ?\n";
+                    + "and p.Price >= ? and p.Price <= ?\n";
             setter.put(count, status);
             setter.put(++count, minPrice);
             setter.put(++count, maxPrice);
@@ -163,19 +163,27 @@ public class ProductDAO extends DBContext {
                 sql += "  and c.CollectionID = ?";
                 setter.put(++count, collectionID);
             }
-            if (subcategoryID != -1) {
-                sql += " and CategoryId = ?";
+            if (categoryID != -1) {
+                sql += " and p.CategoryId = ?";
                 setter.put(++count, categoryID);
             }
-            if (categoryID != -1) {
-                sql += "   and  parentCg.CategoryID = ?";
-                setter.put(++count, categoryID);
+            if (tagID != -1) {
+                sql += " and t.TagId = ?";
+                setter.put(++count, tagID);
             }
             if (!textSearch.isEmpty() && !textSearch.equalsIgnoreCase("")) {
                 textSearch = "%" + textSearch + "%";
                 sql += " and Name like ?";
                 setter.put(++count, textSearch);
             }
+
+            sql = "Select Products.* from Products\n"
+                    + "right join\n"
+                    + "(" + sql;
+
+            sql += ") as pro\n"
+                    + "on pro.Name = Products.Name\n"
+                    + "Where IsParent = 1\n";
 
             sql += " order by ProductId\n"
                     + "  offset ? ROW\n"
@@ -220,23 +228,23 @@ public class ProductDAO extends DBContext {
         return list;
     }
 
-    public int getNoOfRecords(int collectionID, int subcategoryID,
-            int categoryID, String textSearch, double minPrice, double maxPrice, boolean status) {
+    public int getNoOfRecords(int collectionID, int categoryID,
+            int tagID, String textSearch, double minPrice, double maxPrice, boolean status) {
         try {
             HashMap<Integer, Object> setter = new HashMap<>();
             int count = 1;
-            String sql = "SELECT Count(*) as 'total'\n"
+            String sql = "SELECT Distinct p.Name\n"
                     + "FROM [Products] p\n"
-                    + "  left join Product_Collection pc\n"
-                    + "  on pc.ProductId = p.ProductId\n"
-                    + "  left join Collections c\n"
-                    + "  on c.CollectionID = pc.CollectionId\n"
-                    + "  left join Categories cg \n"
-                    + "  on cg.CategoryID = p.ProductId\n"
-                    + "  left join Categories parentCg\n"
-                    + "  on parentCg.CategoryID = cg.ParentID\n"
+                    + "left join Product_Collection pc\n"
+                    + "on pc.ProductId = p.ProductId\n"
+                    + "left join Collections c\n"
+                    + "on c.CollectionID = pc.CollectionId\n"
+                    + "left join Categories cg\n"
+                    + "on cg.CategoryID = p.CategoryId\n"
+                    + "left join Tags t\n"
+                    + "on t.TagId = cg.TagId\n"
                     + "Where p.IsParent = 1 and p.Status = ?\n"
-                    + "  and p.Price >= ? and p.Price <= ?\n";
+                    + "and p.Price >= ? and p.Price <= ?\n";
             setter.put(count, status);
             setter.put(++count, minPrice);
             setter.put(++count, maxPrice);
@@ -245,19 +253,27 @@ public class ProductDAO extends DBContext {
                 sql += "  and c.CollectionID = ?";
                 setter.put(++count, collectionID);
             }
-            if (subcategoryID != -1) {
-                sql += " and CategoryId = ?";
+            if (categoryID != -1) {
+                sql += " and p.CategoryId = ?";
                 setter.put(++count, categoryID);
             }
-            if (categoryID != -1) {
-                sql += "   and  parentCg.CategoryID = ?";
-                setter.put(++count, categoryID);
+            if (tagID != -1) {
+                sql += " and t.TagId = ?";
+                setter.put(++count, tagID);
             }
             if (!textSearch.isEmpty() && !textSearch.equalsIgnoreCase("")) {
                 textSearch = "%" + textSearch + "%";
                 sql += " and Name like ?";
                 setter.put(++count, textSearch);
             }
+
+            sql = "Select count(*) as 'total' from Products\n"
+                    + "right join\n"
+                    + "(" + sql;
+
+            sql += ") as pro\n"
+                    + "on pro.Name = Products.Name\n"
+                    + "Where IsParent = 1\n";
 
             PreparedStatement stm = connection.prepareStatement(sql);
             for (Map.Entry<Integer, Object> entry : setter.entrySet()) {
@@ -271,6 +287,6 @@ public class ProductDAO extends DBContext {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return -1;
+        return 0;
     }
 }
