@@ -80,9 +80,12 @@ public class HomeController extends HttpServlet {
 //    
 //
 //    public static void main(String[] args) {
-//        TagDAO tDao = new TagDAO();
-//        ArrayList<Tag> tags = tDao.getAll();
-//        System.out.println(tags.size());
+//        //get all new arrival product
+//        NewArrivalDAO naDao = new NewArrivalDAO();
+//        ArrayList<NewArrival> newArrivals = naDao.getAllNew(false, true);
+//        for (NewArrival newArrival : newArrivals) {
+//            System.out.println(newArrival.getProduct().getImages().get(0).getImage());
+//        }
 //    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -4,7 +4,6 @@
  */
 package Controllers.product;
 
-import Controllers.Authenticate.BaseAuthenticationController;
 import DAL.CollectionDAO;
 import DAL.ProductDAO;
 import Model.Collection;
@@ -16,8 +15,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  *
@@ -48,84 +45,37 @@ public class ProductController extends HttpServlet {
         if (textSearch == null) {
             textSearch = "";
         }
-        
+
         if (request.getSession().getAttribute("categoryID") != null) {
-            categoryID = (int)request.getSession().getAttribute("categoryID");
+            categoryID = (int) request.getSession().getAttribute("categoryID");
         }
 
         if (request.getSession().getAttribute("tagID") != null) {
-            tagID = (int)request.getSession().getAttribute("tagID");
+            tagID = (int) request.getSession().getAttribute("tagID");
         }
 
         if (request.getSession().getAttribute("collectionID") != null) {
-            collectionID = (int)request.getSession().getAttribute("collectionID");
+            collectionID = (int) request.getSession().getAttribute("collectionID");
         }
 
         ProductDAO pDao = new ProductDAO();
-        ArrayList<Product> products = pDao.getAllProduct((page - 1) * recordsPerPage,
+        
+        ArrayList<Product> products = pDao.getAllProductParent((page - 1) * recordsPerPage,
                 recordsPerPage, collectionID, categoryID, tagID, textSearch,
-                minPrice, maxPrice, true);
-        int noOfRecords = pDao.getNoOfRecords(collectionID, categoryID, tagID, textSearch, minPrice, maxPrice, true);
+                minPrice, maxPrice, true, sortOption);
+        
+        int noOfRecords = pDao.getNoOfRecordsParent(collectionID, categoryID, tagID, textSearch, minPrice, maxPrice, true);
 
         int noOfPages = (int) Math.ceil((double) noOfRecords
                 / recordsPerPage);
-
-        if (request.getSession().getAttribute("sortOption") != null) {
-            sortOption = (int) request.getSession().getAttribute("sortOption");
-            if (sortOption != -1) {
-                switch (sortOption) {
-                    case 1:
-                        Collections.sort(products, new Comparator<Product>() {
-                            @Override
-                            public int compare(Product o1, Product o2) {
-                                return o1.getName().compareToIgnoreCase(o2.getName());
-                            }
-                        });
-                        break;
-                    case 2:
-                        Collections.sort(products, new Comparator<Product>() {
-                            @Override
-                            public int compare(Product o1, Product o2) {
-                                return o2.getName().compareToIgnoreCase(o1.getName());
-                            }
-                        });
-                        break;
-                    case 3:
-                        Collections.sort(products, new Comparator<Product>() {
-                            @Override
-                            public int compare(Product o1, Product o2) {
-                                if (o1.getPrice() < o2.getPrice()) {
-                                    return 1;
-                                }
-                                if (o1.getPrice() > o2.getPrice()) {
-                                    return -1;
-                                }
-                                return 0;
-                            }
-                        });
-                        break;
-                    case 4:
-                        Collections.sort(products, new Comparator<Product>() {
-                            @Override
-                            public int compare(Product o1, Product o2) {
-                                if (o1.getPrice() < o2.getPrice()) {
-                                    return -1;
-                                }
-                                if (o1.getPrice() > o2.getPrice()) {
-                                    return 1;
-                                }
-                                return 0;
-                            }
-                        });
-                        break;
-                }
-            }
-        }
 
         //get all collection
         CollectionDAO clDao = new CollectionDAO();
         ArrayList<Collection> collections = clDao.getAllCollection(true);
 
+        request.getSession().setAttribute("minPrice", minPrice);
+        request.getSession().setAttribute("maxPrice", maxPrice);
+        
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
         request.setAttribute("noOfRecords", noOfRecords);
@@ -143,9 +93,9 @@ public class ProductController extends HttpServlet {
 
     public static void main(String[] args) {
         ProductDAO pDao = new ProductDAO();
-        ArrayList<Product> products = pDao.getAllProduct(0,
-                5, -1, -1, -1, "", 0, 1000000, true);
-        int noOfRecords = pDao.getNoOfRecords(-1, 3, -1, "", 0, 1000000, true);
+        ArrayList<Product> products = pDao.getAllProductParent(0,
+                5, -1, -1, -1, "", 0, 1000000, true, -1);
+        int noOfRecords = pDao.getNoOfRecordsParent(-1, 3, -1, "", 0, 1000000, true);
         System.out.println(products.size());
     }
 
@@ -161,7 +111,6 @@ public class ProductController extends HttpServlet {
                     break;
                 case "sort":
                     sortOption = Integer.parseInt(request.getParameter("sortOption"));
-                    request.getSession().setAttribute("sortOption", sortOption);
                     doGet(request, response);
                     break;
             }
