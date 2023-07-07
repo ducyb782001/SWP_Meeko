@@ -126,7 +126,7 @@ crossorigin="anonymous"></script>
                                                             <input id="productQuantity_${ord.product.productId}" min="1"
                                                                    type="number" class="input_cart_width" name="quantity" value="${ord.quantity}" oninput="handleQuantityChange('${ord.product.productId}','${ord.product.price}')">
                                                         </div>
-                                                        <p class="mb-0 cart_quantity prd-name" onclick="deleteProduct('${ord.product.productId}')">xóa</p>
+                                                        <p class="mb-0 cart_quantity prd-name" onclick="deleteProduct('${ord.product.productId}','${ord.product.price}')">xóa</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -479,10 +479,35 @@ crossorigin="anonymous"></script>
         }
     }
 
-    function deleteProduct(id) {
+    function deleteProduct(id, price) {
         var div = document.getElementById('product_' + id);
         if (div) {
             div.remove();
+            var cartValue = getCookie(cookiesName) || '';
+            if (cartValue !== '') {
+                //Tach chuoi san phan trong cart
+                var products = cartValue.split("_");
+                //duyet tu dau den cuoi mang
+                for (var i = 0; i < products.length; i++) {
+                    //lay ra thong tin cua tung san pham trong cart
+                    var product = products[i];
+                    //tach chuoi
+                    var parts = product.split("-");
+                    //kiem tra xem id da ton tai hay chua
+                    if (parts[0] === id) {
+
+                        //cap nhat lai so luong san pham
+                        cartValue = cartValue.replace("_" + parts[0] + "-" + parts[1], '');
+                        //ap nhat lai cokies
+                        document.cookie = cookiesName + "=" + cartValue + "; path=/";
+                        var changePrice = parseFloat(price) * parseInt(parts[1]);
+                        //cap nhat lai tong hoa don
+                        var totalPrice = updateTotalPrice(-changePrice);
+                        printTotalPrice(totalPrice.toString());
+                        break;
+                    }
+                }
+            }
         }
     }
 </script>

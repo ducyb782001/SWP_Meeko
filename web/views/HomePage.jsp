@@ -175,7 +175,7 @@
                             ${formattedNumber}đ
                             <div class="action-prd-cart">
                                 <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
-                                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="addToCart('${na.product.productId}', '${na.product.name}', '${na.product.images.get(0).image}', '${na.product.price}', 1,'${na.product.quantity}')">                            
+                                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="addToCart('${na.product.productId}', '${na.product.name}', '${na.product.images.get(0).image}', '${na.product.price}', 1)">                            
                                     <i class="fa-solid fa-cart-plus fa-lg"></i>
                                 </button>
                             </div>
