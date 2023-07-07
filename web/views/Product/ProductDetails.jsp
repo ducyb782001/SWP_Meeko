@@ -496,6 +496,7 @@
                 document.documentElement.scrollTop = 0;
             }
 
+            <c:if test="${product.children.size() != 0}">
             // Get all the custom__select__type elements
             var selectTypes = document.querySelectorAll('.custom__select__type');
 
@@ -540,6 +541,15 @@
                     break;
                 }
             }
+            </c:if>
+            <c:if test="${product.quantity != 0}">
+            document.getElementById('show_out').style.display = 'none';
+            document.getElementById('show_buy').style.display = 'block';
+            </c:if>
+            <c:if test="${product.quantity == 0}">
+            document.getElementById('show_out').style.display = 'block';
+            document.getElementById('show_buy').style.display = 'none';
+            </c:if>
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
