@@ -2,28 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.product;
+package Controllers.User;
 
-import DAL.ImageProductDAO;
-import DAL.ProductDAO;
-import Model.Constants;
-import Model.ImageProduct;
-import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
  * @author dell
  */
-public class ProductDetailsController extends HttpServlet {
-
-    int productID = -1;
+public class ForgotPasswordServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +34,10 @@ public class ProductDetailsController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProductDetailsController</title>");
+            out.println("<title>Servlet ForgotPasswordServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProductDetailsController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ForgotPasswordServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,21 +55,7 @@ public class ProductDetailsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        if (productID != -1) {
-//            ProductDAO pDao = new ProductDAO();
-//            ImageProductDAO iDao = new ImageProductDAO();
-//
-//            Product product = pDao.getProductByID(productID, Constants.Active);
-//            ArrayList<ImageProduct> images = iDao.getAllImageByProductID(productID, Constants.DeleteFalse);
-//
-//            request.setAttribute("product", product);
-//            request.setAttribute("images", images);
-//
-//            request.getRequestDispatcher("views/Product/ProductDetails.jsp").forward(request, response);
-//        } else {
-//            response.sendRedirect("product");
-//        }
-        request.getRequestDispatcher("views/Product/test.jsp").forward(request, response);
+        request.getRequestDispatcher("views/ForgotPassword.jsp").forward(request, response);
     }
 
     /**
@@ -91,12 +69,7 @@ public class ProductDetailsController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("productID") != null) {
-            productID = Integer.parseInt(request.getParameter("productID"));
-            doGet(request, response);
-        } else {
-            response.sendRedirect("product");
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -4,24 +4,32 @@
  */
 package Controllers;
 
+import Controllers.Order.OrderDetail;
 import DAL.BestSellerDAO;
 import DAL.CategoryDAO;
 import DAL.CollectionDAO;
 import DAL.NewArrivalDAO;
+import DAL.ProductDAO;
 import DAL.TagDAO;
 import Model.BestSeller;
 import Model.Category;
 import Model.Collection;
 import Model.NewArrival;
+import Model.Order;
+import Model.OrderDetails;
+import Model.Product;
 import Model.Tag;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -40,16 +48,68 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        double totalPrice = 0.0;
+        
         HttpSession sesion = request.getSession();
+
+        CollectionDAO clDao = new CollectionDAO();
+        ProductDAO pDao = new ProductDAO();
+        TagDAO tDao = new TagDAO();
+        NewArrivalDAO naDao = new NewArrivalDAO();
+
         String regiester = (String) sesion.getAttribute("register");
 
+        User acc = (User) sesion.getAttribute("account");
+
+        ArrayList<OrderDetails> cart = new ArrayList<>();
+
+        //declare cookies
+        String cookieName = "cart";
+        if (acc != null) {
+            cookieName += acc.getUserID();
+        }
+
+        // Get the cookies from the request
+        Cookie[] cookies = request.getCookies();
+
+        String cartValue = "";
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(cookieName)) {
+                    cartValue = cookie.getValue();
+                }
+            }
+        }
+
+        //check if cookies exist or not
+        if (!cartValue.equals("")) {
+            String[] products = cartValue.split("_");
+            for (String product : products) {
+                //check the length of the product cookie
+                if (product.length() != 0) {
+                    String[] proQua = product.split("-");
+                    OrderDetails order = new OrderDetails();
+                    Product pro = pDao.getProductByID(Integer.parseInt(proQua[0]), true);
+                    order.setProduct(pro);
+                    order.setQuantity(Integer.parseInt(proQua[1]));
+                    cart.add(order);
+
+                    totalPrice += pro.getPrice() * order.getQuantity();
+                }
+            }
+
+        }
+//        
+        for (OrderDetails orderDetails : cart) {
+            response.getWriter().println(orderDetails.getProduct().getProductId() + "-" + orderDetails.getQuantity());
+        }
+
         //get all collection
-        CollectionDAO clDao = new CollectionDAO();
         ArrayList<Collection> collections = clDao.getAllCollection(true);
 
-        TagDAO tDao = new TagDAO();
         ArrayList<Tag> tags = tDao.getAll();
-        
+
         //get all categories belong to tag
         for (Tag tag : tags) {
             CategoryDAO cDao = new CategoryDAO();
@@ -58,7 +118,6 @@ public class HomeController extends HttpServlet {
         }
 
         //get all new arrival product
-        NewArrivalDAO naDao = new NewArrivalDAO();
         ArrayList<NewArrival> newArrivals = naDao.getAllNew(false, true);
 
         //get all best seller product
@@ -70,7 +129,12 @@ public class HomeController extends HttpServlet {
             sesion.setAttribute("register", null);
         }
 
+        Cookie priceCookie = new Cookie("totalP", String.valueOf(totalPrice));
+        response.addCookie(priceCookie);
+
         request.getSession().setAttribute("tags", tags);
+        request.getSession().setAttribute("cart", cart);
+        request.getSession().setAttribute("totalPrice", totalPrice);
         request.getSession().setAttribute("bestSellers", bestSellers);
         request.getSession().setAttribute("bestSellers", bestSellers);
         request.getSession().setAttribute("collections", collections);
@@ -80,12 +144,8 @@ public class HomeController extends HttpServlet {
 //    
 //
 //    public static void main(String[] args) {
-//        //get all new arrival product
-//        NewArrivalDAO naDao = new NewArrivalDAO();
-//        ArrayList<NewArrival> newArrivals = naDao.getAllNew(false, true);
-//        for (NewArrival newArrival : newArrivals) {
-//            System.out.println(newArrival.getProduct().getImages().get(0).getImage());
-//        }
+//        double a = 22222.000;
+//        System.out.println(String.valueOf(a));
 //    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

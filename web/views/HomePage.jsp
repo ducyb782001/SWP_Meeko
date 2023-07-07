@@ -18,7 +18,6 @@
         <script src="script.js"></script>
         <script src="https://kit.fontawesome.com/8d39de38b8.js" crossorigin="anonymous"></script>
         <style>
-
             #snackbar {
                 visibility: hidden;
                 min-width: 250px;
@@ -159,7 +158,7 @@
                 <c:forEach items="${newArrivals}" var="na">
                     <div class="col-6 col-md-3 product-cart-wrapper">
                         <form id="frm-product-details-${na.product.productId}" action="productDetails" method="post">
-                            <input type="hidden" value="${na.product.productId}" name="productID">
+                            <input type="hidden" value="${na.product.productId}" name="productID" id="productID${na.product.productId}">
                             <div class="position-relative">
                                 <img src="${na.product.images.get(0).image}"
                                      alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${na.product.productId}')"/>
@@ -172,8 +171,13 @@
                                     </svg>
                                 </div>
                             </div>
+                            <fmt:formatNumber value="${na.product.price}" pattern="#,##0.000" var="formattedNumber" />
+                            ${formattedNumber}đ
                             <div class="action-prd-cart">
-                                <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
+                                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="addToCart('${na.product.productId}', '${na.product.name}', '${na.product.images.get(0).image}', '${na.product.price}', 1,'${na.product.quantity}')">                            
+                                    <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                </button>
                             </div>
 
                             <div class="prd-name" onclick="viewProduct('${na.product.productId}')">
@@ -183,7 +187,6 @@
                                 ${na.product.description}
                             </div>
                             <div class="prd-price">
-                                <fmt:formatNumber value="${na.product.price}" pattern="#,##0.000" var="formattedNumber" />
                                 ${formattedNumber}đ
                             </div>
                         </form>
@@ -215,7 +218,10 @@
                                 </div>
                             </div>
                             <div class="action-prd-cart">
-                                <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
+                                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                </button>
                             </div>
 
                             <div class="prd-name" onclick="viewProduct('${bs.product.productId}')">

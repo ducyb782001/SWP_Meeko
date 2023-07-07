@@ -64,7 +64,10 @@
                                     </div>
 
                                     <div class="action-prd-cart">
-                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                        <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
+                                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                            <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                        </button>
                                     </div>
 
                                     <div class="prd-name" onclick="viewProduct('${p.productId}')">
