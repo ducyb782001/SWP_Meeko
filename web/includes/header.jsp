@@ -92,7 +92,7 @@ crossorigin="anonymous"></script>
                                                     <div class="input-group">
                                                         <input id="productQuantity" type="number" min="1" class="input_cart_width" name="quantity" value="1">
                                                     </div>
-                                                    <p class="mb-0 cart_quantity prd-name">xóa</p>
+                                                    <p class="mb-0 cart_quantity prd-name" id="deleteProduct">xóa</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,7 +135,7 @@ crossorigin="anonymous"></script>
                                                             <input id="productQuantity_${ord.product.productId}" min="1"
                                                                    type="number" class="input_cart_width" name="quantity" value="${ord.quantity}" oninput="handleQuantityChange('${ord.product.productId}','${ord.product.price}')">
                                                         </div>
-                                                        <p class="mb-0 cart_quantity prd-name" onclick="deleteProduct('${ord.product.productId}', '${ord.product.price}')">xóa</p>
+                                                        <p class="mb-0 cart_quantity prd-name" id="deleteProduct_${ord.product.productId}" onclick="deleteProduct('${ord.product.productId}', '${ord.product.price}')">xóa</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -353,6 +353,7 @@ crossorigin="anonymous"></script>
                     //thay doi so luong cua san pham
                     existCart.querySelector('#productQuantity_' + id).value = totalQuantity.toString();
 
+
                     //cap nhat lai so luong san pham
                     cartValue = cartValue.replace(id + "-" + existingQuantity, id + "-" + totalQuantity);
 
@@ -411,8 +412,17 @@ crossorigin="anonymous"></script>
         newDiv.querySelector('#productPrice').innerHTML = formattedPrice.toString();
         newDiv.querySelector('#productQuantity').id = 'productQuantity_' + id;
         newDiv.querySelector('#productValue').id = 'productValue_' + id;
+        newDiv.querySelector('#deleteProduct').id = 'deleteProduct_' + id;
         //thay doi so luong cua san pham
         newDiv.querySelector('#productQuantity_' + id).value = quantity;
+
+        //them su kien thay doi so luong
+        newDiv.querySelector('#productQuantity_' + id).addEventListener('input', function () {
+            handleQuantityChange(id, price);
+        });
+        newDiv.querySelector('#deleteProduct_' + id).addEventListener('click', function () {
+            deleteProduct(id, price);
+        });
         //thay doi loai cua san pham
         if (typeValue !== '') {
             newDiv.querySelector('#productValue_' + id).innerHTML = typeValue;

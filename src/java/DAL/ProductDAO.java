@@ -91,6 +91,53 @@ public class ProductDAO extends DBContext {
         return null;
     }
 
+    public Product getProductDetailsByID(int productID, boolean status) {
+        try {
+            String sql = "SELECT *\n"
+                    + "  FROM [Products] Where ProductId = ? and Status = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, productID);
+            stm.setBoolean(2, status);
+            ResultSet rs = stm.executeQuery();
+
+            TypeDAO tDao = new TypeDAO();
+            CategoryDAO cDao = new CategoryDAO();
+            ImageProductDAO imageDao = new ImageProductDAO();
+
+            Product product = new Product();
+            Category category = new Category();
+            ArrayList<ImageProduct> listImage;
+
+            if (rs.next()) {
+
+                Type type = tDao.getTypeByID(rs.getInt("ClassType"));
+
+                category = cDao.getCategoryByID(rs.getInt("CategoryId"));
+
+                boolean isParent = rs.getBoolean("IsParent");
+                listImage = new ArrayList<>();
+                product.setProductId(rs.getInt("ProductId"));
+                product.setName(rs.getString("Name"));
+                product.setPrice(rs.getDouble("Price"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setStatus(rs.getBoolean("Status"));
+                product.setClassType(type);
+                product.setClassValue(rs.getString("ClassValue"));
+                product.setCreateDate(rs.getDate("createDate"));
+                product.setCategory(category);
+                product.setIsParent(isParent);
+                product.setDescription(rs.getString("Description"));
+
+                listImage = imageDao.getImageByProductID(product.getProductId(), Constants.DeleteFalse);
+                product.setImages(listImage);
+                return product;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ArrayList<Product> getAllProductParent(boolean status) {
         ArrayList<Product> list = new ArrayList<>();
         try {

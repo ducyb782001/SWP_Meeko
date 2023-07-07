@@ -126,7 +126,6 @@ public class ProductController extends ReloadController {
         request.getSession().setAttribute("tagID", null);
         request.getSession().setAttribute("collectionID", collectionID);
         request.getSession().setAttribute("textSearch", null);
-        request.getSession().setAttribute("sortOption", -1);
         doGet(request, response);
     }
 
@@ -137,7 +136,6 @@ public class ProductController extends ReloadController {
         request.getSession().setAttribute("tagID", null);
         request.getSession().setAttribute("collectionID", null);
         request.getSession().setAttribute("textSearch", null);
-        request.getSession().setAttribute("sortOption", -1);
         doGet(request, response);
     }
 
@@ -148,7 +146,6 @@ public class ProductController extends ReloadController {
         request.getSession().setAttribute("tagID", tagID);
         request.getSession().setAttribute("collectionID", null);
         request.getSession().setAttribute("textSearch", null);
-        request.getSession().setAttribute("sortOption", -1);
         doGet(request, response);
     }
 
@@ -159,14 +156,25 @@ public class ProductController extends ReloadController {
         request.getSession().setAttribute("tagID", null);
         request.getSession().setAttribute("collectionID", null);
         request.getSession().setAttribute("textSearch", textSearch);
-        request.getSession().setAttribute("sortOption", -1);
         doGet(request, response);
     }
 
     void listAllProduct(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.getSession().setAttribute("categoryID", null);
+        request.getSession().setAttribute("tagID", null);
+        request.getSession().setAttribute("collectionID", null);
         request.getSession().setAttribute("textSearch", null);
-        request.getSession().setAttribute("sortOption", -1);
+        collectionID = -1;
+        categoryID = -1;
+        tagID = -1;
+        header = null;
+        page = 1;
+        recordsPerPage = 5;
+        minPrice = 0;
+        maxPrice = 1000000000;
+        textSearch = "";
+        sortOption = -1;
         doGet(request, response);
     }
 }

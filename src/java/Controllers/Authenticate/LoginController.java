@@ -58,6 +58,7 @@ public class loginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doGet(request, response);
         request.getRequestDispatcher("/views/Login.jsp").forward(request, response);
     }
 
@@ -80,7 +81,7 @@ public class loginController extends HttpServlet {
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String pwd = request.getParameter("pwd");
-        
+
         EncodeMD5 encode = new EncodeMD5();
         String encodePwd = encode.EncoderMD5(pwd);
 

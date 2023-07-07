@@ -118,6 +118,7 @@
                                     <!-- If you choose div, you need add active into class in div like below -->
                                     <div id="pro-${product.productId}" 
                                          data-productid="${product.productId}"
+                                         data-productTypeValue="<c:out value="${product.classValue}"/>"
                                          style="color: #777777; border: 1px solid #777777; border-radius: 6px; cursor: pointer;"
                                          class="custom__select__type active px-3 py-2
                                          <c:if test="${product.quantity == 0}">
@@ -137,6 +138,7 @@
                                     <c:forEach items="${product.children}" var="pc">
                                         <div id="pro-${pc.productId}" 
                                              data-productid="${pc.productId}"
+                                             data-productTypeValue="<c:out value="${pc.classValue}"/>"
                                              style="color: #777777; border: 1px solid #777777; border-radius: 6px; cursor: pointer;"
                                              class="custom__select__type px-3 py-2
                                              <c:if test="${pc.quantity == 0}">
@@ -196,10 +198,13 @@
                         <!-- if else to show each case, if have product, show below. If out of stock, show sold out -->
                         <div class="mt-3" id="show_buy">
                             <div class="mb-3">
-                                <input type="number" class="input_cart_width" name="qty" value="1">
+                                <input type="number" class="input_cart_width" name="qty" value="1" min="1" id="quantityBuy">
                             </div>
                             <div class="d-flex gap-3 align-items-center">
-                                <button class="btn btn-outline-dark btn-lg custom_btn_add">Thêm vào giỏ hàng</button>
+                                <button class="btn btn-outline-dark btn-lg custom_btn_add navbar-toggler" 
+                                        type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
+                                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                                        onclick="addToCartDetail('${product.name}', '${product.images.get(0).image}', '${product.price}')">Thêm vào giỏ hàng</button>
                                 <button class="btn btn-danger btn-lg custom_btn_buynow">Mua ngay</button>
                             </div>
                         </div>
@@ -471,7 +476,7 @@
         </script>
         <script>
             var productID = '<c:out value="${product.productId}"/>';
-            var typeValue = '<c:out value="${product.productId}"/>';
+            var typeValue = '<c:out value="${product.classValue}"/>';
 
             //Get the button
             let mybutton = document.getElementById("btn-back-to-top");
@@ -509,7 +514,9 @@
 
                     // Add the "active" class to the clicked element
                     this.classList.add('active');
+                    
                     productID = this.dataset.productid;
+                    typeValue = this.dataset.productTypeValue;
                     // alert('Selected productId:' + productID);
 
                     selectTypes.forEach(function (e1) {
@@ -550,9 +557,9 @@
             document.getElementById('show_out').style.display = 'block';
             document.getElementById('show_buy').style.display = 'none';
             </c:if>
-            function addToCartDetail(name, image, price, typeValue) {
-                var quantity =
-                        addToCart(productID, name, image, price, quantity, typeValue);
+            function addToCartDetail(name, image, price) {
+                var quantity = document.getElementById('quantityBuy').value;
+                addToCart(productID, name, image, price, quantity, typeValue);
             }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

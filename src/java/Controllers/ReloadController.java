@@ -36,14 +36,12 @@ import java.util.ArrayList;
 public class ReloadController extends HttpServlet {
 
     @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         double totalPrice = 0.0;
 
         HttpSession sesion = request.getSession();
         ProductDAO pDao = new ProductDAO();
-
-        String regiester = (String) sesion.getAttribute("register");
 
         User acc = (User) sesion.getAttribute("account");
 
@@ -75,7 +73,7 @@ public class ReloadController extends HttpServlet {
                 if (product.length() != 0) {
                     String[] proQua = product.split("-");
                     OrderDetails order = new OrderDetails();
-                    Product pro = pDao.getProductByID(Integer.parseInt(proQua[0]), true);
+                    Product pro = pDao.getProductDetailsByID(Integer.parseInt(proQua[0]), true);
                     order.setProduct(pro);
                     order.setQuantity(Integer.parseInt(proQua[1]));
                     cart.add(order);
@@ -86,15 +84,10 @@ public class ReloadController extends HttpServlet {
 
         }
 
-        if (regiester != null) {
-            request.setAttribute("msg", "Bạn đã đăng ký tài khoản thành công!");
-            sesion.setAttribute("register", null);
-        }
-
         Cookie priceCookie = new Cookie("totalP", String.valueOf(totalPrice));
         response.addCookie(priceCookie);
 
         request.getSession().setAttribute("cart", cart);
-        request.getSession().setAttribute("totalPrice", totalPrice);
+        
     }
 }

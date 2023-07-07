@@ -35,7 +35,7 @@ import java.util.Arrays;
  *
  * @author dell
  */
-public class HomeController extends HttpServlet {
+public class HomeController extends ReloadController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,62 +48,15 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doGet(request, response);
 
-        double totalPrice = 0.0;
-        
         HttpSession sesion = request.getSession();
 
         CollectionDAO clDao = new CollectionDAO();
-        ProductDAO pDao = new ProductDAO();
         TagDAO tDao = new TagDAO();
         NewArrivalDAO naDao = new NewArrivalDAO();
 
         String regiester = (String) sesion.getAttribute("register");
-
-        User acc = (User) sesion.getAttribute("account");
-
-        ArrayList<OrderDetails> cart = new ArrayList<>();
-
-        //declare cookies
-        String cookieName = "cart";
-        if (acc != null) {
-            cookieName += acc.getUserID();
-        }
-
-        // Get the cookies from the request
-        Cookie[] cookies = request.getCookies();
-
-        String cartValue = "";
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(cookieName)) {
-                    cartValue = cookie.getValue();
-                }
-            }
-        }
-
-        //check if cookies exist or not
-        if (!cartValue.equals("")) {
-            String[] products = cartValue.split("_");
-            for (String product : products) {
-                //check the length of the product cookie
-                if (product.length() != 0) {
-                    String[] proQua = product.split("-");
-                    OrderDetails order = new OrderDetails();
-                    Product pro = pDao.getProductByID(Integer.parseInt(proQua[0]), true);
-                    order.setProduct(pro);
-                    order.setQuantity(Integer.parseInt(proQua[1]));
-                    cart.add(order);
-
-                    totalPrice += pro.getPrice() * order.getQuantity();
-                }
-            }
-
-        }
-//        
-        for (OrderDetails orderDetails : cart) {
-            response.getWriter().println(orderDetails.getProduct().getProductId() + "-" + orderDetails.getQuantity());
-        }
 
         //get all collection
         ArrayList<Collection> collections = clDao.getAllCollection(true);
@@ -129,12 +82,7 @@ public class HomeController extends HttpServlet {
             sesion.setAttribute("register", null);
         }
 
-        Cookie priceCookie = new Cookie("totalP", String.valueOf(totalPrice));
-        response.addCookie(priceCookie);
-
         request.getSession().setAttribute("tags", tags);
-        request.getSession().setAttribute("cart", cart);
-        request.getSession().setAttribute("totalPrice", totalPrice);
         request.getSession().setAttribute("bestSellers", bestSellers);
         request.getSession().setAttribute("bestSellers", bestSellers);
         request.getSession().setAttribute("collections", collections);
