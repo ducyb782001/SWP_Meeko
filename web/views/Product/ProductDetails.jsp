@@ -471,7 +471,7 @@
         </script>
         <script>
             var productID = '<c:out value="${product.productId}"/>';
-//            alert('Selected productId:' + productID);
+            var typeValue = '<c:out value="${product.productId}"/>';
 
             //Get the button
             let mybutton = document.getElementById("btn-back-to-top");
@@ -550,6 +550,10 @@
             document.getElementById('show_out').style.display = 'block';
             document.getElementById('show_buy').style.display = 'none';
             </c:if>
+            function addToCartDetail(name, image, price, typeValue) {
+                var quantity =
+                        addToCart(productID, name, image, price, quantity, typeValue);
+            }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

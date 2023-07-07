@@ -5,6 +5,7 @@
 
 package Controllers.Authenticate;
 
+import Controllers.ReloadController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author dell
  */
-public class logoutController extends HttpServlet {
+public class logoutController extends ReloadController {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.

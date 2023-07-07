@@ -5,6 +5,7 @@
 
 package Controllers.product;
 
+import Controllers.ReloadController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author dell
  */
-public class ListAllProductController extends HttpServlet {
+public class ListAllProductController extends ReloadController {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.

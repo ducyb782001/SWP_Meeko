@@ -4,6 +4,7 @@
  */
 package Controllers.Authenticate;
 
+import Controllers.ReloadController;
 import DAL.UserDAO;
 import Model.User;
 import Utils.EncodeMD5;
@@ -20,7 +21,7 @@ import java.time.LocalDate;
  *
  * @author dell
  */
-public class registerController extends HttpServlet {
+public class registerController extends ReloadController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

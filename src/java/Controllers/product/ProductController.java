@@ -4,6 +4,7 @@
  */
 package Controllers.product;
 
+import Controllers.ReloadController;
 import DAL.CollectionDAO;
 import DAL.ProductDAO;
 import Model.Collection;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author dell
  */
-public class ProductController extends HttpServlet {
+public class ProductController extends ReloadController {
 
     int collectionID = -1;
     int categoryID = -1;
@@ -36,6 +37,7 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doGet(request, response);
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(
                     request.getParameter("page"));
@@ -59,11 +61,11 @@ public class ProductController extends HttpServlet {
         }
 
         ProductDAO pDao = new ProductDAO();
-        
+
         ArrayList<Product> products = pDao.getAllProductParent((page - 1) * recordsPerPage,
                 recordsPerPage, collectionID, categoryID, tagID, textSearch,
                 minPrice, maxPrice, true, sortOption);
-        
+
         int noOfRecords = pDao.getNoOfRecordsParent(collectionID, categoryID, tagID, textSearch, minPrice, maxPrice, true);
 
         int noOfPages = (int) Math.ceil((double) noOfRecords
@@ -75,7 +77,7 @@ public class ProductController extends HttpServlet {
 
         request.getSession().setAttribute("minPrice", minPrice);
         request.getSession().setAttribute("maxPrice", maxPrice);
-        
+
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
         request.setAttribute("noOfRecords", noOfRecords);

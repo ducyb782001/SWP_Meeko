@@ -4,6 +4,7 @@
  */
 package Controllers.product;
 
+import Controllers.ReloadController;
 import DAL.ImageProductDAO;
 import DAL.ProductDAO;
 import Model.Constants;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
  *
  * @author dell
  */
-public class ProductDetailsController extends HttpServlet {
+public class ProductDetailsController extends ReloadController {
 
     int productID = -1;
 

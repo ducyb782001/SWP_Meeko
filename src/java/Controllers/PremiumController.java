@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author dell
  */
-public class PremiumController extends HttpServlet {
+public class PremiumController extends ReloadController {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -53,6 +53,7 @@ public class PremiumController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        super.doGet(request, response);
         request.getRequestDispatcher("views/Product/Premium.jsp").forward(request, response);
     } 
 

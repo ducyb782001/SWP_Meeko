@@ -175,7 +175,21 @@
                             ${formattedNumber}đ
                             <div class="action-prd-cart">
                                 <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
-                                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="addToCart('${na.product.productId}', '${na.product.name}', '${na.product.images.get(0).image}', '${na.product.price}', 1)">                            
+                                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                                        <c:if test="${na.product.children.size() == 0}">
+                                            onclick="addToCart('${na.product.productId}', '${na.product.name}', '${na.product.images.get(0).image}', '${na.product.price}', 1
+                                            <c:if test="${bs.product.classValue != null}">
+                                                    , '${bs.product.classValue}'
+                                            </c:if>
+                                            <c:if test="${bs.product.classValue == null}">
+                                                    , ''
+                                            </c:if>
+                                                    )"
+                                        </c:if>          
+                                        <c:if test="${na.product.children.size() != 0}">
+                                            onclick="viewProduct('${na.product.productId}')"
+                                        </c:if>
+                                        >                            
                                     <i class="fa-solid fa-cart-plus fa-lg"></i>
                                 </button>
                             </div>
@@ -219,7 +233,15 @@
                             </div>
                             <div class="action-prd-cart">
                                 <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
-                                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="addToCart('${bs.product.productId}', '${bs.product.name}', '${bs.product.images.get(0).image}', '${bs.product.price}', 1)">
+                                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                                        onclick="addToCart('${bs.product.productId}', '${bs.product.name}', '${bs.product.images.get(0).image}', '${bs.product.price}', 1
+                                        <c:if test="${bs.product.classValue != null}">
+                                                , '${bs.product.classValue}'
+                                        </c:if>
+                                        <c:if test="${bs.product.classValue == null}">
+                                                , ''
+                                        </c:if>
+                                                )">
                                     <i class="fa-solid fa-cart-plus fa-lg"></i>
                                 </button>
                             </div>

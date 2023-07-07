@@ -92,6 +92,10 @@
         <servlet-name>ForgotPasswordServlet</servlet-name>
         <servlet-class>Controllers.User.ForgotPasswordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReloadController</servlet-name>
+        <servlet-class>Controllers.ReloadController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -183,6 +187,10 @@
     <servlet-mapping>
         <servlet-name>ForgotPasswordServlet</servlet-name>
         <url-pattern>/forgotPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReloadController</servlet-name>
+        <url-pattern>/ReloadController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

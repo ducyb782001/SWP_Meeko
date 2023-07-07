@@ -79,6 +79,10 @@ crossorigin="anonymous"></script>
                                             <div class="w-100">
                                                 <h6 class="mb-1" id="productName">Bé lừa bông Winnie</h6>
                                                 <div class="mb-1 d-flex justify-content-between gap-1 align-items-center">
+                                                    <div class="cart_quantity" id="productValue">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex justify-content-between gap-1 align-items-center">
                                                     <div class="cart_quantity">
                                                         Số lượng
                                                     </div>
@@ -109,6 +113,11 @@ crossorigin="anonymous"></script>
                                                 <div class="w-100">
                                                     <h6 class="mb-1" id="productName">${ord.product.name}</h6>
                                                     <div class="mb-1 d-flex justify-content-between gap-1 align-items-center">
+                                                        <div class="cart_quantity" id="productValue_${ord.product.productId}">
+                                                            ${ord.product.classValue}
+                                                        </div>
+                                                    </div>  
+                                                    <div class="mb-1 d-flex justify-content-between gap-1 align-items-center">
                                                         <div class="cart_quantity">
                                                             Số lượng
                                                         </div>
@@ -126,7 +135,7 @@ crossorigin="anonymous"></script>
                                                             <input id="productQuantity_${ord.product.productId}" min="1"
                                                                    type="number" class="input_cart_width" name="quantity" value="${ord.quantity}" oninput="handleQuantityChange('${ord.product.productId}','${ord.product.price}')">
                                                         </div>
-                                                        <p class="mb-0 cart_quantity prd-name" onclick="deleteProduct('${ord.product.productId}','${ord.product.price}')">xóa</p>
+                                                        <p class="mb-0 cart_quantity prd-name" onclick="deleteProduct('${ord.product.productId}', '${ord.product.price}')">xóa</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -313,7 +322,7 @@ crossorigin="anonymous"></script>
     function submitTxtSearch() {
         document.getElementById('frm-seachtxt').submit();
     }
-    function addToCart(id, name, image, price, quantity) {
+    function addToCart(id, name, image, price, quantity, typeValue) {
         //Lay thong tin ve id va so luong cua san pham
         //lay ra chuoi cookie co ten la cart
         var cartValue = getCookie(cookiesName) || '';
@@ -360,12 +369,12 @@ crossorigin="anonymous"></script>
             }
             //neu san pham do chua ton tai tao san pham moi
             if (!isExist) {
-                createProduct(id, name, image, price, quantity, cartValue);
+                createProduct(id, name, image, price, quantity, cartValue, typeValue);
                 var totalPrice = updateTotalPrice(parseFloat(price));
                 printTotalPrice(totalPrice.toString());
             }
         } else {
-            createProduct(id, name, image, price, quantity, cartValue);
+            createProduct(id, name, image, price, quantity, cartValue, typeValue);
             printTotalPrice(price);
         }
 
@@ -384,7 +393,7 @@ crossorigin="anonymous"></script>
         return '';
     }
 
-    function createProduct(id, name, image, price, quantity, cartValue) {
+    function createProduct(id, name, image, price, quantity, cartValue, typeValue) {
         var targetDiv = document.getElementById('cart');
         var sourceDiv = document.getElementById('product');
 
@@ -401,9 +410,13 @@ crossorigin="anonymous"></script>
         var formattedPrice = valuePrice.toFixed(3);
         newDiv.querySelector('#productPrice').innerHTML = formattedPrice.toString();
         newDiv.querySelector('#productQuantity').id = 'productQuantity_' + id;
+        newDiv.querySelector('#productValue').id = 'productValue_' + id;
         //thay doi so luong cua san pham
         newDiv.querySelector('#productQuantity_' + id).value = quantity;
-
+        //thay doi loai cua san pham
+        if (typeValue !== '') {
+            newDiv.querySelector('#productValue_' + id).innerHTML = typeValue;
+        }
         // thay doi ten cua khoi div
         newDiv.id = 'product_' + id;
 
