@@ -63,21 +63,20 @@ public class ProductDetailsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        if (productID != -1) {
-//            ProductDAO pDao = new ProductDAO();
-//            ImageProductDAO iDao = new ImageProductDAO();
-//
-//            Product product = pDao.getProductByID(productID, Constants.Active);
-//            ArrayList<ImageProduct> images = iDao.getAllImageByProductID(productID, Constants.DeleteFalse);
-//
-//            request.setAttribute("product", product);
-//            request.setAttribute("images", images);
-//
-//            request.getRequestDispatcher("views/Product/ProductDetails.jsp").forward(request, response);
-//        } else {
-//            response.sendRedirect("product");
-//        }
-        request.getRequestDispatcher("views/Product/test.jsp").forward(request, response);
+        if (productID != -1) {
+            ProductDAO pDao = new ProductDAO();
+            ImageProductDAO iDao = new ImageProductDAO();
+
+            Product product = pDao.getProductByID(productID, Constants.Active);
+            ArrayList<ImageProduct> images = iDao.getAllImageByProductID(productID, Constants.DeleteFalse);
+
+            request.setAttribute("product", product);
+            request.setAttribute("images", images);
+
+            request.getRequestDispatcher("views/Product/ProductDetails.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("product");
+        }
     }
 
     /**
