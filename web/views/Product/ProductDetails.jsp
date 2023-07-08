@@ -107,10 +107,15 @@
                             ĐANG CẬP NHẬT
                         </div>
                         <h3 style="font-weight: 400; margin-bottom: 14px;">${product.name}</h3>
-                        <p style="color: #c83252; font-weight: 700; font-size: 24px; margin-bottom: 14px;">
-                            <fmt:formatNumber value="${product.price}" pattern="#,##0.000" var="formattedNumber" />
-                            ${formattedNumber}đ
-                        </p>
+                        <div class="d-flex">
+                            <p style="color: #c83252; font-weight: 700; font-size: 24px; margin-bottom: 14px;" id="proPrice">
+                                <fmt:formatNumber value="${product.price}" pattern="#,##0.000" var="formattedNumber" />
+                                ${formattedNumber}
+                            </p>
+                            <p style="color: #c83252; font-weight: 700; font-size: 24px; margin-bottom: 14px;">
+                                đ
+                            </p>
+                        </div>
                         <div class="mb-3">
                             <!-- Show 2 list, 1 list for can buy, 1 list for sold out  -->
                             <div class="d-flex flex-wrap align-items-center gap-2" id="">
@@ -119,6 +124,7 @@
                                     <div id="pro-${product.productId}" 
                                          data-productid="${product.productId}"
                                          data-producttypevalue="${product.classValue}"
+                                         data-productprice="${product.price}"
                                          style="color: #777777; border: 1px solid #777777; border-radius: 6px; cursor: pointer;"
                                          class="custom__select__type active px-3 py-2
                                          <c:if test="${product.quantity == 0}">
@@ -139,6 +145,7 @@
                                         <div id="pro-${pc.productId}" 
                                              data-productid="${pc.productId}"
                                              data-producttypevalue="${pc.classValue}"
+                                             data-productprice="${pc.price}"
                                              style="color: #777777; border: 1px solid #777777; border-radius: 6px; cursor: pointer;"
                                              class="custom__select__type px-3 py-2
                                              <c:if test="${pc.quantity == 0}">
@@ -204,7 +211,7 @@
                                 <button class="btn btn-outline-dark btn-lg custom_btn_add navbar-toggler" 
                                         type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
                                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-                                        onclick="addToCartDetail('${product.name}', '${product.images.get(0).image}', '${product.price}')">Thêm vào giỏ hàng</button>
+                                        onclick="addToCartDetail('${product.name}', '${product.images.get(0).image}')">Thêm vào giỏ hàng</button>
                                 <button class="btn btn-danger btn-lg custom_btn_buynow">Mua ngay</button>
                             </div>
                         </div>
@@ -477,6 +484,7 @@
         <script>
             var productID = '<c:out value="${product.productId}"/>';
             var typeValue = '<c:out value="${product.classValue}"/>';
+            var priceValue = '<c:out value="${product.price}"/>';
 
             //Get the button
             let mybutton = document.getElementById("btn-back-to-top");
@@ -514,10 +522,15 @@
 
                     // Add the "active" class to the clicked element
                     this.classList.add('active');
-                    
+
                     productID = this.dataset.productid;
                     typeValue = this.dataset.producttypevalue;
-                    // alert('Selected productId:' + productID);
+                    priceValue = this.dataset.productprice;
+
+                    //display price according to type
+                    var price = parseFloat(priceValue);
+                    var formmatPrice = price.toFixed(3);
+                    document.getElementById('proPrice').textContent = formmatPrice.toString();
 
                     selectTypes.forEach(function (e1) {
                         if (e1.classList.contains('active')) {
@@ -557,9 +570,9 @@
             document.getElementById('show_out').style.display = 'block';
             document.getElementById('show_buy').style.display = 'none';
             </c:if>
-            function addToCartDetail(name, image, price) {
+            function addToCartDetail(name, image) {
                 var quantity = document.getElementById('quantityBuy').value;
-                addToCart(productID, name, image, price, quantity, typeValue);
+                addToCart(productID, name, image, priceValue, quantity, typeValue);
             }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
