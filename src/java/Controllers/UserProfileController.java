@@ -4,18 +4,20 @@
  */
 package Controllers;
 
+import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
  * @author dell
  */
-public class UserProfileController extends HttpServlet {
+public class UserProfileController extends ReloadController {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -30,6 +32,9 @@ public class UserProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         super.doGet(request, response);
+        
+        ArrayList<Product> list = new ArrayList<>();
+        request.setAttribute("list", list);
         request.getRequestDispatcher("views/Account/UserProfile.jsp").forward(request, response);
     }
 

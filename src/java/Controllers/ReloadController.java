@@ -8,12 +8,14 @@ import DAL.BestSellerDAO;
 import DAL.CategoryDAO;
 import DAL.CollectionDAO;
 import DAL.NewArrivalDAO;
+import DAL.OrderDAO;
 import DAL.ProductDAO;
 import DAL.TagDAO;
 import Model.BestSeller;
 import Model.Category;
 import Model.Collection;
 import Model.NewArrival;
+import Model.Order;
 import Model.OrderDetails;
 import Model.Product;
 import Model.Tag;
@@ -49,8 +51,10 @@ public class ReloadController extends HttpServlet {
 
         //declare cookies
         String cookieName = "cart";
+        String priceName = "totalP";
         if (acc != null) {
             cookieName += acc.getUserID();
+            priceName += acc.getUserID();
         }
 
         // Get the cookies from the request
@@ -64,7 +68,6 @@ public class ReloadController extends HttpServlet {
                 }
             }
         }
-
         //check if cookies exist or not
         if (!cartValue.equals("")) {
             String[] products = cartValue.split("_");
@@ -84,10 +87,17 @@ public class ReloadController extends HttpServlet {
 
         }
 
-        Cookie priceCookie = new Cookie("totalP", String.valueOf(totalPrice));
+        Cookie priceCookie = new Cookie(priceName, String.valueOf(totalPrice));
         response.addCookie(priceCookie);
 
         request.getSession().setAttribute("cart", cart);
+        request.getSession().setAttribute("totalPrice", totalPrice);
         
+        //lay thong tin gio hang
+        if (acc != null) {
+            OrderDAO oDao = new OrderDAO();
+            ArrayList<Order> orderStatus = oDao.getOrdersByUser(acc.getUserID());
+            request.getSession().setAttribute("orders", orderStatus);
+        }
     }
 }

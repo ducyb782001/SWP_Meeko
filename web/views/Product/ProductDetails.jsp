@@ -209,7 +209,7 @@
                             </div>
                             <div class="d-flex gap-3 align-items-center">
                                 <button class="btn btn-outline-dark btn-lg custom_btn_add navbar-toggler" 
-                                        type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
+                                        data-bs-toggle="modal" data-bs-target="#cartModal"
                                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
                                         onclick="addToCartDetail('${product.name}', '${product.images.get(0).image}')">Thêm vào giỏ hàng</button>
                                 <button class="btn btn-danger btn-lg custom_btn_buynow">Mua ngay</button>

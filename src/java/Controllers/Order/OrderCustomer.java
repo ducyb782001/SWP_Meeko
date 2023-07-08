@@ -4,44 +4,28 @@
  */
 package Controllers.Order;
 
+import Controllers.ReloadController;
+import DAL.OrderDAO;
+import Model.Order;
+import Model.PaymentMethod;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
+import java.sql.Date;
+import java.time.LocalDateTime;
 
 /**
  *
  * @author dell
  */
-public class OrderCustomer extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet OrderCustomer</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet OrderCustomer at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+public class OrderCustomer extends ReloadController {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -55,7 +39,15 @@ public class OrderCustomer extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("views/Order/OrderCustomer.jsp").forward(request, response);
+        super.doGet(request, response);
+        
+        HttpSession session = request.getSession();
+        User account = (User) session.getAttribute("account");
+        if (account == null) {
+            response.sendRedirect("home");
+        } else {
+            request.getRequestDispatcher("views/Order/OrderCustomer.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -69,7 +61,51 @@ public class OrderCustomer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String customerEmail = request.getParameter("email");
+        String customerPhone = request.getParameter("phone");
+        String customerFullName = request.getParameter("fullName");
+        String customerAddress = request.getParameter("address");
+        int paymentMethodID = Integer.parseInt(request.getParameter("payment"));
+        
+        Order order = new Order();
+        order.setCustomerEmail(customerEmail);
+        order.setCustomerPhone(customerPhone);
+        order.setCustomerName(customerFullName);
+        order.setCustomerAddress(customerAddress);
+        
+        PaymentMethod payment = new PaymentMethod();
+        payment.setPaymentId(paymentMethodID);
+        
+        order.setPaymentMethod(payment);
+        
+        User account = (User) request.getSession().getAttribute("account");
+        order.setOrderFromUser(account);
+        
+        Date currentDate = new Date(System.currentTimeMillis());
+        order.setDateTime(currentDate);
+        
+        order.setTotalOrder(Double.parseDouble(request.getParameter("totalOrder")));
+        
+        OrderDAO oDao = new OrderDAO();
+        
+        int orderID = oDao.getMaxID();
+        
+        order.setOrderId(orderID + 1);
+        
+        oDao.insert(order);
+
+        //clear cookies
+        String cookieName = "cart" + account.getUserID();
+        String priceName = "totalP" + account.getUserID();
+        Cookie cookieOrder = new Cookie(cookieName, "");
+        Cookie cookiePrice = new Cookie(priceName, "");
+        cookieOrder.setMaxAge(0);
+        cookiePrice.setMaxAge(0);
+        response.addCookie(cookieOrder);
+        response.addCookie(cookiePrice);
+        
+        request.getSession().setAttribute("orderStatus", "Ok");
+        response.sendRedirect("home");
     }
 
     /**

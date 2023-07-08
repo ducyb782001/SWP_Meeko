@@ -12,22 +12,32 @@ import java.sql.Date;
  */
 public class Order {
     private int orderId;
-    private User customer;
-    private User staff;
+    private User orderFromUser;
+    private String customerName;
+    private String customerEmail;
+    private String customerPhone;
+    private String customerAddress;
+    private User employee;
     private Date dateTime;
     private PaymentMethod paymentMethod;
+    private double totalOrder;
     private int status;
 
-    public Order(int orderId, User customer, User staff, Date dateTime, PaymentMethod paymentMethod, int status) {
-        this.orderId = orderId;
-        this.customer = customer;
-        this.staff = staff;
-        this.dateTime = dateTime;
-        this.paymentMethod = paymentMethod;
-        this.status = status;
+    public Order() {
     }
 
-    public Order() {
+    public Order(int orderId, User orderFromUser, String customerName, String customerEmail, String customerPhone, String customerAddress, User employee, Date dateTime, PaymentMethod paymentMethod, double totalOrder, int status) {
+        this.orderId = orderId;
+        this.orderFromUser = orderFromUser;
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerPhone = customerPhone;
+        this.customerAddress = customerAddress;
+        this.employee = employee;
+        this.dateTime = dateTime;
+        this.paymentMethod = paymentMethod;
+        this.totalOrder = totalOrder;
+        this.status = status;
     }
 
     public int getOrderId() {
@@ -38,20 +48,52 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public User getCustomer() {
-        return customer;
+    public User getOrderFromUser() {
+        return orderFromUser;
     }
 
-    public void setCustomer(User customer) {
-        this.customer = customer;
+    public void setOrderFromUser(User orderFromUser) {
+        this.orderFromUser = orderFromUser;
     }
 
-    public User getStaff() {
-        return staff;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setStaff(User staff) {
-        this.staff = staff;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public String getCustomerAddress() {
+        return customerAddress;
+    }
+
+    public void setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
+    }
+
+    public User getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(User employee) {
+        this.employee = employee;
     }
 
     public Date getDateTime() {
@@ -70,6 +112,14 @@ public class Order {
         this.paymentMethod = paymentMethod;
     }
 
+    public double getTotalOrder() {
+        return totalOrder;
+    }
+
+    public void setTotalOrder(double totalOrder) {
+        this.totalOrder = totalOrder;
+    }
+
     public int getStatus() {
         return status;
     }
@@ -77,7 +127,5 @@ public class Order {
     public void setStatus(int status) {
         this.status = status;
     }
-
-    
     
 }

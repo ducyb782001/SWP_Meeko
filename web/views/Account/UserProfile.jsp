@@ -3,7 +3,7 @@
     Created on : Jun 13, 2023, 11:54:34 AM
     Author     : dell
 --%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,8 +38,8 @@
                          data-bs-target="#pills-password" type="button" role="tab">
                         Đổi mật khẩu
                     </div>
-                    <!-- Not do in this phase  -->
-                    <div class="mb-2 left__account" style="font-size: 17px;">Sổ địa chỉ</div>
+<!--                     Not do in this phase  
+                    <div class="mb-2 left__account" style="font-size: 17px;">Sổ địa chỉ</div>-->
                     <!-- Action to sign out  -->
                     <div class="mb-2 left__account" style="font-size: 17px;">Đăng xuất</div>
                 </div>
@@ -75,28 +75,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Use if else in body, if don't have, show this comment -->
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Mark</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <!-- <tr>
-                                        <td>Không có đơn hàng nào.</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr> -->
+                                    <c:set value="${sessionScope.orders.size()}" var="orderSize"></c:set>
+                                    <c:forEach begin="0" step="1" end="${orderSize-1}" var="i">
+                                        <tr>
+                                            <th scope="row">${i+1}</th>
+                                            <td>${sessionScope.orders.get(i).dateTime}</td>
+                                            <td>${sessionScope.orders.get(i).customerAddress}</td>
+                                            <fmt:formatNumber value="${sessionScope.orders.get(i).totalOrder}" pattern="#,##0.000" var="formattedNumber" />
+                                            <td> ${formattedNumber}đ</td>
+                                            <td>${sessionScope.orders.get(i).paymentMethod.paymentMethod}</td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>

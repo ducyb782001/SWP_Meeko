@@ -154,10 +154,8 @@ crossorigin="anonymous"></script>
                                                 đ
                                             </p>
                                         </div>
-                                        <form action="orderCustomer" method="get">
-                                            <button type="submit" class="btn btn-danger w-100">Thanh toán</button>
-                                        </form>
                                     </div>
+                                    <button class="btn btn-danger w-100" onclick="orderCart()">Thanh toán</button>
                                 </div><!-- modal-content -->
                             </div><!-- modal-dialog -->
                         </div><!-- modal -->
@@ -532,6 +530,15 @@ crossorigin="anonymous"></script>
                 }
             }
         }
+    }
+
+    function orderCart() {
+    <c:if test="${sessionScope.account == null}">
+        alert('Bạn phải đăng nhập để sử dụng tính năng này');
+    </c:if>
+    <c:if test="${sessionScope.account != null}">
+        window.location.href = "orderCustomer";
+    </c:if>
     }
 </script>
 <script src="https://kit.fontawesome.com/8d39de38b8.js" crossorigin="anonymous"></script>

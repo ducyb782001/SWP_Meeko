@@ -4,6 +4,7 @@
  */
 package Controllers.Authenticate;
 
+import Controllers.ReloadController;
 import DAL.UserDAO;
 import Model.User;
 import Utils.EncodeMD5;
@@ -18,7 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author dell
  */
-public class loginController extends HttpServlet {
+public class loginController extends ReloadController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -81,10 +82,10 @@ public class loginController extends HttpServlet {
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String pwd = request.getParameter("pwd");
-
+        
         EncodeMD5 encode = new EncodeMD5();
         String encodePwd = encode.EncoderMD5(pwd);
-
+        
         UserDAO uDAO = new UserDAO();
         User user = uDAO.doLogin(email, encodePwd);
         if (user != null) {
