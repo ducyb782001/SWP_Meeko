@@ -13,20 +13,10 @@ public class Category {
     private String categoryName;
     private boolean status;
     private String description;
-    private boolean isParent;
-    private Category parent;
+    private Tag tag;
     
 
     public Category() {
-    }
-
-    public Category(int categoryId, String categoryName, boolean status, String description, boolean isParent, Category parent) {
-        this.categoryId = categoryId;
-        this.categoryName = categoryName;
-        this.status = status;
-        this.description = description;
-        this.isParent = isParent;
-        this.parent = parent;
     }
 
     public Category(int categoryId, String categoryName, boolean status, String description) {
@@ -35,6 +25,15 @@ public class Category {
         this.status = status;
         this.description = description;
     }
+
+    public Category(int categoryId, String categoryName, boolean status, String description, Tag tag) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.status = status;
+        this.description = description;
+        this.tag = tag;
+    }
+    
 
     public int getCategoryId() {
         return categoryId;
@@ -68,21 +67,13 @@ public class Category {
         this.description = description;
     }
 
-    public boolean isIsParent() {
-        return isParent;
+    public Tag getTag() {
+        return tag;
     }
 
-    public void setIsParent(boolean isParent) {
-        this.isParent = isParent;
+    public void setTag(Tag tag) {
+        this.tag = tag;
     }
-
-    public Category getParent() {
-        return parent;
-    }
-
-    public void setParent(Category parent) {
-        this.parent = parent;
-    }
-    
+   
     
 }

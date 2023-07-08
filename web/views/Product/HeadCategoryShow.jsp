@@ -35,7 +35,7 @@
                                 >A → Z</option>
                             <option value="2"
                             <c:if test="${sortOption == 2}">selected</c:if>
-                                >A → Z</option>
+                                >Z → A</option>
                             <option value="3"
                             <c:if test="${sortOption == 3}">selected</c:if>
                                 >Giá tăng dần</option>

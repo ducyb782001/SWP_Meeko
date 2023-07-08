@@ -21,4 +21,16 @@ public class Constants {
     public final static String GOOGLE_LINK_GET_USER_INFO = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=";
 
     public final static String GOOGLE_GRANT_TYPE = "authorization_code";
+
+    public final static boolean DeleteFalse = false;
+
+    public final static boolean DeleteTrue = true;
+
+    public final static boolean Active = true;
+    
+    public final static boolean Deactive = false;
+    
+    public final static boolean Parent = true;
+    
+    public final static boolean Children = false;
 }

@@ -4,26 +4,38 @@
  */
 package Controllers;
 
+import Controllers.Order.OrderDetail;
 import DAL.BestSellerDAO;
+import DAL.CategoryDAO;
 import DAL.CollectionDAO;
 import DAL.NewArrivalDAO;
+import DAL.ProductDAO;
+import DAL.TagDAO;
 import Model.BestSeller;
+import Model.Category;
 import Model.Collection;
 import Model.NewArrival;
+import Model.Order;
+import Model.OrderDetails;
+import Model.Product;
+import Model.Tag;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
  * @author dell
  */
-public class HomeController extends HttpServlet {
+public class HomeController extends ReloadController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,38 +48,52 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doGet(request, response);
+
         HttpSession sesion = request.getSession();
+
+        CollectionDAO clDao = new CollectionDAO();
+        TagDAO tDao = new TagDAO();
+        NewArrivalDAO naDao = new NewArrivalDAO();
+
         String regiester = (String) sesion.getAttribute("register");
 
         //get all collection
-        CollectionDAO clDao = new CollectionDAO();
         ArrayList<Collection> collections = clDao.getAllCollection(true);
 
+        ArrayList<Tag> tags = tDao.getAll();
+
+        //get all categories belong to tag
+        for (Tag tag : tags) {
+            CategoryDAO cDao = new CategoryDAO();
+            ArrayList<Category> categories = cDao.getAllByTagID(tag.getTagId());
+            tag.setCategories(categories);
+        }
+
         //get all new arrival product
-        NewArrivalDAO naDao = new NewArrivalDAO();
         ArrayList<NewArrival> newArrivals = naDao.getAllNew(false, true);
-        
+
         //get all best seller product
         BestSellerDAO bDao = new BestSellerDAO();
         ArrayList<BestSeller> bestSellers = bDao.getAllNew(false, true);
-        
+
         if (regiester != null) {
             request.setAttribute("msg", "Bạn đã đăng ký tài khoản thành công!");
             sesion.setAttribute("register", null);
         }
-        
-        
-        
-        request.setAttribute("bestSellers", bestSellers);
-        request.setAttribute("collections", collections);
-        request.setAttribute("newArrivals", newArrivals);
+
+        request.getSession().setAttribute("tags", tags);
+        request.getSession().setAttribute("bestSellers", bestSellers);
+        request.getSession().setAttribute("bestSellers", bestSellers);
+        request.getSession().setAttribute("collections", collections);
+        request.getSession().setAttribute("newArrivals", newArrivals);
         request.getRequestDispatcher("views/HomePage.jsp").forward(request, response);
     }
 //    
+//
 //    public static void main(String[] args) {
-//        BestSellerDAO bDao = new BestSellerDAO();
-//        ArrayList<BestSeller> bestSellers = bDao.getAllNew(false, true);
-//        System.out.println(bestSellers.get(0).getProduct().getAvatar());
+//        double a = 22222.000;
+//        System.out.println(String.valueOf(a));
 //    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
