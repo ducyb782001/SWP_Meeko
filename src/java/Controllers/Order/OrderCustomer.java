@@ -6,6 +6,7 @@ package Controllers.Order;
 
 import Controllers.ReloadController;
 import DAL.OrderDAO;
+import DAL.ProductDAO;
 import Model.Order;
 import Model.PaymentMethod;
 import Model.User;
@@ -40,10 +41,31 @@ public class OrderCustomer extends ReloadController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         super.doGet(request, response);
-        
+
         HttpSession session = request.getSession();
         User account = (User) session.getAttribute("account");
-        if (account == null) {
+
+        HttpSession sesion = request.getSession();
+
+        User acc = (User) sesion.getAttribute("account");
+        //declare cookies
+        String cookieName = "cart";
+        if (acc != null) {
+            cookieName += acc.getUserID();
+        }
+
+        // Get the cookies from the request
+        Cookie[] cookies = request.getCookies();
+
+        String cartValue = "";
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(cookieName)) {
+                    cartValue = cookie.getValue();
+                }
+            }
+        }
+        if (account == null || cartValue.trim().equalsIgnoreCase("")) {
             response.sendRedirect("home");
         } else {
             request.getRequestDispatcher("views/Order/OrderCustomer.jsp").forward(request, response);
@@ -66,32 +88,32 @@ public class OrderCustomer extends ReloadController {
         String customerFullName = request.getParameter("fullName");
         String customerAddress = request.getParameter("address");
         int paymentMethodID = Integer.parseInt(request.getParameter("payment"));
-        
+
         Order order = new Order();
         order.setCustomerEmail(customerEmail);
         order.setCustomerPhone(customerPhone);
         order.setCustomerName(customerFullName);
         order.setCustomerAddress(customerAddress);
-        
+
         PaymentMethod payment = new PaymentMethod();
         payment.setPaymentId(paymentMethodID);
-        
+
         order.setPaymentMethod(payment);
-        
+
         User account = (User) request.getSession().getAttribute("account");
         order.setOrderFromUser(account);
-        
+
         Date currentDate = new Date(System.currentTimeMillis());
         order.setDateTime(currentDate);
-        
+
         order.setTotalOrder(Double.parseDouble(request.getParameter("totalOrder")));
-        
+
         OrderDAO oDao = new OrderDAO();
-        
+
         int orderID = oDao.getMaxID();
-        
+
         order.setOrderId(orderID + 1);
-        
+
         oDao.insert(order);
 
         //clear cookies
@@ -103,7 +125,7 @@ public class OrderCustomer extends ReloadController {
         cookiePrice.setMaxAge(0);
         response.addCookie(cookieOrder);
         response.addCookie(cookiePrice);
-        
+
         request.getSession().setAttribute("orderStatus", "Ok");
         response.sendRedirect("home");
     }

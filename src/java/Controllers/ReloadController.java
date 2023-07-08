@@ -92,12 +92,13 @@ public class ReloadController extends HttpServlet {
 
         request.getSession().setAttribute("cart", cart);
         request.getSession().setAttribute("totalPrice", totalPrice);
-        
+
+        ArrayList<Order> orderStatus = new ArrayList<>();
         //lay thong tin gio hang
         if (acc != null) {
             OrderDAO oDao = new OrderDAO();
-            ArrayList<Order> orderStatus = oDao.getOrdersByUser(acc.getUserID());
-            request.getSession().setAttribute("orders", orderStatus);
+            orderStatus = oDao.getOrdersByUser(acc.getUserID());
         }
+        request.getSession().setAttribute("orders", orderStatus);
     }
 }
