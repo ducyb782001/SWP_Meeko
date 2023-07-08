@@ -118,7 +118,7 @@
                                     <!-- If you choose div, you need add active into class in div like below -->
                                     <div id="pro-${product.productId}" 
                                          data-productid="${product.productId}"
-                                         data-productTypeValue="<c:out value="${product.classValue}"/>"
+                                         data-producttypevalue="${product.classValue}"
                                          style="color: #777777; border: 1px solid #777777; border-radius: 6px; cursor: pointer;"
                                          class="custom__select__type active px-3 py-2
                                          <c:if test="${product.quantity == 0}">
@@ -138,7 +138,7 @@
                                     <c:forEach items="${product.children}" var="pc">
                                         <div id="pro-${pc.productId}" 
                                              data-productid="${pc.productId}"
-                                             data-productTypeValue="<c:out value="${pc.classValue}"/>"
+                                             data-producttypevalue="${pc.classValue}"
                                              style="color: #777777; border: 1px solid #777777; border-radius: 6px; cursor: pointer;"
                                              class="custom__select__type px-3 py-2
                                              <c:if test="${pc.quantity == 0}">
@@ -516,7 +516,7 @@
                     this.classList.add('active');
                     
                     productID = this.dataset.productid;
-                    typeValue = this.dataset.productTypeValue;
+                    typeValue = this.dataset.producttypevalue;
                     // alert('Selected productId:' + productID);
 
                     selectTypes.forEach(function (e1) {
