@@ -172,7 +172,6 @@
                                 </div>
                             </div>
                             <fmt:formatNumber value="${na.product.price}" pattern="#,##0.000" var="formattedNumber" />
-                            ${formattedNumber}đ
                             <div class="action-prd-cart">
                                 <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
                                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"

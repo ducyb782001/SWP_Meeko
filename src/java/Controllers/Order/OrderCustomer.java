@@ -111,8 +111,9 @@ public class OrderCustomer extends ReloadController {
         OrderDAO oDao = new OrderDAO();
 
         int orderID = oDao.getMaxID();
+        orderID++;
 
-        order.setOrderId(orderID + 1);
+        order.setOrderId(orderID);
 
         oDao.insert(order);
 
@@ -126,7 +127,7 @@ public class OrderCustomer extends ReloadController {
         response.addCookie(cookieOrder);
         response.addCookie(cookiePrice);
 
-        request.getSession().setAttribute("orderStatus", "Ok");
+        request.getSession().setAttribute("orderStatus", "True");
         response.sendRedirect("home");
     }
 
@@ -140,4 +141,17 @@ public class OrderCustomer extends ReloadController {
         return "Short description";
     }// </editor-fold>
 
+    public static void main(String[] args) {
+        
+        OrderDAO oDao = new OrderDAO();
+
+        int orderID = oDao.getMaxID();
+        orderID++;
+        
+        User user = new User();
+        user.setUserID(18);
+        
+        Order order = new Order(orderID, user, "HI Hi", "Khongco@gmail.com", "0987654321", "asdfa32 423234", null, new Date(System.currentTimeMillis()), new PaymentMethod(1, "", true), 320, 1);
+        oDao.insert(order);
+    }
 }

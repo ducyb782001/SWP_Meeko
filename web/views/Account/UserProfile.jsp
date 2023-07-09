@@ -38,8 +38,8 @@
                          data-bs-target="#pills-password" type="button" role="tab">
                         Đổi mật khẩu
                     </div>
-<!--                     Not do in this phase  
-                    <div class="mb-2 left__account" style="font-size: 17px;">Sổ địa chỉ</div>-->
+                    <!--                     Not do in this phase  
+                                        <div class="mb-2 left__account" style="font-size: 17px;">Sổ địa chỉ</div>-->
                     <!-- Action to sign out  -->
                     <div class="mb-2 left__account" style="font-size: 17px;">Đăng xuất</div>
                 </div>
@@ -75,17 +75,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:set value="${sessionScope.orders.size()}" var="orderSize"></c:set>
-                                    <c:forEach begin="0" step="1" end="${orderSize-1}" var="i">
-                                        <tr>
-                                            <th scope="row">${i+1}</th>
-                                            <td>${sessionScope.orders.get(i).dateTime}</td>
-                                            <td>${sessionScope.orders.get(i).customerAddress}</td>
-                                            <fmt:formatNumber value="${sessionScope.orders.get(i).totalOrder}" pattern="#,##0.000" var="formattedNumber" />
-                                            <td> ${formattedNumber}đ</td>
-                                            <td>${sessionScope.orders.get(i).paymentMethod.paymentMethod}</td>
-                                        </tr>
-                                    </c:forEach>
+                                    <c:if test="${sessionScope.orders.size() != 0}">
+                                        <c:set value="${sessionScope.orders.size()}" var="orderSize"></c:set>
+                                        <c:forEach begin="0" step="1" end="${orderSize-1}" var="i">
+                                            <tr>
+                                                <th scope="row">${i+1}</th>
+                                                <td>${sessionScope.orders.get(i).dateTime}</td>
+                                                <td>${sessionScope.orders.get(i).customerAddress}</td>
+                                                <fmt:formatNumber value="${sessionScope.orders.get(i).totalOrder}" pattern="#,##0.000" var="formattedNumber" />
+                                                <td> ${formattedNumber}đ</td>
+                                                <td>${sessionScope.orders.get(i).paymentMethod.paymentMethod}</td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:if>
                                 </tbody>
                             </table>
                         </div>

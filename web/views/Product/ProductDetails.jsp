@@ -208,11 +208,11 @@
                                 <input type="number" class="input_cart_width" name="qty" value="1" min="1" id="quantityBuy">
                             </div>
                             <div class="d-flex gap-3 align-items-center">
-                                <button class="btn btn-outline-dark btn-lg custom_btn_add navbar-toggler" 
+                                <button class="btn btn-outline-dark btn-lg custom_btn_add" 
                                         data-bs-toggle="modal" data-bs-target="#cartModal"
                                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
                                         onclick="addToCartDetail('${product.name}', '${product.images.get(0).image}')">Thêm vào giỏ hàng</button>
-                                <button class="btn btn-danger btn-lg custom_btn_buynow">Mua ngay</button>
+                                <button class="btn btn-danger btn-lg custom_btn_buynow" onclick="addToCartDetail('${product.name}', '${product.images.get(0).image}')">Mua ngay</button>
                             </div>
                         </div>
                         <div class="mt-3" id="show_out">
@@ -573,6 +573,7 @@
             function addToCartDetail(name, image) {
                 var quantity = document.getElementById('quantityBuy').value;
                 addToCart(productID, name, image, priceValue, quantity, typeValue);
+                window.location.href = "orderCustomer";
             }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
