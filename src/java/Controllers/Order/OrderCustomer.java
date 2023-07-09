@@ -66,6 +66,7 @@ public class OrderCustomer extends ReloadController {
             }
         }
         if (account == null || cartValue.trim().equalsIgnoreCase("")) {
+            request.getSession().setAttribute("emptyCart", "True");
             response.sendRedirect("home");
         } else {
             request.getRequestDispatcher("views/Order/OrderCustomer.jsp").forward(request, response);

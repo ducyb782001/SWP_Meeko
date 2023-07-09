@@ -56,9 +56,6 @@ public class HomeController extends ReloadController {
         TagDAO tDao = new TagDAO();
         NewArrivalDAO naDao = new NewArrivalDAO();
 
-        String regiester = (String) sesion.getAttribute("register");
-        String orderStatus = (String) sesion.getAttribute("orderStatus");
-
         //get all collection
         ArrayList<Collection> collections = clDao.getAllCollection(true);
 
@@ -78,6 +75,10 @@ public class HomeController extends ReloadController {
         BestSellerDAO bDao = new BestSellerDAO();
         ArrayList<BestSeller> bestSellers = bDao.getAllNew(false, true);
 
+        String regiester = (String) sesion.getAttribute("register");
+        String orderStatus = (String) sesion.getAttribute("orderStatus");
+        String emptyCart = (String) sesion.getAttribute("emptyCart");
+
         if (regiester != null) {
             request.setAttribute("msg", "Bạn đã đăng ký tài khoản thành công!");
             sesion.setAttribute("register", null);
@@ -85,6 +86,10 @@ public class HomeController extends ReloadController {
         if (orderStatus != null) {
             request.setAttribute("msg", "Bạn đã đặt hàng thành công! Vui lòng kiểm tra đơn hàng!");
             sesion.setAttribute("orderStatus", null);
+        }
+        if (emptyCart != null) {
+            request.setAttribute("msg", "Bạn không có sản phẩm nào trong giỏ hàng!");
+            sesion.setAttribute("emptyCart", null);
         }
 
         request.getSession().setAttribute("tags", tags);

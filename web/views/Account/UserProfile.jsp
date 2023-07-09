@@ -13,12 +13,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <link href="../../css/account.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/layout.css" rel="stylesheet" type="text/css"/>
         <script src="script.js"></script>
     </head>
-    <%@ include file="../../includes/header.jsp" %>
     <body>
+        <%@ include file="../../includes/header.jsp" %>
         <div class="row container-home"
-             style="padding-left: 12%;padding-right: 64px; padding-top: 60px; padding-bottom: 60px; width: 100%;">
+             style="padding-left: 1%;padding-right: 64px; padding-top: 60px; padding-bottom: 60px; width: 100%;">
             <div class="col-lg-3 px-2">
                 <!-- Left section -->
                 <div class="nav group__left__account mb-3" style="display: block;" role="tablist">
@@ -38,10 +40,6 @@
                          data-bs-target="#pills-password" type="button" role="tab">
                         Đổi mật khẩu
                     </div>
-                    <!--                     Not do in this phase  
-                                        <div class="mb-2 left__account" style="font-size: 17px;">Sổ địa chỉ</div>-->
-                    <!-- Action to sign out  -->
-                    <div class="mb-2 left__account" style="font-size: 17px;">Đăng xuất</div>
                 </div>
             </div>
             <div class="col-lg-9 px-2">

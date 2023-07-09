@@ -10,6 +10,7 @@
         <title>Product Detail</title>
         <link href="../../css/style.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/backtotop.css" rel="stylesheet" type="text/css"/>
+        <script src="../../js/script.js" type="text/javascript"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <style>
@@ -205,14 +206,15 @@
                         <!-- if else to show each case, if have product, show below. If out of stock, show sold out -->
                         <div class="mt-3" id="show_buy">
                             <div class="mb-3">
-                                <input type="number" class="input_cart_width" name="qty" value="1" min="1" id="quantityBuy">
+                                <input type="number" class="input_cart_width" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)"
+                                       name="qty" value="1" min="1" id="quantityBuy">
                             </div>
                             <div class="d-flex gap-3 align-items-center">
                                 <button class="btn btn-outline-dark btn-lg custom_btn_add" 
                                         data-bs-toggle="modal" data-bs-target="#cartModal"
                                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
                                         onclick="addToCartDetail('${product.name}', '${product.images.get(0).image}')">Thêm vào giỏ hàng</button>
-                                <button class="btn btn-danger btn-lg custom_btn_buynow" onclick="addToCartDetail('${product.name}', '${product.images.get(0).image}')">Mua ngay</button>
+                                        <button class="btn btn-danger btn-lg custom_btn_buynow" onclick="buyNow('${product.name}', '${product.images.get(0).image}')">Mua ngay</button>
                             </div>
                         </div>
                         <div class="mt-3" id="show_out">
@@ -571,6 +573,11 @@
             document.getElementById('show_buy').style.display = 'none';
             </c:if>
             function addToCartDetail(name, image) {
+                var quantity = document.getElementById('quantityBuy').value;
+                addToCart(productID, name, image, priceValue, quantity, typeValue);
+                window.location.href = "orderCustomer";
+            }
+            function buyNow(name, image) {
                 var quantity = document.getElementById('quantityBuy').value;
                 addToCart(productID, name, image, priceValue, quantity, typeValue);
                 window.location.href = "orderCustomer";

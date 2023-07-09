@@ -1,5 +1,3 @@
-<%@ include file="../includes/header.jsp" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -18,6 +16,7 @@
     </head>
 
     <body>
+        <%@ include file="../includes/header.jsp" %>
         <!-- Login wrapper -->
         <div class="d-flex justify-content-center mt-5 mb-5">
             <div class="login-wrapper shadow bg-body rounded">

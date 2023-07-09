@@ -4,6 +4,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 crossorigin="anonymous"></script>
+<script src="../js/script.js" type="text/javascript"></script>
 <style>
     .product-card-img:hover {
         cursor: pointer;
@@ -90,7 +91,8 @@ crossorigin="anonymous"></script>
                                                 </div>
                                                 <div class="mb-1 d-flex justify-content-between gap-1 align-items-center">
                                                     <div class="input-group">
-                                                        <input id="productQuantity" type="number" min="1" class="input_cart_width" name="quantity" value="1">
+                                                        <input id="productQuantity" type="number" min="1" class="input_cart_width" name="quantity" value="1"
+                                                               onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)"/>
                                                     </div>
                                                     <p class="mb-0 cart_quantity prd-name" id="deleteProduct">xóa</p>
                                                 </div>
@@ -132,7 +134,7 @@ crossorigin="anonymous"></script>
                                                     </div>
                                                     <div class="mb-1 d-flex justify-content-between gap align-items-center">
                                                         <div class="input-group">
-                                                            <input id="productQuantity_${ord.product.productId}" min="1"
+                                                            <input id="productQuantity_${ord.product.productId}" min="1" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)"
                                                                    type="number" class="input_cart_width" name="quantity" value="${ord.quantity}" oninput="handleQuantityChange('${ord.product.productId}','${ord.product.price}')">
                                                         </div>
                                                         <p class="mb-0 cart_quantity prd-name" id="deleteProduct_${ord.product.productId}" onclick="deleteProduct('${ord.product.productId}', '${ord.product.price}')">xóa</p>
