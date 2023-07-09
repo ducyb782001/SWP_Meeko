@@ -101,13 +101,15 @@
                             <form class="mt-2">
                                 <h6>MẬT KHẨU <span class="text-danger">*</span></h6>
                                 <input type="password" class="form-control mb-2" placeholder="Mật khẩu cũ"
-                                       aria-label="Username">
+                                       aria-label="Username" required>
                                 <h6 class="mt-3">MẬT KHẨU MỚI <span class="text-danger">*</span></h6>
                                 <input type="password" class="form-control mb-2" placeholder="Mật khẩu mới"
-                                       aria-label="Username">
+                                       aria-label="Username" required>
                                 <h6 class="mt-3">XÁC NHẬN LẠI MẬT KHẨU <span class="text-danger">*</span></h6>
                                 <input type="password" class="form-control mb-2" placeholder="Xác nhận lại mật khẩu"
-                                       aria-label="Username">
+                                       aria-label="Username" required
+                                       
+                                       >
                                 <button type="submit" class="btn btn-dark mt-4">Đặt lại mật khẩu</button>
                             </form>
                         </c:if>
