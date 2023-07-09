@@ -48,6 +48,9 @@
                                         <fmt:formatNumber value="${ord.product.price * ord.quantity}" pattern="#,##0.000" var="formattedNumber" />
                                         ${formattedNumber}đ
                                     </span>
+                                    <div class="row">
+                                        <p>1</p>
+                                    </div>
                                 </li>
                             </c:forEach>
                             <li class="list-group-item d-flex justify-content-between">
