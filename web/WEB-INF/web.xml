@@ -96,6 +96,10 @@
         <servlet-name>ReloadController</servlet-name>
         <servlet-class>Controllers.ReloadController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Test</servlet-name>
+        <servlet-class>Controllers.Test</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -191,6 +195,10 @@
     <servlet-mapping>
         <servlet-name>ReloadController</servlet-name>
         <url-pattern>/ReloadController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Test</servlet-name>
+        <url-pattern>/testServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

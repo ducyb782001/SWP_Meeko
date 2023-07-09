@@ -263,8 +263,8 @@ crossorigin="anonymous"></script>
                                             </li>
                                         </c:forEach>
                                     </ul>
-                                </c:forEach>
-                            </ul>
+                                </ul>
+                            </c:forEach>
                         </ul>
                     </div>
                     <div class="col-9 row" style="height: 100%; overflow: hidden;">
