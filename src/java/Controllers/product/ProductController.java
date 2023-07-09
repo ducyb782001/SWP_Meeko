@@ -27,7 +27,6 @@ public class ProductController extends ReloadController {
     int categoryID = -1;
     int tagID = -1;
     public static String header = null;
-    private int page = 1;
     private int recordsPerPage = 5;
     double minPrice = 0;
     double maxPrice = 1000000000;
@@ -38,6 +37,7 @@ public class ProductController extends ReloadController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         super.doGet(request, response);
+        int page = 1;
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(
                     request.getParameter("page"));
@@ -96,8 +96,8 @@ public class ProductController extends ReloadController {
     public static void main(String[] args) {
         ProductDAO pDao = new ProductDAO();
         ArrayList<Product> products = pDao.getAllProductParent(0,
-                5, -1, -1, -1, "", 0, 1000000, true, -1);
-        int noOfRecords = pDao.getNoOfRecordsParent(-1, 3, -1, "", 0, 1000000, true);
+                5, -1, -1, -1, "", 0.0, 250, true, -1);
+        int noOfRecords = pDao.getNoOfRecordsParent(-1, 3, -1, "", 0, 250, true);
         System.out.println(products.size());
     }
 
@@ -169,7 +169,6 @@ public class ProductController extends ReloadController {
         categoryID = -1;
         tagID = -1;
         header = null;
-        page = 1;
         recordsPerPage = 5;
         minPrice = 0;
         maxPrice = 1000000000;

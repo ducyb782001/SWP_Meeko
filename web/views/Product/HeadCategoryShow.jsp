@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:if test="${sessionScope.textSearch == null || sessionScope.textSearch == ''}">
-    <div class="title-collection mt-3 mb-3">Tất cả sản phẩm </div>
+    <div class="title-collection mt-3 mb-3">Sản phẩm </div>
     <div class="list-filter-category-wrapper d-flex justify-content-between align-items-center">
         <div class="list-category-wrapper d-flex gap-2">
             <div class="category-item-wrapper text-truncate text-center rounded-pill">
