@@ -95,20 +95,26 @@
                         <h3 style="font-weight: 300;">
                             ĐỔI MẬT KHẨU
                         </h3>
-                        <p class="mt-4">Để đảm bảo tính bảo mật vui lòng đặt mật khẩu với ít nhất 8 kí tự
-                        </p>
-                        <form class="mt-2">
-                            <h6>MẬT KHẨU <span class="text-danger">*</span></h6>
-                            <input type="password" class="form-control mb-2" placeholder="Mật khẩu cũ"
-                                   aria-label="Username">
-                            <h6 class="mt-3">MẬT KHẨU MỚI <span class="text-danger">*</span></h6>
-                            <input type="password" class="form-control mb-2" placeholder="Mật khẩu mới"
-                                   aria-label="Username">
-                            <h6 class="mt-3">XÁC NHẬN LẠI MẬT KHẨU <span class="text-danger">*</span></h6>
-                            <input type="password" class="form-control mb-2" placeholder="Xác nhận lại mật khẩu"
-                                   aria-label="Username">
-                            <button type="button" class="btn btn-dark mt-4">Đặt lại mật khẩu</button>
-                        </form>
+                        <c:if test="${sessionScope.account.emailID == null}">
+                            <p class="mt-4">Để đảm bảo tính bảo mật vui lòng đặt mật khẩu với ít nhất 8 kí tự
+                            </p>
+                            <form class="mt-2">
+                                <h6>MẬT KHẨU <span class="text-danger">*</span></h6>
+                                <input type="password" class="form-control mb-2" placeholder="Mật khẩu cũ"
+                                       aria-label="Username">
+                                <h6 class="mt-3">MẬT KHẨU MỚI <span class="text-danger">*</span></h6>
+                                <input type="password" class="form-control mb-2" placeholder="Mật khẩu mới"
+                                       aria-label="Username">
+                                <h6 class="mt-3">XÁC NHẬN LẠI MẬT KHẨU <span class="text-danger">*</span></h6>
+                                <input type="password" class="form-control mb-2" placeholder="Xác nhận lại mật khẩu"
+                                       aria-label="Username">
+                                <button type="submit" class="btn btn-dark mt-4">Đặt lại mật khẩu</button>
+                            </form>
+                        </c:if>
+                        <c:if test="${sessionScope.account.emailID != null}">
+                            <p class="mt-4" style="color: red">Bạn đang dùng tài khoản email để đăng nhập!
+                            </p>
+                        </c:if>
                     </section>
                 </div>
             </div>
