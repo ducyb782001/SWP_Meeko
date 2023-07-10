@@ -66,7 +66,7 @@ public class Test extends HttpServlet {
         
         //chuyen huong va gửi lên server
         // Page CRUD all products 
-        request.getRequestDispatcher("views/Admin/AllProduct.jsp").forward(request, response);
+        request.getRequestDispatcher("views/Admin/OrderDetail.jsp").forward(request, response);
     }
 
     /**
