@@ -33,25 +33,25 @@
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                             <span class="text-dark">Đơn hàng</span>
                             <!-- Number of items in cart  -->
-                            <span class="badge bg-dark rounded-pill">1</span>
+                            <span class="badge bg-dark rounded-pill">${sessionScope.totalProduct}</span>
                         </h4>
                         <ul class="list-group mb-3">
                             <c:forEach items="${sessionScope.cart}" var="ord">
-                                <li class="list-group-item d-flex justify-content-between align-items-center lh-sm">
-                                    <div class="d-flex align-items-center gap-4">
-                                        <img src="${ord.product.images.get(0).image}"
-                                             class=""
-                                             style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;" />
-                                        <h6 class="my-0">${ord.product.name}</h6>
-                                    </div>
-                                    <span class="text-muted">
-                                        <fmt:formatNumber value="${ord.product.price * ord.quantity}" pattern="#,##0.000" var="formattedNumber" />
-                                        ${formattedNumber}đ
-                                    </span>
-                                    <div class="row">
-                                        <p>1</p>
-                                    </div>
-                                </li>
+                                <div>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center lh-sm">
+                                        <div class="d-flex align-items-center gap-4">
+                                            <img src="${ord.product.images.get(0).image}"
+                                                 class=""
+                                                 style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;" />
+                                            <span class="product-thumbnail__quantity">${ord.quantity}</span>
+                                            <h6 class="my-0">${ord.product.name}</h6>
+                                        </div>
+                                        <span class="text-muted">
+                                            <fmt:formatNumber value="${ord.product.price * ord.quantity}" pattern="#,##0.000" var="formattedNumber" />
+                                            ${formattedNumber}đ
+                                        </span>
+                                    </li>
+                                </div>
                             </c:forEach>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Total (VND)</span>

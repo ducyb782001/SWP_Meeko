@@ -41,6 +41,7 @@ public class ReloadController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         double totalPrice = 0.0;
+        int totalProduct = 0;
 
         HttpSession sesion = request.getSession();
         ProductDAO pDao = new ProductDAO();
@@ -82,6 +83,7 @@ public class ReloadController extends HttpServlet {
                     cart.add(order);
 
                     totalPrice += pro.getPrice() * order.getQuantity();
+                    totalProduct += order.getQuantity();
                 }
             }
 
@@ -92,6 +94,7 @@ public class ReloadController extends HttpServlet {
 
         request.getSession().setAttribute("cart", cart);
         request.getSession().setAttribute("totalPrice", totalPrice);
+        request.getSession().setAttribute("totalProduct", totalProduct);
 
         ArrayList<Order> orderStatus = new ArrayList<>();
         //lay thong tin gio hang

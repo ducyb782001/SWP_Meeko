@@ -575,7 +575,6 @@
             function addToCartDetail(name, image) {
                 var quantity = document.getElementById('quantityBuy').value;
                 addToCart(productID, name, image, priceValue, quantity, typeValue);
-                window.location.href = "orderCustomer";
             }
             function buyNow(name, image) {
                 var quantity = document.getElementById('quantityBuy').value;

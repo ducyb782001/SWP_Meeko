@@ -4,6 +4,7 @@
  */
 package Controllers.Order;
 
+import Controllers.ReloadController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author dell
  */
-public class OrderDetail extends HttpServlet {
+public class OrderDetail extends ReloadController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,6 +56,7 @@ public class OrderDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doGet(request, response);
         request.getRequestDispatcher("views/Order/OrderDetails.jsp").forward(request, response);
     }
 
