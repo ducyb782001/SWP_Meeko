@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class ProductData {
     public static ArrayList<Product> ProductData(){
-        ProductDAO pdao = new ProductDAO();
-        return  pdao.getAllProductParent(true);
+        return null;
     }
 }

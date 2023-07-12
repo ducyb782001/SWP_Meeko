@@ -98,19 +98,19 @@
                         <c:if test="${sessionScope.account.emailID == null}">
                             <p class="mt-4">Để đảm bảo tính bảo mật vui lòng đặt mật khẩu với ít nhất 8 kí tự
                             </p>
-                            <form class="mt-2">
+                            <form id="frm-changePass" action="changePassword" method="post" class="mt-2">
                                 <h6>MẬT KHẨU <span class="text-danger">*</span></h6>
-                                <input type="password" class="form-control mb-2" placeholder="Mật khẩu cũ"
+                                <input id="input-oldPwd" name="oldPwd" type="password" class="form-control mb-2" placeholder="Mật khẩu cũ"
                                        aria-label="Username" required>
                                 <h6 class="mt-3">MẬT KHẨU MỚI <span class="text-danger">*</span></h6>
-                                <input type="password" class="form-control mb-2" placeholder="Mật khẩu mới"
-                                       aria-label="Username" required>
-                                <h6 class="mt-3">XÁC NHẬN LẠI MẬT KHẨU <span class="text-danger">*</span></h6>
-                                <input type="password" class="form-control mb-2" placeholder="Xác nhận lại mật khẩu"
-                                       aria-label="Username" required
-                                       
-                                       >
-                                <button type="submit" class="btn btn-dark mt-4">Đặt lại mật khẩu</button>
+                                <input id="input-newPwd" type="password" class="form-control mb-2" placeholder="Mật khẩu mới" name="newPwd"
+                                       aria-label="Username" required oninput="validatePwd(this)"/>
+                                       <h6 class="mt-3">XÁC NHẬN LẠI MẬT KHẨU <span class="text-danger">*</span></h6>
+                                <span style="color: red;display: none" id="error-newPwd"></span>
+                                <input id="input-cfPwd" type="password" class="form-control mb-2" placeholder="Xác nhận lại mật khẩu"
+                                       aria-label="Username" required oninput="validateCfPwd(this)"/>
+                                <span style="color: red;display: none" id="error-cfPwd"></span>
+                                <button type="button" onclick="changePass()" class="btn btn-dark mt-4">Đặt lại mật khẩu</button>
                             </form>
                         </c:if>
                         <c:if test="${sessionScope.account.emailID != null}">
@@ -127,4 +127,53 @@
         <script src="https://kit.fontawesome.com/8d39de38b8.js" crossorigin="anonymous"></script>
     </body>
     <%@ include file="../../includes/footer.jsp" %>
+
+    <script>
+                                    var checkNewPwd = false;
+                                    var checkCfPass = false;
+
+                                    function changePass() {
+                                        var oldPwd = document.getElementById('input-oldPwd').value;
+                                        var newPwd = document.getElementById('input-newPwd').value;
+                                        var cfPwd = document.getElementById('input-cfPwd').value;
+                                        if (oldPwd === '' && newPwd === '' && cfPwd === '') {
+                                            alert('Vui lòng kiểm tra lại thông tin');
+                                        } else {
+                                            if (checkNewPwd && checkCfPass) {
+                                                document.getElementById('frm-changePass').submit();
+                                            } else {
+                                                alert('Vui lòng kiểm tra lại thông tin');
+                                            }
+
+                                        }
+                                    }
+
+                                    function validatePwd(input) {
+                                        var value = input.value;
+                                        if (value.length < 8) {
+                                            document.getElementById('error-newPwd').textContent = "Vui lòng nhập ít nhất 8 ký tự";
+                                            document.getElementById('error-newPwd').style.display = "block";
+                                            checkNewPwd = false;
+                                        } else {
+                                            document.getElementById('error-newPwd').textContent = "";
+                                            document.getElementById('error-newPwd').style.display = "none";
+                                            checkNewPwd = true;
+                                        }
+                                    }
+
+                                    function validateCfPwd(input) {
+                                        var newPwd = document.getElementById('input-newPwd').value;
+                                        var value = input.value;
+                                        if (value !== newPwd) {
+                                            document.getElementById('error-cfPwd').textContent = "Mật khẩu xác nhận không giống mật khẩu mới";
+                                            document.getElementById('error-cfPwd').style.display = "block";
+                                            checkCfPass = false;
+                                        } else {
+                                            document.getElementById('error-cfPwd').textContent = "";
+                                            document.getElementById('error-cfPwd').style.display = "none";
+                                            checkCfPass = true;
+                                        }
+                                    }
+    </script>
+
 </html>

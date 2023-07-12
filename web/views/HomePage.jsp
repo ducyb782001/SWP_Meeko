@@ -5,6 +5,7 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -160,8 +161,16 @@
                         <form id="frm-product-details-${na.product.productId}" action="productDetails" method="post">
                             <input type="hidden" value="${na.product.productId}" name="productID" id="productID${na.product.productId}">
                             <div class="position-relative">
-                                <img src="${na.product.images.get(0).image}"
-                                     alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${na.product.productId}')"/>
+                                <c:set var="mainString" value="${na.product.images.get(0).image}" />
+                                <c:set var="subString" value="https" />
+                                <c:if test="${fn:contains(mainString, subString)}">
+                                    <img src="${na.product.images.get(0).image}"
+                                         alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${na.product.productId}')"/>
+                                </c:if>
+                                <c:if test="${fn:contains(mainString, subString) == false}">
+                                    <img src="../images/${na.product.images.get(0).image}"
+                                         alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${na.product.productId}')"/>
+                                </c:if>
                                 <div class="love-prd">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none">
@@ -219,8 +228,16 @@
                         <form id="frm-product-details-${bs.product.productId}" action="productDetails" method="post">
                             <input type="hidden" value="${bs.product.productId}" name="productID">
                             <div class="position-relative">
-                                <img src="${bs.product.images.get(0).image}"
-                                     alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${bs.product.productId}')"/>
+                                <c:set var="mainString" value="${bs.product.images.get(0).image}" />
+                                <c:set var="subString" value="https" />
+                                <c:if test="${fn:contains(mainString, subString)}">
+                                    <img src="${bs.product.images.get(0).image}"
+                                         alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${bs.product.productId}')"/>
+                                </c:if>
+                                <c:if test="${fn:contains(mainString, subString) == false}">
+                                    <img src="../images/${bs.product.images.get(0).image}"
+                                         alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${bs.product.productId}')"/>
+                                </c:if>
                                 <div class="love-prd">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none">

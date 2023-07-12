@@ -25,7 +25,7 @@ public class Product {
     private Category category;
     private boolean isParent;
     private String description;
-    private ArrayList<ImageProduct> images;
+    private ArrayList<ImageProduct> images = new ArrayList<>();
     private ArrayList<Product> children = new ArrayList<>();
 
     public Product() {

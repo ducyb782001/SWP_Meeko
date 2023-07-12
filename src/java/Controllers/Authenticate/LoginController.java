@@ -82,15 +82,20 @@ public class loginController extends ReloadController {
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String pwd = request.getParameter("pwd");
-        
+
         EncodeMD5 encode = new EncodeMD5();
         String encodePwd = encode.EncoderMD5(pwd);
-        
+
         UserDAO uDAO = new UserDAO();
         User user = uDAO.doLogin(email, encodePwd);
         if (user != null) {
-            request.getSession().setAttribute("account", user);
-            response.sendRedirect("home");
+            if (user.getRole().getId() == 1) {
+                request.getSession().setAttribute("account", user);
+                response.sendRedirect("listAllProductAdmin");
+            } else {
+                request.getSession().setAttribute("account", user);
+                response.sendRedirect("home");
+            }
         } else {
             request.setAttribute("isFail", true);
             request.getRequestDispatcher("views/Login.jsp").forward(request, response);
@@ -107,4 +112,11 @@ public class loginController extends ReloadController {
         return "Short description";
     }// </editor-fold>
 
+    public static void main(String[] args) {
+        UserDAO uDAO = new UserDAO();
+        EncodeMD5 encode = new EncodeMD5();
+        String encodePwd = encode.EncoderMD5("123@123");
+        User user = uDAO.doLogin("admin@gmail.com", encodePwd);
+        System.out.println(user.getRole().getId());
+    }
 }

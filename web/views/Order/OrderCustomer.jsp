@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="col-12">
                                         <label for="username" class="form-label">Họ và tên</label>
-                                        <input type="text" name="fullName" required maxlength="255" oninput="validateName(this)"
+                                        <input id="input-fullName" type="text" name="fullName" required maxlength="255" oninput="validateName(this)"
                                                class="form-control mb-3" placeholder="Nhập Họ và Tên" value="${account.fullName}"
                                                aria-label="Username">
                                         <span id="error-fullName" style="color: red; display: none;"></span>
@@ -225,7 +225,8 @@
             var checkAddress = false;
 
             function orderProduct() {
-                if (checkFullName && checkPhone && checkEmail && checkAddress) {
+                var fullName = document.getElementById('input-fullName').value;
+                if (fullName !== '' && checkPhone && checkEmail && checkAddress) {
                     document.getElementById('orderDetailCustomer').submit();
                 } else {
                     alert('Vui lòng kiểm tra lại thông tin đặt hàng!');

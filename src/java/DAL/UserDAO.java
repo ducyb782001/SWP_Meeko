@@ -189,4 +189,18 @@ public class UserDAO extends DBContext {
         return false;
     }
 
+    public void changePassword(String email, String encodeNewPass) {
+        try {
+            String sql = "UPDATE [dbo].[User]\n"
+                    + "   SET [Password] = ?\n"
+                    + " WHERE Email = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, encodeNewPass);
+            stm.setString(2, email);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

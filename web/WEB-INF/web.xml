@@ -100,6 +100,22 @@
         <servlet-name>Test</servlet-name>
         <servlet-class>Controllers.Test</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <servlet-class>Controllers.Authenticate.ChangePasswordController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListAllProduct</servlet-name>
+        <servlet-class>Controllers.Admin.ListAllProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProductSevrlet</servlet-name>
+        <servlet-class>Controllers.Admin.AddProductSevrlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestJSP</servlet-name>
+        <servlet-class>Test</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -199,6 +215,22 @@
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
         <url-pattern>/testServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <url-pattern>/changePassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListAllProduct</servlet-name>
+        <url-pattern>/listAllProductAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductSevrlet</servlet-name>
+        <url-pattern>/addProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestJSP</servlet-name>
+        <url-pattern>/testAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

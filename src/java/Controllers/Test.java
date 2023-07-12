@@ -12,13 +12,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
  *
  * @author trungduc
  */
-public class Test extends HttpServlet {
+public class Test extends ReloadController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,7 +38,7 @@ public class Test extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Test</title>");            
+            out.println("<title>Servlet Test</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Test at " + request.getContextPath() + "</h1>");
@@ -58,15 +59,12 @@ public class Test extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Lay Data tu database
-        ArrayList<Product> list = ProductData.ProductData();
-        
-        //Lưu vào biến và gửi lên server
-        request.setAttribute("listProduct", list);
-        
-        //chuyen huong va gửi lên server
-        // Page CRUD all products 
-        request.getRequestDispatcher("views/Admin/OrderDetail.jsp").forward(request, response);
+        super.doGet(request, response);
+        String projectRoot = request.getServletContext().getRealPath("/");
+    File projectDirectory = new File(projectRoot);
+    File parentDirectory = projectDirectory.getParentFile().getParentFile();
+    String parentDirectoryPath = parentDirectory.getAbsolutePath();
+    response.getWriter().println("Parent Directory: " + parentDirectoryPath);
     }
 
     /**

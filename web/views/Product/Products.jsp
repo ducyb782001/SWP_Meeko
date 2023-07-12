@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -51,8 +52,16 @@
                                 <form id="frm-product-details-${p.productId}" action="productDetails" method="post">
                                     <input type="hidden" value="${p.productId}" name="productID">
                                     <div class="position-relative">
-                                        <img src="${p.images.get(0).image}"
-                                             alt="new-prd" class="product-card-img w-100 h-auto" onclick="viewProduct('${p.productId}')"/>
+                                        <c:set var="mainString" value="${p.images.get(0).image}" />
+                                        <c:set var="subString" value="https" />
+                                        <c:if test="${fn:contains(mainString, subString)}">
+                                            <img src="${p.images.get(0).image}"
+                                                 alt="new-prd" class="product-card-img w-100 h-auto" onclick="viewProduct('${p.productId}')"/>
+                                        </c:if>
+                                        <c:if test="${fn:contains(mainString, subString) == false}">
+                                            <img src="../../images/${p.images.get(0).image}"
+                                                 alt="new-prd" class="product-card-img w-100 h-auto" onclick="viewProduct('${p.productId}')"/>
+                                        </c:if>
                                         <div class="love-prd">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                                  fill="none">
@@ -65,7 +74,21 @@
 
                                     <div class="action-prd-cart">
                                         <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
-                                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                                                <c:if test="${p.children.size() == 0}">
+                                                    onclick="addToCart('${p.productId}', '${p.name}', '${p.images.get(0).image}', '${p.price}', 1
+                                                    <c:if test="${p.classValue != null}">
+                                                            , '${p.classValue}'
+                                                    </c:if>
+                                                    <c:if test="${p.classValue == null}">
+                                                            , ''
+                                                    </c:if>
+                                                            )"
+                                                </c:if>          
+                                                <c:if test="${p.children.size() != 0}">
+                                                    onclick="viewProduct('${p.productId}')"
+                                                </c:if>
+                                                >                            
                                             <i class="fa-solid fa-cart-plus fa-lg"></i>
                                         </button>
                                     </div>

@@ -1,5 +1,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,13 +64,29 @@
                             <!-- Slides -->
                             <div class="carousel-inner mb-5">
                                 <div class="carousel-item active" style="height: 400px; width: 100%;">
-                                    <img src="${images.get(0).image}"
-                                         class="w-100 h-100 object-fit-cover" alt="..." />
+                                    <c:set var="mainString" value="${images.get(i).image}" />
+                                    <c:set var="subString" value="https" />
+                                    <c:if test="${fn:contains(mainString, subString)}">
+                                        <img src="${images.get(0).image}"
+                                             class="w-100 h-100 object-fit-cover" alt="..." />
+                                    </c:if>
+                                    <c:if test="${fn:contains(mainString, subString) == false}">
+                                        <img src="../../images/${images.get(i).image}"
+                                             class="w-100 h-100 object-fit-cover" alt="..." />
+                                    </c:if>
                                 </div>
                                 <c:forEach var="i" begin="1" step="1" end="${images.size()-1}">
                                     <div class="carousel-item" style="height: 400px; width: 100%;">
-                                        <img src="${images.get(i).image}"
-                                             class="w-100 h-100 object-fit-cover" alt="..." />
+                                        <c:set var="mainString" value="${images.get(i).image}" />
+                                        <c:set var="subString" value="https" />
+                                        <c:if test="${fn:contains(mainString, subString)}">
+                                            <img src="${images.get(i).image}"
+                                                 class="w-100 h-100 object-fit-cover" alt="..." />
+                                        </c:if>
+                                        <c:if test="${fn:contains(mainString, subString) == false}">
+                                            <img src="../../images/${images.get(i).image}"
+                                                 class="w-100 h-100 object-fit-cover" alt="..." />
+                                        </c:if>
                                     </div>
                                 </c:forEach>
                             </div>
@@ -93,9 +110,18 @@
                                 <c:forEach var="i" begin="0" step="1" end="${images.size()-1}">
                                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}"
                                             class="active" aria-current="true" aria-label="Slide ${i+1}" style="width: 100px;">
-                                        <img class="d-block w-100"
-                                             src="${images.get(i).image}"
-                                             class="img-fluid" />
+                                        <c:set var="mainString" value="${images.get(i).image}" />
+                                        <c:set var="subString" value="https" />
+                                        <c:if test="${fn:contains(mainString, subString)}">
+                                            <img class="d-block w-100"
+                                                 src="${images.get(i).image}"
+                                                 class="img-fluid" />
+                                        </c:if>
+                                        <c:if test="${fn:contains(mainString, subString) == false}">
+                                            <img class="d-block w-100"
+                                                 src="../../images/${images.get(i).image}"
+                                                 class="img-fluid" />
+                                        </c:if>
                                     </button>
                                 </c:forEach>
                             </div>
@@ -214,7 +240,7 @@
                                         data-bs-toggle="modal" data-bs-target="#cartModal"
                                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
                                         onclick="addToCartDetail('${product.name}', '${product.images.get(0).image}')">Thêm vào giỏ hàng</button>
-                                        <button class="btn btn-danger btn-lg custom_btn_buynow" onclick="buyNow('${product.name}', '${product.images.get(0).image}')">Mua ngay</button>
+                                <button class="btn btn-danger btn-lg custom_btn_buynow" onclick="buyNow('${product.name}', '${product.images.get(0).image}')">Mua ngay</button>
                             </div>
                         </div>
                         <div class="mt-3" id="show_out">

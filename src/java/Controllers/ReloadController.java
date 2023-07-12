@@ -74,14 +74,13 @@ public class ReloadController extends HttpServlet {
             String[] products = cartValue.split("_");
             for (String product : products) {
                 //check the length of the product cookie
-                if (product.length() != 0) {
+                if (product.length() > 0) {
                     String[] proQua = product.split("-");
                     OrderDetails order = new OrderDetails();
                     Product pro = pDao.getProductDetailsByID(Integer.parseInt(proQua[0]), true);
                     order.setProduct(pro);
                     order.setQuantity(Integer.parseInt(proQua[1]));
                     cart.add(order);
-
                     totalPrice += pro.getPrice() * order.getQuantity();
                     totalProduct += order.getQuantity();
                 }
@@ -91,7 +90,10 @@ public class ReloadController extends HttpServlet {
 
         Cookie priceCookie = new Cookie(priceName, String.valueOf(totalPrice));
         response.addCookie(priceCookie);
+        
+        String realPath = request.getServletContext().getRealPath("/");
 
+        request.getSession().setAttribute("projectPath", realPath);
         request.getSession().setAttribute("cart", cart);
         request.getSession().setAttribute("totalPrice", totalPrice);
         request.getSession().setAttribute("totalProduct", totalProduct);
@@ -103,5 +105,16 @@ public class ReloadController extends HttpServlet {
             orderStatus = oDao.getOrdersByUser(acc.getUserID());
         }
         request.getSession().setAttribute("orders", orderStatus);
+
+        TagDAO tDao = new TagDAO();
+        ArrayList<Tag> tags = tDao.getAll();
+
+        //get all categories belong to tag
+        for (Tag tag : tags) {
+            CategoryDAO cDao = new CategoryDAO();
+            ArrayList<Category> categories = cDao.getAllByTagID(tag.getTagId());
+            tag.setCategories(categories);
+        }
+        request.getSession().setAttribute("tags", tags);
     }
 }

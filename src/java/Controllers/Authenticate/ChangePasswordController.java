@@ -2,29 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.product;
+package Controllers.Authenticate;
 
-import Controllers.ReloadController;
-import DAL.ImageProductDAO;
-import DAL.ProductDAO;
-import Model.Constants;
-import Model.ImageProduct;
-import Model.Product;
+import DAL.UserDAO;
+import Model.User;
+import Utils.EncodeMD5;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
  * @author dell
  */
-public class ProductDetailsController extends ReloadController {
-
-    int productID = -1;
+public class ChangePasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +37,10 @@ public class ProductDetailsController extends ReloadController {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProductDetailsController</title>");
+            out.println("<title>Servlet ChangePasswordController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProductDetailsController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ChangePasswordController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,21 +58,7 @@ public class ProductDetailsController extends ReloadController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        super.doGet(request, response);
-        if (productID != -1) {
-            ProductDAO pDao = new ProductDAO();
-            ImageProductDAO iDao = new ImageProductDAO();
-
-            Product product = pDao.getProductByID(productID, Constants.Active);
-            ArrayList<ImageProduct> images = iDao.getAllImageByProductID(productID, Constants.DeleteFalse);
-
-            request.setAttribute("product", product);
-            request.setAttribute("images", images);
-
-            request.getRequestDispatcher("views/Product/ProductDetails.jsp").forward(request, response);
-        } else {
-            response.sendRedirect("product");
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -92,11 +72,25 @@ public class ProductDetailsController extends ReloadController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("productID") != null) {
-            productID = Integer.parseInt(request.getParameter("productID"));
-            doGet(request, response);
+
+        User account = (User) request.getSession().getAttribute("account");
+
+        String oldPwd = request.getParameter("oldPwd");
+        String newPwd = request.getParameter("newPwd");
+
+        UserDAO uDao = new UserDAO();
+        EncodeMD5 encode = new EncodeMD5();
+        String encodeOldPass = encode.EncoderMD5(oldPwd);
+        String encodeNewPass = encode.EncoderMD5(newPwd);
+
+        User acc = uDao.doLogin(account.getEmail(), encodeOldPass);
+        if (acc == null) {
+            request.getSession().setAttribute("changeFail", "0");
+            response.sendRedirect("home");
         } else {
-            response.sendRedirect("product");
+            uDao.changePassword(account.getEmail(),encodeNewPass);
+            request.getSession().setAttribute("changeFail", "1");
+            response.sendRedirect("home");
         }
     }
 
@@ -110,9 +104,4 @@ public class ProductDetailsController extends ReloadController {
         return "Short description";
     }// </editor-fold>
 
-    public static void main(String[] args) {
-        ImageProductDAO iDao = new ImageProductDAO();
-        ArrayList<ImageProduct> images = iDao.getAllImageByProductID(1, Constants.DeleteFalse);
-        System.out.println(images.get(0).getImage());
-    }
 }

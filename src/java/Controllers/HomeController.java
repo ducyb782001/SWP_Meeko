@@ -53,20 +53,11 @@ public class HomeController extends ReloadController {
         HttpSession sesion = request.getSession();
 
         CollectionDAO clDao = new CollectionDAO();
-        TagDAO tDao = new TagDAO();
+
         NewArrivalDAO naDao = new NewArrivalDAO();
 
         //get all collection
         ArrayList<Collection> collections = clDao.getAllCollection(true);
-
-        ArrayList<Tag> tags = tDao.getAll();
-
-        //get all categories belong to tag
-        for (Tag tag : tags) {
-            CategoryDAO cDao = new CategoryDAO();
-            ArrayList<Category> categories = cDao.getAllByTagID(tag.getTagId());
-            tag.setCategories(categories);
-        }
 
         //get all new arrival product
         ArrayList<NewArrival> newArrivals = naDao.getAllNew(false, true);
@@ -78,6 +69,7 @@ public class HomeController extends ReloadController {
         String regiester = (String) sesion.getAttribute("register");
         String orderStatus = (String) sesion.getAttribute("orderStatus");
         String emptyCart = (String) sesion.getAttribute("emptyCart");
+        String changePass = (String) sesion.getAttribute("changeFail");
 
         if (regiester != null) {
             request.setAttribute("msg", "Bạn đã đăng ký tài khoản thành công!");
@@ -91,8 +83,17 @@ public class HomeController extends ReloadController {
             request.setAttribute("msg", "Bạn không có sản phẩm nào trong giỏ hàng!");
             sesion.setAttribute("emptyCart", null);
         }
+        if (changePass != null) {
+            if (changePass.equalsIgnoreCase("1")) {
+                request.setAttribute("msg", "Thay đổi mật khẩu thành công!");
+                sesion.setAttribute("changeFail", null);
+            } else {
+                request.setAttribute("msg", "Mật khẩu cũ không chính xác! Vui lòng thử lại!");
+                sesion.setAttribute("changeFail", null);
+            }
+        }
 
-        request.getSession().setAttribute("tags", tags);
+
         request.getSession().setAttribute("bestSellers", bestSellers);
         request.getSession().setAttribute("bestSellers", bestSellers);
         request.getSession().setAttribute("collections", collections);
