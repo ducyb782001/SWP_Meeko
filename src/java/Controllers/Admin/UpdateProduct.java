@@ -32,7 +32,7 @@ import org.apache.commons.io.FilenameUtils;
  * @author dell
  */
 @MultipartConfig
-public class UpdateProduct extends BaseAdminAuthenticationController {
+public class UpdateProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -70,7 +70,7 @@ public class UpdateProduct extends BaseAdminAuthenticationController {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -84,9 +84,8 @@ public class UpdateProduct extends BaseAdminAuthenticationController {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         try {
             int productID = Integer.parseInt(request.getParameter("productID"));
 
