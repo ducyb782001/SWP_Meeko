@@ -2,26 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Authenticate;
+package Controllers.Admin;
 
-import Controllers.ReloadController;
-import DAL.UserDAO;
-import Model.User;
-import Utils.EncodeMD5;
+import DAL.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
-import java.time.LocalDate;
 
 /**
  *
  * @author dell
  */
-public class registerController extends ReloadController {
+public class DeleteProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +35,10 @@ public class registerController extends ReloadController {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet registerController</title>");
+            out.println("<title>Servlet DeleteProductController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet registerController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteProductController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,9 +56,6 @@ public class registerController extends ReloadController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Date now = Date.valueOf(LocalDate.now());
-        request.setAttribute("now", now);
-        request.getRequestDispatcher("/views/Register.jsp").forward(request, response);
     }
 
     /**
@@ -77,29 +69,10 @@ public class registerController extends ReloadController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserDAO uDao = new UserDAO();
-
-        EncodeMD5 encode = new EncodeMD5();
-        
-        User user = new User();
-        user.setFullName(request.getParameter("fullName"));
-        user.setPhone(request.getParameter("phone"));
-        user.setEmail(request.getParameter("email"));
-        user.setPassword(encode.EncoderMD5(request.getParameter("password")));
-        user.setAddress(request.getParameter("address"));
-        Date dob = Date.valueOf(request.getParameter("dob"));
-        user.setDob(dob);
-
-        boolean isExist = uDao.isUserExist(user.getEmail());
-        if (isExist) {
-            request.getSession().setAttribute("isFail", true);
-            request.setAttribute("account", user);
-            request.getRequestDispatcher("/views/Register.jsp").forward(request, response);
-        } else {
-            uDao.insert(user);
-            request.getSession().setAttribute("register", "success");
-            response.sendRedirect("home");
-        }
+        int productID = Integer.parseInt(request.getParameter("productID"));
+        ProductDAO pDao = new ProductDAO();
+        pDao.delete(productID);
+        response.sendRedirect("listAllProductAdmin");
     }
 
     /**
@@ -112,4 +85,8 @@ public class registerController extends ReloadController {
         return "Short description";
     }// </editor-fold>
 
+    public static void main(String[] args) {
+        ProductDAO pDao = new ProductDAO();
+        pDao.delete(1);
+    }
 }

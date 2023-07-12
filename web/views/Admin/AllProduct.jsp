@@ -112,40 +112,10 @@
 
                                         <!--Delete button-->  
                                         <button type="button" class="btn btn-outline-danger me-2" data-bs-toggle="modal"
-                                                data-bs-target="#deleteItem">
+                                                data-bs-target="#deleteItem_${product.productId}">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
-                                        <!--Modal Delete Detail-->
-                                        <div class="modal fade" id="deleteItem" tabindex="-1"
-                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc chắn muốn xóa
-                                                            sản phẩm
-                                                        </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                    </div>
 
-                                                    <div class="modal-body">
-                                                        ${product.name} - ${product.price}d
-                                                    </div>
-                                                    <form action="/Product/Delete" method="post">
-                                                        <input type="hidden" class="form-control" id="id" name="id"
-                                                               value="@item.id_book">
-                                                        <div class="modal-footer">
-                                                            <button style="width:100px" type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">
-                                                                Đóng
-                                                            </button>
-                                                            <button style="width:100px" type="submit" class="btn btn-danger">
-                                                                Xóa</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -440,6 +410,39 @@
                                 <button type="submit" class="btn btn-primary">Lưu</button>
                             </form>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Modal -->
+            <!--Modal Delete Detail-->
+            <div class="modal fade" id="deleteItem_${product.productId}" tabindex="-1"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <input value="${product.productId}" type="hidden" name="productID">
+                            <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc chắn muốn xóa
+                                sản phẩm
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            ${product.name} - ${product.price}d
+                        </div>
+                        <form action="deleteProduct" method="post">
+                            <input value="${product.productId}" type="hidden" name="productID">
+                            <div class="modal-footer">
+                                <button style="width:100px" type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">
+                                    Đóng
+                                </button>
+                                <button style="width:100px" type="submit" class="btn btn-danger">
+                                    Xóa</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -635,7 +635,16 @@ public class ProductDAO extends DBContext {
     }
 
     public void delete(int productID) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "UPDATE [dbo].[Products]\n"
+                    + "   SET [DeleteFlag] = 1\n"
+                    + " WHERE ProductId = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, productID);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void update(Product product) {
