@@ -93,6 +93,74 @@ public class ProductDAO extends DBContext {
         return null;
     }
 
+    public Product getProductByID(int productID) {
+        try {
+            String sql = "SELECT *\n"
+                    + "  FROM [Products] Where ProductId = ? or ParentId = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, productID);
+            stm.setInt(2, productID);
+            ResultSet rs = stm.executeQuery();
+
+            TypeDAO tDao = new TypeDAO();
+            CategoryDAO cDao = new CategoryDAO();
+            ImageProductDAO imageDao = new ImageProductDAO();
+
+            Product product = new Product();
+            Category category = new Category();
+            ArrayList<ImageProduct> listImage;
+
+            while (rs.next()) {
+
+                Type type = tDao.getTypeByID(rs.getInt("ClassType"));
+
+                category = cDao.getCategoryByID(rs.getInt("CategoryId"));
+
+                boolean isParent = rs.getBoolean("IsParent");
+                if (isParent) {
+                    listImage = new ArrayList<>();
+                    product.setProductId(rs.getInt("ProductId"));
+                    product.setName(rs.getString("Name"));
+                    product.setPrice(rs.getDouble("Price"));
+                    product.setQuantity(rs.getInt("Quantity"));
+                    product.setStatus(rs.getBoolean("Status"));
+                    product.setClassType(type);
+                    product.setClassValue(rs.getString("ClassValue"));
+                    product.setCreateDate(rs.getDate("createDate"));
+                    product.setCategory(category);
+                    product.setIsParent(isParent);
+                    product.setDescription(rs.getString("Description"));
+
+                    listImage = imageDao.getImageByProductID(product.getProductId(), Constants.DeleteFalse);
+                    product.setImages(listImage);
+                } else {
+                    Product children = new Product(
+                            rs.getInt("ProductId"),
+                            rs.getString("Name"),
+                            rs.getDouble("Price"),
+                            rs.getInt("Quantity"),
+                            rs.getBoolean("Status"),
+                            type,
+                            rs.getString("ClassValue"),
+                            rs.getDate("createDate"),
+                            product,
+                            category,
+                            isParent,
+                            rs.getString("Description"));
+                    listImage = new ArrayList<>();
+                    listImage = imageDao.getImageByProductID(product.getProductId(), Constants.DeleteFalse);
+                    children.setImages(listImage);
+                    product.getChildren().add(children);
+                }
+
+            }
+            return product;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public Product getProductDetailsByID(int productID, boolean status) {
         try {
             String sql = "SELECT *\n"
@@ -316,7 +384,7 @@ public class ProductDAO extends DBContext {
         }
         return 0;
     }
-    
+
     public ArrayList<Product> getAllProductParent(int offset, int recordsPerPage,
             int collectionID, int categoryID, int tagID, String textSearch,
             double minPrice, double maxPrice, int sortOption) {
@@ -559,6 +627,35 @@ public class ProductDAO extends DBContext {
             stm.setBoolean(11, product.isIsParent());
             stm.setString(12, product.getDescription());
             stm.setBoolean(13, false);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void delete(int productID) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void update(Product product) {
+        try {
+            String sql = "UPDATE [dbo].[Products]\n"
+                    + "   SET [Name] = ?\n"
+                    + "      ,[Price] = ?\n"
+                    + "      ,[Quantity] = ?\n"
+                    + "      ,[Status] = ?\n"
+                    + "      ,[CategoryId] = ?\n"
+                    + "      ,[Description] = ?\n"
+                    + " WHERE ProductId = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, product.getName());
+            stm.setDouble(2, product.getPrice());
+            stm.setInt(3, product.getQuantity());
+            stm.setBoolean(4, product.isStatus());
+            stm.setInt(5, product.getCategory().getCategoryId());
+            stm.setString(6, product.getDescription());
+            stm.setInt(7, product.getProductId());
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);

@@ -83,4 +83,16 @@ public class ImageProductDAO extends DBContext {
             Logger.getLogger(ImageProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void delete(int productID) {
+        try {
+            String sql = "DELETE FROM [dbo].[Image_Product]\n"
+                    + "      WHERE ProductID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, productID);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ImageProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

@@ -158,7 +158,7 @@
                             <%--For displaying Previous link except for the 1st page --%>
                             <c:if test="${currentPage != 1}">
                                 <li class="page-item">
-                                    <a class="page-link" href="product?page=${currentPage - 1}" aria-label="Previous">
+                                    <a class="page-link" href="listAllProductAdmin?page=${currentPage - 1}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
@@ -368,8 +368,9 @@
                         </div>
 
                         <div class="modal-body">
-                            <form method="POST" action="editProduct" class="register-form"
+                            <form method="POST" action="updateProduct" class="register-form"
                                   id="register-form" enctype="multipart/form-data">
+                                <input value="${product.productId}" type="hidden" name="productID">
                                 <div class="col">
                                     <div class="row">
                                         <div class="col-6">
@@ -379,7 +380,7 @@
                                         </div>
                                         <div class="col-6">
                                             <label for="category-film" class="col-form-label">Giá:</label>
-                                            <input value="${product.price}" type="number" class="form-control" id="category-film" name="price" required>
+                                            <input value="${product.price}" type="text" class="form-control" id="category-film" name="price" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -402,7 +403,7 @@
                                     <div class="row mt-2">
                                         <div class="col-6">
                                             <label for="category-film" class="col-form-label">Số lượng:</label>
-                                            <input value="${product.quantity}" type="text" class="form-control" id="category-film" name="quantity">
+                                            <input value="${product.quantity}" type="number" class="form-control" id="category-film" name="quantity" required>
                                         </div>
                                         <div class="col-6">
                                             <label for="category-film" class="col-form-label">Trạng thái:</label>
@@ -423,9 +424,8 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 mt-3">
-                                        <label for="exampleFormControlFile1">Ảnh:</label>
-                                        <input type="file" class="form-control-file mt-2" name="file" id="file" accept="image/*"
-                                               required>
+                                        <label for="exampleFormControlFile1">Thay ảnh mới:</label>
+                                        <input type="file" class="form-control-file mt-2" name="file" id="file" accept="image/*" multiple>
                                     </div>
                                     <div class="mb-3">
                                         <label for="category-film" class="col-form-label">Mô
