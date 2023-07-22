@@ -164,26 +164,26 @@ public class UpdateProduct extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public static void main(String[] args) {
-        //tao san pham
-        ProductDAO pDao = new ProductDAO();
-        Category category = new Category();
-        category.setCategoryId(1);
-
-        Product product = new Product();
-        product.setName("Check");
-        product.setPrice(123);
-        product.setCategory(category);
-        product.setQuantity(1);
-        product.setStatus(true);
-        product.setDescription("");
-        product.setCreateDate(Date.valueOf(LocalDate.now()));
-        product.setIsParent(true);
-
-        product.setProductId(1);
-
-        //them product vao database
-        pDao.update(product);
-        
-    }
+//    public static void main(String[] args) {
+//        //tao san pham
+//        ProductDAO pDao = new ProductDAO();
+//        Category category = new Category();
+//        category.setCategoryId(1);
+//
+//        Product product = new Product();
+//        product.setName("Check");
+//        product.setPrice(123);
+//        product.setCategory(category);
+//        product.setQuantity(1);
+//        product.setStatus(true);
+//        product.setDescription("");
+//        product.setCreateDate(Date.valueOf(LocalDate.now()));
+//        product.setIsParent(true);
+//
+//        product.setProductId(1);
+//
+//        //them product vao database
+//        pDao.update(product);
+//        
+//    }
 }

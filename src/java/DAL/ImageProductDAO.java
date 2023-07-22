@@ -46,7 +46,7 @@ public class ImageProductDAO extends DBContext {
                     + "FROM [Products] p\n"
                     + "left join Image_Product img\n"
                     + "on p.ProductId = img.productID\n"
-                    + "Where p.ProductId = ? or ParentId = ?\n"
+                    + "Where (p.ProductId = ? or ParentId = ?)\n"
                     + "and img.deleteFlag = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, productID);

@@ -98,7 +98,7 @@ public class AddProductSevrlet extends HttpServlet {
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             boolean status = Boolean.valueOf(request.getParameter("status"));
             String description = request.getParameter("description");
-            
+
             Category category = new Category();
             category.setCategoryId(categoryID);
 
@@ -122,32 +122,31 @@ public class AddProductSevrlet extends HttpServlet {
 
             //lay file anh client gui len server
             List<Part> fileParts = request.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());
-            
-            String realPath = request.getServletContext().getRealPath("/");
-            String projectRoot = request.getServletContext().getRealPath("/");
-            File projectDirectory = new File(projectRoot);
-            File parentDirectory = projectDirectory.getParentFile().getParentFile();
-            realPath = parentDirectory.getAbsolutePath() + File.separator + "web"+ File.separator + "images";
-            
+
+            //lay ra duong dan luu folder anh
+            String realPath = request.getContextPath() + File.separator + "images";
+
             for (Part part : fileParts) {
                 //random ten cho image
                 UUID uuid = UUID.randomUUID();
                 String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
                 String fileExtension = FilenameUtils.getExtension(filename);
-                
+
                 if (!Files.exists(Paths.get(realPath))) {
                     Files.createDirectory(Paths.get(realPath));
                 }
                 filename = uuid + "." + fileExtension;
                 part.write(realPath + File.separator + filename);
 
+                String pathImage = "/" + "images" + "/" + filename;
+
                 //them anh vao database
-                ImageProduct image = new ImageProduct(product.getProductId(), filename, false);
+                ImageProduct image = new ImageProduct(product.getProductId(), pathImage, false);
                 imgDao.insert(image);
             }
             response.sendRedirect("listAllProductAdmin");
         } catch (Exception e) {
-            
+
         }
     }
 
@@ -161,12 +160,12 @@ public class AddProductSevrlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public static void main(String[] args) {
-        Product product = new Product();
-        try {
-            System.out.println(product.getParent().getProductId());
-        } catch (Exception e) {
-            System.out.println("oke");
-        }
-    }
+//    public static void main(String[] args) {
+//        Product product = new Product();
+//        try {
+//            System.out.println(product.getParent().getProductId());
+//        } catch (Exception e) {
+//            System.out.println("oke");
+//        }
+//    }
 }

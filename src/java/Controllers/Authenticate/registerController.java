@@ -93,6 +93,7 @@ public class registerController extends ReloadController {
         boolean isExist = uDao.isUserExist(user.getEmail());
         if (isExist) {
             request.getSession().setAttribute("isFail", true);
+            request.setAttribute("msg", "Email đã tồn tại! Vui lòng thử email khác!");
             request.setAttribute("account", user);
             request.getRequestDispatcher("/views/Register.jsp").forward(request, response);
         } else {

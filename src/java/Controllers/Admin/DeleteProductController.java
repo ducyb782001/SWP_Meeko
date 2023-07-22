@@ -85,8 +85,8 @@ public class DeleteProductController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public static void main(String[] args) {
-        ProductDAO pDao = new ProductDAO();
-        pDao.delete(1);
-    }
+//    public static void main(String[] args) {
+//        ProductDAO pDao = new ProductDAO();
+//        pDao.delete(1);
+//    }
 }

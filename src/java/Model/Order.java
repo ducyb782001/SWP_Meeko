@@ -21,12 +21,12 @@ public class Order {
     private Date dateTime;
     private PaymentMethod paymentMethod;
     private double totalOrder;
-    private int status;
+    private StatusOrder status;
 
     public Order() {
     }
 
-    public Order(int orderId, User orderFromUser, String customerName, String customerEmail, String customerPhone, String customerAddress, User employee, Date dateTime, PaymentMethod paymentMethod, double totalOrder, int status) {
+    public Order(int orderId, User orderFromUser, String customerName, String customerEmail, String customerPhone, String customerAddress, User employee, Date dateTime, PaymentMethod paymentMethod, double totalOrder, StatusOrder status) {
         this.orderId = orderId;
         this.orderFromUser = orderFromUser;
         this.customerName = customerName;
@@ -120,12 +120,14 @@ public class Order {
         this.totalOrder = totalOrder;
     }
 
-    public int getStatus() {
+    public StatusOrder getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(StatusOrder status) {
         this.status = status;
     }
+
+  
     
 }
