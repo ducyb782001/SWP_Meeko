@@ -40,8 +40,10 @@
                     <div class="tab-pane fade show active body-login-wrapper" id="pills-login" role="tabpanel"
                          aria-labelledby="pills-login-tab">
                         <form action="login" method="post">
-                            <c:if test="${isFail == true}">
-                                <p style="color: red">Thông tin đăng nhập không chính xác.</p>
+                            <c:if test="${isFail != null}">
+                                <c:if test="${isFail == true}">
+                                    <p style="color: red">Thông tin đăng nhập không chính xác.</p>
+                                </c:if>
                             </c:if>
                             <h6>EMAIL <span class="text-danger">*</span></h6>
                             <input type="text" class="form-control mb-3" name="email" required

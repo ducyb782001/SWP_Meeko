@@ -161,16 +161,8 @@
                         <form id="frm-product-details-${na.product.productId}" action="productDetails" method="post">
                             <input type="hidden" value="${na.product.productId}" name="productID" id="productID${na.product.productId}">
                             <div class="position-relative">
-                                <c:set var="mainString" value="${na.product.images.get(0).image}" />
-                                <c:set var="subString" value="https" />
-                                <c:if test="${fn:contains(mainString, subString)}">
-                                    <img src="${na.product.images.get(0).image}"
-                                         alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${na.product.productId}')"/>
-                                </c:if>
-                                <c:if test="${fn:contains(mainString, subString) == false}">
-                                    <img src="../images/${na.product.images.get(0).image}"
-                                         alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${na.product.productId}')"/>
-                                </c:if>
+                                <img src="${na.product.images.get(0).image}"
+                                     alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${na.product.productId}')"/>
                                 <div class="love-prd">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none">
@@ -182,19 +174,20 @@
                             </div>
                             <fmt:formatNumber value="${na.product.price}" pattern="#,##0.000" var="formattedNumber" />
                             <div class="action-prd-cart">
-                                <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
+                                <button class="navbar-toggler" type="button" data-bs-toggle="modal" 
                                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-                                        <c:if test="${na.product.children.size() == 0}">
+                                        <c:if test="${na.product.children.size() == 0 and na.product.quantity != 0}">
+                                            data-bs-target="#cartModal"
                                             onclick="addToCart('${na.product.productId}', '${na.product.name}', '${na.product.images.get(0).image}', '${na.product.price}', 1
-                                            <c:if test="${bs.product.classValue != null}">
-                                                    , '${bs.product.classValue}'
+                                            <c:if test="${na.product.classValue != null}">
+                                                    , '${na.product.classValue}'
                                             </c:if>
-                                            <c:if test="${bs.product.classValue == null}">
+                                            <c:if test="${na.product.classValue == null}">
                                                     , ''
                                             </c:if>
                                                     )"
                                         </c:if>          
-                                        <c:if test="${na.product.children.size() != 0}">
+                                        <c:if test="${na.product.children.size() != 0 || na.product.quantity == 0}">
                                             onclick="viewProduct('${na.product.productId}')"
                                         </c:if>
                                         >                            
@@ -228,16 +221,8 @@
                         <form id="frm-product-details-${bs.product.productId}" action="productDetails" method="post">
                             <input type="hidden" value="${bs.product.productId}" name="productID">
                             <div class="position-relative">
-                                <c:set var="mainString" value="${bs.product.images.get(0).image}" />
-                                <c:set var="subString" value="https" />
-                                <c:if test="${fn:contains(mainString, subString)}">
-                                    <img src="${bs.product.images.get(0).image}"
-                                         alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${bs.product.productId}')"/>
-                                </c:if>
-                                <c:if test="${fn:contains(mainString, subString) == false}">
-                                    <img src="../images/${bs.product.images.get(0).image}"
-                                         alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${bs.product.productId}')"/>
-                                </c:if>
+                                <img src="${bs.product.images.get(0).image}"
+                                     alt="new-prd" class="product-card-img w-100 h-auto cursor-pointer" onclick="viewProduct('${bs.product.productId}')"/>
                                 <div class="love-prd">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none">
@@ -248,16 +233,23 @@
                                 </div>
                             </div>
                             <div class="action-prd-cart">
-                                <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
+                                <button class="navbar-toggler" type="button" data-bs-toggle="modal"
                                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-                                        onclick="addToCart('${bs.product.productId}', '${bs.product.name}', '${bs.product.images.get(0).image}', '${bs.product.price}', 1
-                                        <c:if test="${bs.product.classValue != null}">
-                                                , '${bs.product.classValue}'
+                                        <c:if test="${bs.product.children.size() == 0 and bs.product.quantity != 0}">
+                                            data-bs-target="#cartModal"
+                                            onclick="addToCart('${bs.product.productId}', '${bs.product.name}', '${bs.product.images.get(0).image}', '${bs.product.price}', 1
+                                            <c:if test="${bs.product.classValue != null}">
+                                                    , '${bs.product.classValue}'
+                                            </c:if>
+                                            <c:if test="${bs.product.classValue == null}">
+                                                    , ''
+                                            </c:if>
+                                                    )"
+                                        </c:if>          
+                                        <c:if test="${bs.product.children.size() != 0 || bs.product.quantity == 0}">
+                                            onclick="viewProduct('${bs.product.productId}')"
                                         </c:if>
-                                        <c:if test="${bs.product.classValue == null}">
-                                                , ''
-                                        </c:if>
-                                                )">
+                                        >
                                     <i class="fa-solid fa-cart-plus fa-lg"></i>
                                 </button>
                             </div>

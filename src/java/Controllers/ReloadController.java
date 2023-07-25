@@ -9,6 +9,7 @@ import DAL.CategoryDAO;
 import DAL.CollectionDAO;
 import DAL.NewArrivalDAO;
 import DAL.OrderDAO;
+import DAL.OrderDetailsDAO;
 import DAL.ProductDAO;
 import DAL.TagDAO;
 import Model.BestSeller;
@@ -45,6 +46,7 @@ public class ReloadController extends HttpServlet {
 
         HttpSession sesion = request.getSession();
         ProductDAO pDao = new ProductDAO();
+        OrderDetailsDAO odDao = new OrderDetailsDAO();
 
         User acc = (User) sesion.getAttribute("account");
 
@@ -74,13 +76,14 @@ public class ReloadController extends HttpServlet {
             String[] products = cartValue.split("_");
             for (String product : products) {
                 //check the length of the product cookie
-                if (product.length() > 0) {
+                if (product.length() != 0) {
                     String[] proQua = product.split("-");
                     OrderDetails order = new OrderDetails();
-                    Product pro = pDao.getProductDetailsByID(Integer.parseInt(proQua[0]), true);
+                    Product pro = pDao.getProductDetailsByID(Integer.parseInt(proQua[0]));
                     order.setProduct(pro);
                     order.setQuantity(Integer.parseInt(proQua[1]));
                     cart.add(order);
+
                     totalPrice += pro.getPrice() * order.getQuantity();
                     totalProduct += order.getQuantity();
                 }
@@ -90,21 +93,18 @@ public class ReloadController extends HttpServlet {
 
         Cookie priceCookie = new Cookie(priceName, String.valueOf(totalPrice));
         response.addCookie(priceCookie);
-        
-        String realPath = request.getServletContext().getRealPath("/");
 
-        request.getSession().setAttribute("projectPath", realPath);
         request.getSession().setAttribute("cart", cart);
         request.getSession().setAttribute("totalPrice", totalPrice);
         request.getSession().setAttribute("totalProduct", totalProduct);
 
-        ArrayList<Order> orderStatus = new ArrayList<>();
+        ArrayList<Order> orders = new ArrayList<>();
         //lay thong tin gio hang
         if (acc != null) {
             OrderDAO oDao = new OrderDAO();
-            orderStatus = oDao.getOrdersByUser(acc.getUserID());
+            orders = oDao.getOrdersByUser(acc.getUserID());
         }
-        request.getSession().setAttribute("orders", orderStatus);
+        request.getSession().setAttribute("orders", orders);
 
         TagDAO tDao = new TagDAO();
         ArrayList<Tag> tags = tDao.getAll();
@@ -115,6 +115,14 @@ public class ReloadController extends HttpServlet {
             ArrayList<Category> categories = cDao.getAllByTagID(tag.getTagId());
             tag.setCategories(categories);
         }
+
         request.getSession().setAttribute("tags", tags);
+
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Order> orderStatus = new ArrayList<>();
+        OrderDAO oDao = new OrderDAO();
+        orderStatus = oDao.getOrdersByUser(18);
     }
 }

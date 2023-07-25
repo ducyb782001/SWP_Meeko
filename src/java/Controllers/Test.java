@@ -60,11 +60,7 @@ public class Test extends ReloadController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         super.doGet(request, response);
-        String projectRoot = request.getServletContext().getRealPath("/");
-    File projectDirectory = new File(projectRoot);
-    File parentDirectory = projectDirectory.getParentFile().getParentFile();
-    String parentDirectoryPath = parentDirectory.getAbsolutePath();
-    response.getWriter().println("Parent Directory: " + parentDirectoryPath);
+        request.getRequestDispatcher("").forward(request, response);
     }
 
     /**

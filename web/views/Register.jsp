@@ -35,12 +35,12 @@
                     <!--Register form-->
                     <div class="tab-pane fade show active body-login-wrapper" id="pills-login" role="tabpanel"
                          aria-labelledby="pills-login-tab">
-                        <form action="register" method="post">
+                        <form id="frm-register" action="register" method="post">
                             <c:if test="${isFail == true}">
                                 <p style="color: red">${msg}</p>
                             </c:if>
                             <h6>HỌ & Tên<span class="text-danger">*</span></h6>
-                            <input type="text" name="fullName" required maxlength="255" oninput="validateName(this)"
+                            <input type="text" name="fullName" required maxlength="255" id="input-fullName"
                                    class="form-control mb-3" placeholder="Nhập Họ và Tên" value="${account.fullName}"
                                    aria-label="Username">
                             <span id="error-fullName" style="color: red; display: none;"></span>
@@ -48,23 +48,27 @@
                             <input type="text" name="phone" required oninput="validatePhone(this)"
                                    class="form-control mb-3" placeholder="Nhập Số điện thoại" value="${account.phone}"
                                    aria-label="Username">
+                            <span id="error-phone" style="color: red; display: none;"></span>
                             <h6>EMAIL <span class="text-danger">*</span></h6>
-                            <input type="email" name="email" required
+                            <input type="email" name="email" required oninput="validateEmail(this)"
                                    class="form-control mb-3" placeholder="Nhập địa chỉ Email"
                                    aria-label="Username">
+                            <span id="error-email" style="color: red; display: none;"></span>
                             <h6>MẬT KHẨU <span class="text-danger">*</span></h6>
-                            <input type="password" name="password" required
+                            <span id="error-password" style="color: red; display: none;"></span>
+                            <input type="password" name="password" required oninput="validatePassword(this)"
                                    class="form-control mb-2" placeholder="Nhập Mật khẩu"
                                    aria-label="Username">
+                            <span id="error-password" style="color: red; display: none;"></span>
                             <h6>Địa chỉ</h6>
                             <input type="text" name="address" value="${account.address}"
                                    class="form-control mb-3" placeholder="Nhập địa chỉ"
                                    aria-label="Username">
                             <h6>Ngày sinh <span class="text-danger">*</span></h6>
                             <input type="date" name="dob" max="${now}" required value="${account.dob}"
-                                   class="form-control mb-3" placeholder="Nhập ngày sinh"
+                                   class="form-control mb-3" placeholder="Nhập ngày sinh" id="input-dob"
                                    aria-label="Username">
-                            <button type="submit" class="btn btn-dark w-100 mb-2">Đăng ký</button>
+                            <button type="button" class="btn btn-dark w-100 mb-2" onclick="regiterAccount()">Đăng ký</button>
                             <div class="text-center commit-meeko mb-3">
                                 Meeko cam kết bảo mật và sẽ không bao giờ đăng<br />hay chia sẻ thông tin mà chưa có
                                 được sự
@@ -115,34 +119,66 @@
             }
 
 
-            var checkFullName = false;
+            var checkPhone = false;
             var checkPassword = false;
+            var checkEmail = false;
 
-            function validatePhone(input) {
-                // Remove non-digit characters
-                var value = input.value.replace(/\D/g, '');
-
-                // Limit the length to 10 characters
-                if (value.length > 10) {
-                    value = value.slice(0, 10);
-                }
-
-                // Update the input value
-                input.value = value;
+            function shopRegister() {
+                window.location.href = "shopRegister";
             }
 
-            function validateName(input) {
+            function validatePhone(input) {
                 var value = input.value;
-                var regex = /^[A-Za-z\s]+$/;
+                var regex = /^0[0-9]{9}$/;
 
                 if (!regex.test(value)) {
-                    document.getElementById('error-fullName').textContent = "Tên của bạn không được có số và ký tự đặc biệt";
-                    document.getElementById('error-fullName').style.display = "block";
-                    checkFullName = true;
+                    document.getElementById('error-phone').textContent = "Số điện thoại không hợp lệ";
+                    document.getElementById('error-phone').style.display = "block";
+                    checkPhone = false;
                 } else {
-                    document.getElementById('error-fullName').textContent = "";
-                    document.getElementById('error-fullName').style.display = "none";
-                    checkFullName = false;
+                    document.getElementById('error-phone').textContent = "";
+                    document.getElementById('error-phone').style.display = "none";
+                    checkPhone = true;
+                }
+            }
+
+            function validatePassword(input) {
+                var value = input.value;
+                var regex = /^(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+
+                if (!regex.test(value)) {
+                    document.getElementById('error-password').textContent = "Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt và có độ dài tối thiểu là 8 ký tự";
+                    document.getElementById('error-password').style.display = "block";
+                    checkPassword = false;
+                } else {
+                    document.getElementById('error-password').textContent = "";
+                    document.getElementById('error-password').style.display = "none";
+                    checkPassword = true;
+                }
+            }
+
+            function validateEmail(input) {
+                var value = input.value;
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailRegex.test(value)) {
+                    document.getElementById('error-email').textContent = "Vui lòng nhập một địa chỉ email hợp lệ";
+                    document.getElementById('error-email').style.display = "block";
+                    checkEmail = false;
+                } else {
+                    document.getElementById('error-email').textContent = "";
+                    document.getElementById('error-email').style.display = "none";
+                    checkEmail = true;
+                }
+            }
+
+            function regiterAccount() {
+                var fullName = document.getElementById('input-fullName').value;
+                var dob = document.getElementById('input-dob').value;
+                if (fullName !== '' && dob !== '' && checkPhone && checkPassword && checkEmail) {
+                    document.getElementById('frm-register').submit();
+                } else {
+                    alert("Vui lòng kiểm tra lại và nhập đầy đủ thông tin đăng nhập!");
                 }
             }
         </script>

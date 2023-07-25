@@ -9,6 +9,7 @@ import Model.Constants;
 import Model.ImageProduct;
 import Model.Product;
 import Model.Type;
+import Model.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -638,6 +639,7 @@ public class ProductDAO extends DBContext {
         try {
             String sql = "UPDATE [dbo].[Products]\n"
                     + "   SET [DeleteFlag] = 1\n"
+                    + "       ,[Status] = 0\n"
                     + " WHERE ProductId = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, productID);
@@ -670,5 +672,51 @@ public class ProductDAO extends DBContext {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public Product getProductDetailsByID(int productID) {
+        try {
+            String sql = "SELECT *\n"
+                    + "  FROM [Products] where ProductId = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, productID);
+            ResultSet rs = stm.executeQuery();
+
+            TypeDAO tDao = new TypeDAO();
+            CategoryDAO cDao = new CategoryDAO();
+            ImageProductDAO imageDao = new ImageProductDAO();
+
+            Product product = new Product();
+            Category category = new Category();
+            ArrayList<ImageProduct> listImage;
+
+            if (rs.next()) {
+
+                Type type = tDao.getTypeByID(rs.getInt("ClassType"));
+
+                category = cDao.getCategoryByID(rs.getInt("CategoryId"));
+
+                listImage = new ArrayList<>();
+                product.setProductId(rs.getInt("ProductId"));
+                product.setName(rs.getString("Name"));
+                product.setPrice(rs.getDouble("Price"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setStatus(rs.getBoolean("Status"));
+                product.setClassType(type);
+                product.setClassValue(rs.getString("ClassValue"));
+                product.setCreateDate(rs.getDate("createDate"));
+                product.setCategory(category);
+                product.setIsParent(rs.getBoolean("IsParent"));
+                product.setDescription(rs.getString("Description"));
+
+                listImage = imageDao.getImageByProductID(product.getProductId(), Constants.DeleteFalse);
+                product.setImages(listImage);
+
+            }
+            return product;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

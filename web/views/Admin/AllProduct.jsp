@@ -59,16 +59,8 @@
                                     <th class="d-flex align-items-center" style="height: 78px;" scope="row">${product.productId}</thc>
                                     <td style="width: 30%; height: 78px;">
                                         <div class="d-flex gap-2 align-items-center">
-                                            <c:set var="mainString" value="${product.images.get(0).image}" />
-                                            <c:set var="subString" value="https" />
-                                            <c:if test="${fn:contains(mainString, subString)}">
                                                 <img src="${product.images.get(0).image}"
                                                      class="rounded-2" style="width: 60px; height: 60px; object-fit: contain;" />
-                                            </c:if>
-                                            <c:if test="${fn:contains(mainString, subString) == false}">
-                                                <img src="../../images/${product.images.get(0).image}"
-                                                     class="rounded-2" style="width: 60px; height: 60px; object-fit: contain;" />
-                                            </c:if>
                                             <h6>${product.name}</h6>
                                         </div>
                                     </td>
@@ -247,7 +239,7 @@
                                 <div class="mb-3 mt-3">
                                     <label for="exampleFormControlFile1">Ảnh:</label>
                                     <input type="file" class="form-control-file mt-2" name="file" id="file" accept="image/*"
-                                           multiple>
+                                           multiple required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="category-film" class="col-form-label">Mô

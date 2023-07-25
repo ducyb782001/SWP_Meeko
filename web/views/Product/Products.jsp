@@ -52,16 +52,8 @@
                                 <form id="frm-product-details-${p.productId}" action="productDetails" method="post">
                                     <input type="hidden" value="${p.productId}" name="productID">
                                     <div class="position-relative">
-                                        <c:set var="mainString" value="${p.images.get(0).image}" />
-                                        <c:set var="subString" value="https" />
-                                        <c:if test="${fn:contains(mainString, subString)}">
-                                            <img src="${p.images.get(0).image}"
-                                                 alt="new-prd" class="product-card-img w-100 h-auto" onclick="viewProduct('${p.productId}')"/>
-                                        </c:if>
-                                        <c:if test="${fn:contains(mainString, subString) == false}">
-                                            <img src="../../images/${p.images.get(0).image}"
-                                                 alt="new-prd" class="product-card-img w-100 h-auto" onclick="viewProduct('${p.productId}')"/>
-                                        </c:if>
+                                        <img src="${p.images.get(0).image}"
+                                             alt="new-prd" class="product-card-img w-100 h-auto" onclick="viewProduct('${p.productId}')"/>
                                         <div class="love-prd">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                                  fill="none">

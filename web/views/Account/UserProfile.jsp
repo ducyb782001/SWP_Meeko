@@ -61,7 +61,7 @@
                         <h3 style="font-weight: 300;">
                             Đơn hàng của bạn
                         </h3>
-                        <div class="mt-4">
+                        <div class="mt-2">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -71,6 +71,7 @@
                                         <th scope="col">Giá trị đơn hàng</th>
                                         <th scope="col">TT thanh toán</th>
                                         <th scope="col">Trạng thái</th>
+                                        <th scope="col">Chi tiết đơn hàng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,6 +86,7 @@
                                                 <td> ${formattedNumber}đ</td>
                                                 <td>${sessionScope.orders.get(i).paymentMethod.paymentMethod}</td>
                                                 <td>${sessionScope.orders.get(i).status.statusValue}</td>
+                                                <td><a href="#">Xem</a></td>
                                             </tr>
                                         </c:forEach>
                                     </c:if>
@@ -98,7 +100,7 @@
                             ĐỔI MẬT KHẨU
                         </h3>
                         <c:if test="${sessionScope.account.emailID == null}">
-                            <p class="mt-4">Để đảm bảo tính bảo mật vui lòng đặt mật khẩu với ít nhất 8 kí tự
+                            <p class="mt-4">Để đảm bảo tính bảo mật vui lòng đặt mật khẩu với ít nhất 8 kí tự và 1 ký tự đặc biệt
                             </p>
                             <form id="frm-changePass" action="changePassword" method="post" class="mt-2">
                                 <h6>MẬT KHẨU <span class="text-danger">*</span></h6>
@@ -107,7 +109,7 @@
                                 <h6 class="mt-3">MẬT KHẨU MỚI <span class="text-danger">*</span></h6>
                                 <input id="input-newPwd" type="password" class="form-control mb-2" placeholder="Mật khẩu mới" name="newPwd"
                                        aria-label="Username" required oninput="validatePwd(this)"/>
-                                       <h6 class="mt-3">XÁC NHẬN LẠI MẬT KHẨU <span class="text-danger">*</span></h6>
+                                <h6 class="mt-3">XÁC NHẬN LẠI MẬT KHẨU <span class="text-danger">*</span></h6>
                                 <span style="color: red;display: none" id="error-newPwd"></span>
                                 <input id="input-cfPwd" type="password" class="form-control mb-2" placeholder="Xác nhận lại mật khẩu"
                                        aria-label="Username" required oninput="validateCfPwd(this)"/>
@@ -131,6 +133,35 @@
     <%@ include file="../../includes/footer.jsp" %>
 
     <script>
+                                    // Get the modal
+                                    var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+                                    var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+                                    var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+                                    btn.onclick = function () {
+                                        modal.style.display = "block";
+                                    };
+
+// When the user clicks on <span> (x), close the modal
+                                    span.onclick = function () {
+                                        modal.style.display = "none";
+                                    };
+
+// When the user clicks anywhere outside of the modal, close it
+                                    window.onclick = function (event) {
+                                        if (event.target === modal) {
+                                            modal.style.display = "none";
+                                        }
+                                    };
+                                    function rateOrder(id) {
+                                        window.location.href = 'rateOrder?id=' + id;
+                                    }
+
                                     var checkNewPwd = false;
                                     var checkCfPass = false;
 
@@ -152,8 +183,10 @@
 
                                     function validatePwd(input) {
                                         var value = input.value;
-                                        if (value.length < 8) {
-                                            document.getElementById('error-newPwd').textContent = "Vui lòng nhập ít nhất 8 ký tự";
+                                        var regex = /^(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+
+                                        if (!regex.test(value)) {
+                                            document.getElementById('error-newPwd').textContent = "Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt và có độ dài tối thiểu là 8 ký tự";
                                             document.getElementById('error-newPwd').style.display = "block";
                                             checkNewPwd = false;
                                         } else {

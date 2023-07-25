@@ -124,7 +124,7 @@ public class AddProductSevrlet extends HttpServlet {
             List<Part> fileParts = request.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());
 
             //lay ra duong dan luu folder anh
-            String realPath = request.getContextPath() + File.separator + "images";
+            String realPath =  getServletContext().getRealPath("") + File.separator + "images";
 
             for (Part part : fileParts) {
                 //random ten cho image

@@ -64,29 +64,13 @@
                             <!-- Slides -->
                             <div class="carousel-inner mb-5">
                                 <div class="carousel-item active" style="height: 400px; width: 100%;">
-                                    <c:set var="mainString" value="${images.get(i).image}" />
-                                    <c:set var="subString" value="https" />
-                                    <c:if test="${fn:contains(mainString, subString)}">
-                                        <img src="${images.get(0).image}"
-                                             class="w-100 h-100 object-fit-cover" alt="..." />
-                                    </c:if>
-                                    <c:if test="${fn:contains(mainString, subString) == false}">
-                                        <img src="../../images/${images.get(i).image}"
-                                             class="w-100 h-100 object-fit-cover" alt="..." />
-                                    </c:if>
+                                    <img src="${images.get(0).image}"
+                                         class="w-100 h-100 object-fit-cover" alt="..." />
                                 </div>
                                 <c:forEach var="i" begin="1" step="1" end="${images.size()-1}">
                                     <div class="carousel-item" style="height: 400px; width: 100%;">
-                                        <c:set var="mainString" value="${images.get(i).image}" />
-                                        <c:set var="subString" value="https" />
-                                        <c:if test="${fn:contains(mainString, subString)}">
-                                            <img src="${images.get(i).image}"
-                                                 class="w-100 h-100 object-fit-cover" alt="..." />
-                                        </c:if>
-                                        <c:if test="${fn:contains(mainString, subString) == false}">
-                                            <img src="../../images/${images.get(i).image}"
-                                                 class="w-100 h-100 object-fit-cover" alt="..." />
-                                        </c:if>
+                                        <img src="${images.get(i).image}"
+                                             class="w-100 h-100 object-fit-cover" alt="..." />
                                     </div>
                                 </c:forEach>
                             </div>
@@ -110,18 +94,9 @@
                                 <c:forEach var="i" begin="0" step="1" end="${images.size()-1}">
                                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}"
                                             class="active" aria-current="true" aria-label="Slide ${i+1}" style="width: 100px;">
-                                        <c:set var="mainString" value="${images.get(i).image}" />
-                                        <c:set var="subString" value="https" />
-                                        <c:if test="${fn:contains(mainString, subString)}">
-                                            <img class="d-block w-100"
-                                                 src="${images.get(i).image}"
-                                                 class="img-fluid" />
-                                        </c:if>
-                                        <c:if test="${fn:contains(mainString, subString) == false}">
-                                            <img class="d-block w-100"
-                                                 src="../../images/${images.get(i).image}"
-                                                 class="img-fluid" />
-                                        </c:if>
+                                        <img class="d-block w-100"
+                                             src="${images.get(i).image}"
+                                             class="img-fluid" />
                                     </button>
                                 </c:forEach>
                             </div>
