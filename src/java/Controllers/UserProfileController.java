@@ -4,6 +4,8 @@
  */
 package Controllers;
 
+import DAL.OrderDAO;
+import Model.Constants;
 import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,7 +34,7 @@ public class UserProfileController extends ReloadController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         super.doGet(request, response);
-        
+
         ArrayList<Product> list = new ArrayList<>();
         request.setAttribute("list", list);
         request.getRequestDispatcher("views/Account/UserProfile.jsp").forward(request, response);
@@ -49,7 +51,15 @@ public class UserProfileController extends ReloadController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        OrderDAO oDao = new OrderDAO();
+        String action = request.getParameter("action");
+        int id = Integer.parseInt(request.getParameter("id"));
+        switch (action) {
+            case "cancel":
+                oDao.setStatusOrder(id, Constants.StatusOrderCancel);
+                doGet(request, response);
+                break;
+        }
     }
 
     /**

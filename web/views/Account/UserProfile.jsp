@@ -16,12 +16,17 @@
         <link href="../../css/style.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/layout.css" rel="stylesheet" type="text/css"/>
         <script src="script.js"></script>
+        <style>
+            th{
+                width: 100px;
+            }
+        </style>
     </head>
     <body>
         <%@ include file="../../includes/header.jsp" %>
         <div class="row container-home"
              style="padding-left: 1%;padding-right: 64px; padding-top: 60px; padding-bottom: 60px; width: 100%;">
-            <div class="col-lg-3 px-2">
+            <div class="col-lg-2 px-2">
                 <!-- Left section -->
                 <div class="nav group__left__account mb-3" style="display: block;" role="tablist">
                     <h4 style="font-weight: 200;">
@@ -42,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9 px-2">
+            <div class="col-lg-10 px-2">
                 <!-- Right Section  -->
                 <div class="tab-content mb-3">
                     <!-- This section is use for account tab  -->
@@ -61,7 +66,7 @@
                         <h3 style="font-weight: 300;">
                             Đơn hàng của bạn
                         </h3>
-                        <div class="mt-2">
+                        <div class="mt-1">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -132,15 +137,22 @@
                                                                 <hr>
                                                             </c:forEach>
                                                         </div>
-                                                        <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">
-                                                            Đóng
-                                                        </button>
-                                                        <p>${ord.status.statusOrderID}</p>
-                                                        <button type="button" class="btn btn-danger"
-                                                                data-bs-dismiss="modal">
-                                                            Hủy đơn hàng
-                                                        </button>
+                                                        <div class="d-flex gap-2">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">
+                                                                Đóng
+                                                            </button>
+                                                            <c:if test="${sessionScope.orders.get(i).status.statusOrderID == 1}">
+                                                                <form id="frm-cancel-${sessionScope.orders.get(i).orderId}" action="userProfile" method="post">
+                                                                    <input type="hidden" value="cancel" name="action">
+                                                                    <input type="hidden" value="${sessionScope.orders.get(i).orderId}" name="id">
+                                                                    <button type="button" class="btn btn-danger"
+                                                                            data-bs-dismiss="modal" onclick="cancelOrder('${sessionScope.orders.get(i).orderId}')">
+                                                                        Hủy đơn hàng
+                                                                    </button>
+                                                                </form>
+                                                            </c:if>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -264,6 +276,12 @@
                                             document.getElementById('error-cfPwd').textContent = "";
                                             document.getElementById('error-cfPwd').style.display = "none";
                                             checkCfPass = true;
+                                        }
+                                    }
+                                    function cancelOrder(id) {
+                                        var c = confirm('Bạn có chắc hủy đơn hàng này?');
+                                        if (c) {
+                                            document.getElementById('frm-cancel-' + id).submit();
                                         }
                                     }
     </script>
