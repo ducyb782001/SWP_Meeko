@@ -136,6 +136,11 @@
                                                                 data-bs-dismiss="modal">
                                                             Đóng
                                                         </button>
+                                                        <p>${ord.status.statusOrderID}</p>
+                                                        <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">
+                                                            Hủy đơn hàng
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
