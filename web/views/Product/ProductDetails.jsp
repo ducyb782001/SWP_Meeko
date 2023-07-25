@@ -226,21 +226,9 @@
 
                 <!-- Product Detail Go here -->
                 <div class="mt-4">
-                    <div style="font-size: 22px; color: #333; margin-bottom: 10px; font-weight: bold;">
-                        Chi tiết sản phẩm
-                    </div>
                     <div class="mt-4 mb-5">
-                        <p
-                            style="max-width: 700px; width: 100%; color: #777777; font-size: 14px; line-height: 24px; margin-bottom: 10px;">
-                            Không còn phải tán loạn lên tìm chìa khóa mỗi ngày vì đã có em móc khóa bông êm mềm, đáng yêu nhắc
-                            nhở bạn hàng ngày.
-                            Với chất liệu bông mềm mịn, được làm thủ công tỉ mỉ từng chi tiết nên các bé vô cùng dễ thương, sắc
-                            nét đến từng chi tiết.
-                            Thích hợp dùng để làm móc chìa khóa hoặc trang trí túi, balo đều xinh hết nấc.
-                        </p>
                         <p style="margin-top: 16px; font-weight: 600; margin-bottom: 4px;">Thông tin sản phẩm</p>
-                        <p style="max-width: 700px; width: 100%; color: #777777; font-size: 14px; line-height: 24px;">More
-                            detail about product</p>
+                        <p style="max-width: 700px; width: 100%; color: #777777; font-size: 14px; line-height: 24px;">${product.description}</p>
                     </div>
                     <div style="height: 1px; width: 100%; background-color: #33333330;"></div>
 

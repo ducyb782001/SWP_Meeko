@@ -124,6 +124,18 @@
         <servlet-name>DeleteProductController</servlet-name>
         <servlet-class>Controllers.Admin.DeleteProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderRequestController</servlet-name>
+        <servlet-class>Controllers.Admin.OrderRequestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListCategoryController</servlet-name>
+        <servlet-class>Controllers.Admin.ListCategoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListOrderController</servlet-name>
+        <servlet-class>Controllers.Admin.ListOrderController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -247,6 +259,18 @@
     <servlet-mapping>
         <servlet-name>DeleteProductController</servlet-name>
         <url-pattern>/deleteProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderRequestController</servlet-name>
+        <url-pattern>/orderRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListCategoryController</servlet-name>
+        <url-pattern>/listCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListOrderController</servlet-name>
+        <url-pattern>/listOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

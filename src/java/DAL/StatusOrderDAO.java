@@ -26,7 +26,7 @@ public class StatusOrderDAO extends DBContext {
             stm.setInt(1, id);
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
-                return new StatusOrder(rs.getInt("StatusOrderID"), rs.getString("StatusValue"));
+                return new StatusOrder(id, rs.getString("StatusValue"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(StatusOrderDAO.class.getName()).log(Level.SEVERE, null, ex);

@@ -8,15 +8,31 @@
                 <svg class="bi me-2" width="16" height="16">
                 <use xlink:href="#grid"></use>
                 </svg>
-                <i class="fa-solid fa-cart-shopping me-2"></i>Đơn hàng mua
+                <i class="fa fa-signal" aria-hidden="true"></i> Thống kê
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link link-dark">
+            <a href="listAllProductAdmin" class="nav-link link-dark">
                 <svg class="bi me-2" width="16" height="16">
                 <use xlink:href="#grid"></use>
                 </svg>
-                <i class="fa-regular fa-copyright me-2"></i>Sản phẩm
+                <i class="fa-regular fa-copyright me-2"></i>Quản lý sản phẩm
+            </a>
+        </li>
+        <li>
+            <a href="orderRequest" class="nav-link link-dark">
+                <svg class="bi me-2" width="16" height="16">
+                <use xlink:href="#grid"></use>
+                </svg>
+                <i class="fa fa-shopping-bag" aria-hidden="true me-2"></i> Yêu cầu đặt hàng
+            </a>
+        </li>
+        <li>
+            <a href="listOrder" class="nav-link link-dark">
+                <svg class="bi me-2" width="16" height="16">
+                <use xlink:href="#grid"></use>
+                </svg>
+                <i class="fa-solid fa-cart-shopping me-2"></i>Quản lý đơn hàng
             </a>
         </li>
     </ul>

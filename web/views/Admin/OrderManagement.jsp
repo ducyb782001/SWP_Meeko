@@ -18,7 +18,7 @@
         <section style="margin-left: 280px; height: calc(100vh - 83px); overflow-y: auto;">
             <div class="p-4 mb-5">
                 <h5>
-                    Yêu cầu đặt hàng
+                    Quản lý đơn đặt hàng
                 </h5>
                 <!--                <div class="mt-3 d-flex gap-4 align-items-center">
                                     <div class="form-outline" style="width: 100%;">
@@ -42,6 +42,7 @@
                                 <th scope="col">Địa chỉ giao hàng</th>
                                 <th scope="col">Tổng tiền</th>
                                 <th scope="col">TT Thanh toán</th>
+                                <th scope="col">Trạng thái</th>
                                 <th scope="col" style="width: 110px;">Hành động</th>
                             </tr>
                         </thead>
@@ -82,6 +83,11 @@
                                     <td style="height: 78px;">
                                         <div class="d-flex align-items-center" style="height: 100%;">
                                             ${ord.paymentMethod.paymentMethod}
+                                        </div>
+                                    </td>
+                                    <td style="height: 78px;">
+                                        <div class="d-flex align-items-center" style="height: 100%;">
+                                            ${ord.status.statusValue}
                                         </div>
                                     </td>
                                     <td class="d-flex gap-2 align-items-center" style=" height: 78px;">
@@ -140,75 +146,77 @@
                                             </div>
                                         </div>
 
-                                        <button type="button" class="btn btn-success me-2" data-bs-toggle="modal"
-                                                data-bs-target="#updateItem_${ord.orderId}">
-                                            <i class="fa-regular fa-circle-check"></i>
-                                        </button>
-                                        <!-- Modal Approve Detail-->
-                                        <div class="modal fade" id="updateItem_${ord.orderId}" tabindex="-1"
-                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Xác nhận hành động</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                    </div>
+                                        <c:if test="${ord.status.statusOrderID == 2}">
+                                            <button type="button" class="btn btn-success me-2" data-bs-toggle="modal"
+                                                    data-bs-target="#updateItem_${ord.orderId}">
+                                                <i class="fas fa-shipping-fast"></i>
+                                            </button>
+                                            <!-- Modal Approve Detail-->
+                                            <div class="modal fade" id="updateItem_${ord.orderId}" tabindex="-1"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Xác nhận hành động</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                        </div>
 
-                                                    <div class="modal-body">
-                                                        <form method="POST" action="orderRequest" class="register-form"
-                                                              id="register-form">
-                                                            <input type="hidden" name="action" value="accept">
-                                                            <input type="hidden" name="id" value="${ord.orderId}">
+                                                        <div class="modal-body">
+                                                            <form method="POST" action="listOrder" class="register-form"
+                                                                  id="register-form">
+                                                                <input type="hidden" name="action" value="finish">
+                                                                <input type="hidden" name="id" value="${ord.orderId}">
+                                                                <div class="col mb-4">
+                                                                    <h6>Xác nhận đơn hàng có ID ${ord.orderId} thành công?</h6>
+                                                                </div>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">
+                                                                    Đóng
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary">Xác nhận</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <button type="button" class="btn btn-outline-danger me-2" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteItem_${ord.orderId}">
+                                                <i class="fas fa-phone-slash"></i>
+                                            </button>
+                                            <!-- Modal Deny Detail-->
+                                            <div class="modal fade" id="deleteItem_${ord.orderId}" tabindex="-1"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Xác nhận hành động</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                        </div>
+
+                                                        <div class="modal-body">
                                                             <div class="col mb-4">
-                                                                <h6>Bạn có muốn chấp nhận và giao đơn hàng ID: ${ord.orderId}</h6>
+                                                                <h6>Xác nhận đơn hàng có ID ${ord.orderId} giao thất bại?</h6>
                                                             </div>
-                                                            <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">
-                                                                Đóng
-                                                            </button>
-                                                            <button type="submit" class="btn btn-primary">Xác nhận</button>
+                                                        </div>
+                                                        <form action="listOrder" method="post">
+                                                            <input type="hidden" name="action" value="fail">
+                                                            <input type="hidden" name="id" value="${ord.orderId}">
+                                                            <div class="modal-footer">
+                                                                <button style="width:100px" type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">
+                                                                    Đóng
+                                                                </button>
+                                                                <button style="width:100px" type="submit" class="btn btn-danger">
+                                                                    Xác nhận</button>
+                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <button type="button" class="btn btn-outline-danger me-2" data-bs-toggle="modal"
-                                                data-bs-target="#deleteItem_${ord.orderId}">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                        <!-- Modal Deny Detail-->
-                                        <div class="modal fade" id="deleteItem_${ord.orderId}" tabindex="-1"
-                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Xác nhận hành động</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                    </div>
-
-                                                    <div class="modal-body">
-                                                        <div class="col mb-4">
-                                                            <h6>Bạn có muốn hủy đơn hàng có ID: ${ord.orderId}</h6>
-                                                        </div>
-                                                    </div>
-                                                    <form action="orderRequest" method="post">
-                                                        <input type="hidden" name="action" value="denined">
-                                                        <input type="hidden" name="id" value="${ord.orderId}">
-                                                        <div class="modal-footer">
-                                                            <button style="width:100px" type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">
-                                                                Đóng
-                                                            </button>
-                                                            <button style="width:100px" type="submit" class="btn btn-danger">
-                                                                Hủy</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </c:if>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -216,7 +224,7 @@
                     </table>
                     <div class="d-flex justify-content-center">
                         <c:if test="${orders.size() == 0}">
-                            Không có yêu cầu mua hàng nào!
+                            Không có đơn hàng nào!
                         </c:if>
                     </div>
                 </div>
@@ -226,7 +234,7 @@
                             <%--For displaying Previous link except for the 1st page --%>
                             <c:if test="${currentPage != 1}">
                                 <li class="page-item">
-                                    <a class="page-link" href="orderRequest?page=${currentPage - 1}" aria-label="Previous">
+                                    <a class="page-link" href="listOrder?page=${currentPage - 1}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
@@ -240,7 +248,7 @@
                                         <li class="page-item"><a class="page-link bg-light" href="#">${i}</a></li>
                                         </c:when>
                                         <c:otherwise>
-                                        <li class="page-item"><a class="page-link" href="orderRequest?page=${i}">${i}</a></li>
+                                        <li class="page-item"><a class="page-link" href="listOrder?page=${i}">${i}</a></li>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:forEach>
@@ -248,7 +256,7 @@
                             <%--For displaying Next link --%>
                             <c:if test="${currentPage lt noOfPages}">
                                 <li class="page-item">
-                                    <a class="page-link" href="orderRequest?page=${currentPage + 1}" aria-label="Next">
+                                    <a class="page-link" href="listOrder?page=${currentPage + 1}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>

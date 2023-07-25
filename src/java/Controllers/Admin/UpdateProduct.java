@@ -120,12 +120,14 @@ public class UpdateProduct extends HttpServlet {
             pDao.update(product);
 
             //lay file anh client gui len server
-            List<Part> fileParts = request.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());
+            List<Part> fileParts = request.getParts().stream()
+                    .filter(part -> "file".equals(part.getName()) && part.getSize() > 0 && !part.getSubmittedFileName().isEmpty())
+                    .collect(Collectors.toList());
+            
             if (!fileParts.isEmpty()) {
                 imgDao.delete(productID);
                 //lay ra duong dan luu folder anh
                 String realPath = getServletContext().getRealPath("") + File.separator + "images";
-
                 for (Part part : fileParts) {
                     //random ten cho image
                     //random ten cho image
