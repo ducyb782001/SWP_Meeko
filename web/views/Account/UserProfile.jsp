@@ -86,10 +86,62 @@
                                                 <td> ${formattedNumber}đ</td>
                                                 <td>${sessionScope.orders.get(i).paymentMethod.paymentMethod}</td>
                                                 <td>${sessionScope.orders.get(i).status.statusValue}</td>
-                                                <td><a href="#">Xem</a></td>
+                                                <td><button style="border: none;border-radius: 5px;background-color: #3dd5f3; padding: 4px"
+                                                            type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#detailOrder_${sessionScope.orders.get(i).orderId}">Xem</button>
+                                                </td>
                                             </tr>
-                                        </c:forEach>
-                                    </c:if>
+
+                                            <!--Modal Detail-->
+                                        <div class="modal fade" id="detailOrder_${sessionScope.orders.get(i).orderId}" tabindex="-1"
+                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Chi tiết đơn hàng</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mt-3 mb-3">
+                                                            <c:forEach items="${sessionScope.orders.get(i).orderDetails}" var="ord">
+                                                                <div class="row">
+                                                                    <div class="col-2">
+                                                                        <a href="/be-lua-bong-winnie" class="ajaxcart__product-image cart_image" title="item-cart-1">
+                                                                            <img class="" style="width: 100px; height: 100px; border-radius: 8px;"
+                                                                                 src="${ord.product.images.get(0).image}"
+                                                                                 alt="Bé lừa bông Winnie">
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <p>${ord.product.name}</p>
+                                                                        <p>${ord.product.classValue}</p>
+                                                                        <p>Số lượng: ${ord.quantity}</p>
+                                                                        <p>
+                                                                            <fmt:formatNumber value="${ord.product.price}" pattern="#,##0.000" var="formattedNumber" />
+                                                                            Giá: ${formattedNumber}đ
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <p class="fw-bold">Tổng tiền:</p>
+                                                                        <c:set var="total" value="${ord.product.price * ord.quantity}"></c:set>
+                                                                        <fmt:formatNumber value="${total}" pattern="#,##0.000" var="formattedTotal" />
+                                                                        <p>${formattedTotal}đ</p>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                            </c:forEach>
+                                                        </div>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">
+                                                            Đóng
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </c:if>
                                 </tbody>
                             </table>
                         </div>
@@ -136,23 +188,23 @@
                                     // Get the modal
                                     var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
+                                    // Get the button that opens the modal
                                     var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
+                                    // Get the <span> element that closes the modal
                                     var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+                                    // When the user clicks the button, open the modal 
                                     btn.onclick = function () {
                                         modal.style.display = "block";
                                     };
 
-// When the user clicks on <span> (x), close the modal
+                                    // When the user clicks on <span> (x), close the modal
                                     span.onclick = function () {
                                         modal.style.display = "none";
                                     };
 
-// When the user clicks anywhere outside of the modal, close it
+                                    // When the user clicks anywhere outside of the modal, close it
                                     window.onclick = function (event) {
                                         if (event.target === modal) {
                                             modal.style.display = "none";

@@ -5,6 +5,7 @@
 package Model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Order {
     private PaymentMethod paymentMethod;
     private double totalOrder;
     private StatusOrder status;
+    private ArrayList<OrderDetails> orderDetails = new ArrayList<>();
 
     public Order() {
     }
@@ -40,6 +42,7 @@ public class Order {
         this.status = status;
     }
 
+    
     public int getOrderId() {
         return orderId;
     }
@@ -127,6 +130,16 @@ public class Order {
     public void setStatus(StatusOrder status) {
         this.status = status;
     }
+
+    public ArrayList<OrderDetails> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(ArrayList<OrderDetails> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
+   
 
   
     

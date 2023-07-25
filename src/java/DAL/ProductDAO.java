@@ -28,7 +28,7 @@ public class ProductDAO extends DBContext {
     public Product getProductByID(int productID, boolean status) {
         try {
             String sql = "SELECT *\n"
-                    + "  FROM [Products] Where ProductId = ? or ParentId = ? and Status = ?";
+                    + "  FROM [Products] Where (ProductId = ? or ParentId = ?) and Status = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, productID);
             stm.setInt(2, productID);
@@ -286,36 +286,10 @@ public class ProductDAO extends DBContext {
             }
             ResultSet rs = stm.executeQuery();
 
-            TypeDAO tDao = new TypeDAO();
-            CategoryDAO cDao = new CategoryDAO();
-            ImageProductDAO imageDao = new ImageProductDAO();
-
             Product product = new Product();
-            Category category = new Category();
-            Type type = new Type();
-            ArrayList<ImageProduct> images = new ArrayList<>();
 
             while (rs.next()) {
-
-                type = tDao.getTypeByID(rs.getInt("ClassType"));
-                category = cDao.getCategoryByID(rs.getInt("CategoryId"));
-
-                product = new Product();
-                product.setProductId(rs.getInt("ProductId"));
-                product.setName(rs.getString("Name"));
-                product.setPrice(rs.getDouble("Price"));
-                product.setQuantity(rs.getInt("Quantity"));
-                product.setStatus(status);
-                product.setClassType(type);
-                product.setClassValue(rs.getString("ClassValue"));
-                product.setCreateDate(rs.getDate("createDate"));
-                product.setCategory(category);
-                product.setIsParent(Constants.Parent);
-                product.setDescription(rs.getString("Description"));
-
-                images = imageDao.getImageByProductID(product.getProductId(), Constants.DeleteFalse);
-                product.setImages(images);
-
+                product = getProductByID(rs.getInt("ProductId"));
                 list.add(product);
             }
         } catch (SQLException e) {
@@ -461,36 +435,10 @@ public class ProductDAO extends DBContext {
                 stm.setObject(entry.getKey(), entry.getValue());
             }
             ResultSet rs = stm.executeQuery();
-
-            TypeDAO tDao = new TypeDAO();
-            CategoryDAO cDao = new CategoryDAO();
-            ImageProductDAO imageDao = new ImageProductDAO();
-
             Product product = new Product();
-            Category category = new Category();
-            Type type = new Type();
-            ArrayList<ImageProduct> images = new ArrayList<>();
 
             while (rs.next()) {
-
-                type = tDao.getTypeByID(rs.getInt("ClassType"));
-                category = cDao.getCategoryByID(rs.getInt("CategoryId"));
-
-                product = new Product();
-                product.setProductId(rs.getInt("ProductId"));
-                product.setName(rs.getString("Name"));
-                product.setPrice(rs.getDouble("Price"));
-                product.setQuantity(rs.getInt("Quantity"));
-                product.setStatus(rs.getBoolean("Status"));
-                product.setClassType(type);
-                product.setClassValue(rs.getString("ClassValue"));
-                product.setCreateDate(rs.getDate("createDate"));
-                product.setCategory(category);
-                product.setIsParent(Constants.Parent);
-                product.setDescription(rs.getString("Description"));
-
-                images = imageDao.getImageByProductID(product.getProductId(), Constants.DeleteFalse);
-                product.setImages(images);
+                product = getProductByID(rs.getInt("ProductId"));
 
                 list.add(product);
             }

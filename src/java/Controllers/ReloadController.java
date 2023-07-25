@@ -103,6 +103,10 @@ public class ReloadController extends HttpServlet {
         if (acc != null) {
             OrderDAO oDao = new OrderDAO();
             orders = oDao.getOrdersByUser(acc.getUserID());
+            for (Order order : orders) {
+                ArrayList<OrderDetails> orderDetails = odDao.getOrderDetailsByOrderID(order.getOrderId());
+                order.setOrderDetails(orderDetails);
+            }
         }
         request.getSession().setAttribute("orders", orders);
 

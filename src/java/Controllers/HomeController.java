@@ -93,7 +93,6 @@ public class HomeController extends ReloadController {
             }
         }
 
-
         request.getSession().setAttribute("bestSellers", bestSellers);
         request.getSession().setAttribute("bestSellers", bestSellers);
         request.getSession().setAttribute("collections", collections);
@@ -102,10 +101,16 @@ public class HomeController extends ReloadController {
     }
 //    
 //
-//    public static void main(String[] args) {
-//        double a = 22222.000;
-//        System.out.println(String.valueOf(a));
-//    }
+
+    public static void main(String[] args) {
+        NewArrivalDAO naDao = new NewArrivalDAO();
+
+        //get all new arrival product
+        ArrayList<NewArrival> newArrivals = naDao.getAllNew(false, true);
+        for (NewArrival newArrival : newArrivals) {
+            System.out.println(newArrival.getProduct().getName());
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

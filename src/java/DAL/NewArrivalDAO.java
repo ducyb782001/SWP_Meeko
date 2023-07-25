@@ -28,7 +28,9 @@ public class NewArrivalDAO extends DBContext {
             ProductDAO pDao = new ProductDAO();
             while (rs.next()) {
                 Product product = pDao.getProductByID(rs.getInt("ProductID"), productStatus);
-                list.add(new NewArrival(product, deleteFlag));
+                if (product.getName() != null) {
+                    list.add(new NewArrival(product, deleteFlag));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

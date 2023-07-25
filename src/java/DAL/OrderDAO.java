@@ -118,4 +118,41 @@ public class OrderDAO extends DBContext {
         return list;
     }
 
+    public Order getOrderByID(int orderId) {
+        try {
+            String sql = "SELECT *\n"
+                    + "  FROM [Orders] Where OrderID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, orderId);
+            ResultSet rs = stm.executeQuery();
+
+            StatusOrderDAO stDao = new StatusOrderDAO();
+
+            while (rs.next()) {
+                User fromUser = new User();
+                fromUser.setUserID(rs.getInt("OrderFromUser"));
+
+                StatusOrder status = stDao.getStatusOrderByID(rs.getInt("Status"));
+
+                PaymentMethodDAO pmDao = new PaymentMethodDAO();
+                PaymentMethod pm = pmDao.getPaymentByID(rs.getInt("PaymentMethod"));
+
+                return new Order(rs.getInt("OrderID"),
+                        fromUser,
+                        rs.getString("Customer_Name"),
+                        rs.getString("Customer_Email"),
+                        rs.getString("Customer_Phone"),
+                        rs.getString("Customer_Address"),
+                        null,
+                        rs.getDate("DateTime"),
+                        pm,
+                        rs.getDouble("TotalOrder"),
+                        status);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }

@@ -69,7 +69,7 @@ public class ProductDetailsController extends ReloadController {
             ProductDAO pDao = new ProductDAO();
             ImageProductDAO iDao = new ImageProductDAO();
 
-            Product product = pDao.getProductByID(productID, Constants.Active);
+            Product product = pDao.getProductByID(productID);
             ArrayList<ImageProduct> images = iDao.getAllImageByProductID(productID, Constants.DeleteFalse);
 
             request.setAttribute("product", product);

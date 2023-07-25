@@ -131,7 +131,7 @@ public class UserDAO extends DBContext {
             stm.setDate(6, user.getDob());
             stm.setString(7, user.getAddress());
             stm.setString(8, null);
-            stm.setInt(9, 3);
+            stm.setInt(9, 2);
             stm.setBoolean(10, true);
             stm.executeUpdate();
         } catch (SQLException ex) {

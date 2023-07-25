@@ -105,7 +105,7 @@ public class UpdateProduct extends HttpServlet {
             category.setCategoryId(categoryID);
 
             //tao san pham
-            Product product = pDao.getProductByID(productID, status);
+            Product product = pDao.getProductByID(productID);
             product.setName(name);
             product.setPrice(price);
             product.setCategory(category);
