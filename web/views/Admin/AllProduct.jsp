@@ -26,7 +26,7 @@
                         <i class="fa-solid fa-plus"></i>
                         Thêm sản phẩm</a>
                 </div>
-                <div class="mt-3 d-flex gap-4 align-items-center">
+<!--                <div class="mt-3 d-flex gap-4 align-items-center">
                     <div class="form-outline" style="width: 100%;">
                         <input type="username" id="form12" class="form-control" placeholder="Tìm kiếm..." />
                     </div>
@@ -39,7 +39,7 @@
                             </c:forEach>
                         </c:forEach>
                     </select>
-                </div>
+                </div>-->
                 <div class="mt-4">
                     <table class="table">
                         <thead>

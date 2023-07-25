@@ -4,7 +4,7 @@
          style="width: 280px; height: calc(100vh - 83px); z-index: 10; background-color: #c8325230;">
     <ul class="nav nav-pills flex-column mb-auto">
         <li>
-            <a href="#" class="nav-link link-dark">
+            <a href="dashboard" class="nav-link link-dark">
                 <svg class="bi me-2" width="16" height="16">
                 <use xlink:href="#grid"></use>
                 </svg>

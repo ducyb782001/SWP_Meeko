@@ -4,6 +4,7 @@
  */
 package DAL;
 
+import Model.Constants;
 import Model.Order;
 import Model.PaymentMethod;
 import Model.StatusOrder;
@@ -223,11 +224,6 @@ public class OrderDAO extends DBContext {
 
     }
 
-    public static void main(String[] args) {
-        OrderDAO oDao = new OrderDAO();
-        oDao.setStatusOrder(13, 2);
-    }
-
     public int getNoOfRecords(int statusOrder) {
         try {
             String sql = "SELECT COUNT(*) as 'total'\n"
@@ -310,4 +306,77 @@ public class OrderDAO extends DBContext {
         }
         return -1;
     }
+
+    public double getToTalMoney() {
+        try {
+            String sql = "SELECT SUM(TotalOrder) as 'total'\n"
+                    + "  FROM [Orders]";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return rs.getDouble("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+
+    public double getToTalMoneyByMonth(int month) {
+        try {
+            String sql = "SELECT SUM(TotalOrder) as 'total'\n"
+                    + "  FROM [Orders] Where MONTH(DateTime) = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, month);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return rs.getDouble("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        OrderDAO oDao = new OrderDAO();
+        for (int i = 1; i <= 12; i++) {
+            double moneyByMonth = oDao.getToTalMoneyByMonth(i);
+
+            System.out.println(moneyByMonth);
+        }
+    }
+
+    public int getTotalOrder() {
+        try {
+            String sql = "SELECT COUNT(*) as total\n"
+                    + "  FROM [Orders]";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+
+    public int getTotalOrder(int statusOrder) {
+        try {
+            String sql = "SELECT COUNT(*) as total\n"
+                    + "  FROM [Orders]\n"
+                    + "  Where Status = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, statusOrder);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+
 }

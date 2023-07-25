@@ -667,4 +667,20 @@ public class ProductDAO extends DBContext {
         }
         return null;
     }
+
+    public int getTotalProduct() {
+        try {
+            String sql = "SELECT COUNT(*) as 'total'\n"
+                    + "  FROM [Products]\n"
+                    + "  Where IsParent = 1";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
 }

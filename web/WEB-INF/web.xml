@@ -136,6 +136,10 @@
         <servlet-name>ListOrderController</servlet-name>
         <servlet-class>Controllers.Admin.ListOrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DashboardController</servlet-name>
+        <servlet-class>Controllers.Admin.DashboardController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -271,6 +275,10 @@
     <servlet-mapping>
         <servlet-name>ListOrderController</servlet-name>
         <url-pattern>/listOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DashboardController</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
