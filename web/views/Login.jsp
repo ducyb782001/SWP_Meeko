@@ -52,7 +52,7 @@
                             <input type="password" class="form-control mb-2" name="pwd" required
                                    placeholder="Nhập Mật khẩu" aria-label="Username">
                             <div class="mb-3">
-                                <a class="text-decoration-none forget-pass-btn">
+                                <a href="forgotPassword" class="forget-pass-btn">
                                     Quên mật khẩu?
                                 </a>
                             </div>
