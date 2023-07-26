@@ -234,4 +234,36 @@ public class UserDAO extends DBContext {
         }
     }
 
+    public boolean isMailExist(String email) {
+        try {
+            String sql = "SELECT *\n"
+                    + "  FROM [User]\n"
+                    + "  Where Email = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, email);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public int resetPassWord(String email, String newPassword) {
+        try {
+            String sql = "UPDATE [dbo].[User]\n"
+                    + "   SET [Password] = ?\n"
+                    + " WHERE Email = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, newPassword);
+            stm.setString(2, email);
+            return stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+
 }

@@ -59,8 +59,7 @@ public class Test extends ReloadController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        super.doGet(request, response);
-        request.getRequestDispatcher("").forward(request, response);
+        request.getRequestDispatcher("views/newPassword.jsp").forward(request, response); 
     }
 
     /**

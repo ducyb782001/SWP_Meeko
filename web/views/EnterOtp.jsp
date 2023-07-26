@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <html>
 <head>
 
@@ -30,7 +31,7 @@
 							<h3>
 								<i class="fa fa-lock fa-4x"></i>
 							</h3>
-							<h2 class="text-center">Enter OTP</h2>
+							<h2 class="text-center">Nhập OTP</h2>
 									<%
 		  			if(request.getAttribute("message")!=null)
 		  			{

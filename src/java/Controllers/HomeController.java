@@ -70,6 +70,7 @@ public class HomeController extends ReloadController {
         String orderStatus = (String) sesion.getAttribute("orderStatus");
         String emptyCart = (String) sesion.getAttribute("emptyCart");
         String changePass = (String) sesion.getAttribute("changeFail");
+        String resetPass = (String) sesion.getAttribute("resetPass");
 
         if (regiester != null) {
             request.setAttribute("msg", "Bạn đã đăng ký tài khoản thành công!");
@@ -90,6 +91,15 @@ public class HomeController extends ReloadController {
             } else {
                 request.setAttribute("msg", "Mật khẩu cũ không chính xác! Vui lòng thử lại!");
                 sesion.setAttribute("changeFail", null);
+            }
+        }
+        if (resetPass != null) {
+            if (resetPass.equalsIgnoreCase("1")) {
+                request.setAttribute("msg", "Thay đổi mật khẩu thành công!");
+                sesion.setAttribute("resetPass", null);
+            } else {
+                request.setAttribute("msg", "Thay đổi mật khẩu không thành công! Vui lòng thử lại!");
+                sesion.setAttribute("resetPass", null);
             }
         }
 
