@@ -15,6 +15,7 @@ import DAL.TagDAO;
 import Model.BestSeller;
 import Model.Category;
 import Model.Collection;
+import Model.Constants;
 import Model.NewArrival;
 import Model.Order;
 import Model.OrderDetails;
@@ -122,6 +123,9 @@ public class ReloadController extends HttpServlet {
 
         request.getSession().setAttribute("tags", tags);
 
+        CollectionDAO cDao = new CollectionDAO();
+        ArrayList<Collection> collections = cDao.getAllCollection(Constants.Active);
+        request.getSession().setAttribute("collections", collections);
     }
 
     public static void main(String[] args) {

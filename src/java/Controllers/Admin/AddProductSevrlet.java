@@ -6,6 +6,7 @@ package Controllers.Admin;
 
 import DAL.ImageProductDAO;
 import DAL.ProductDAO;
+import DAL.Product_CollectionDAO;
 import Model.Category;
 import Model.ImageProduct;
 import Model.Product;
@@ -95,6 +96,7 @@ public class AddProductSevrlet extends HttpServlet {
             String name = request.getParameter("name");
             Double price = Double.parseDouble(request.getParameter("price"));
             int categoryID = Integer.parseInt(request.getParameter("category"));
+            int collectionID = Integer.parseInt(request.getParameter("collection"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             boolean status = Boolean.valueOf(request.getParameter("status"));
             String description = request.getParameter("description");
@@ -120,11 +122,14 @@ public class AddProductSevrlet extends HttpServlet {
             //them product vao database
             pDao.insert(product);
 
+            Product_CollectionDAO pcDao = new Product_CollectionDAO();
+            pcDao.insert(product.getProductId(), collectionID);
+
             //lay file anh client gui len server
             List<Part> fileParts = request.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());
 
             //lay ra duong dan luu folder anh
-            String realPath =  getServletContext().getRealPath("") + File.separator + "images";
+            String realPath = getServletContext().getRealPath("") + File.separator + "images";
 
             for (Part part : fileParts) {
                 //random ten cho image

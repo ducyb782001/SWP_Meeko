@@ -194,6 +194,16 @@
                                             </c:forEach>
                                         </select>
                                     </div>
+                                    <div class="col-6">
+                                        <label for="category-film" class="col-form-label">Collection: </label>
+                                        <select class="form-select" aria-label="Default select example"
+                                                name="collection" required>
+                                            <option disabled selected value="">Chọn loại sản phẩm</option>
+                                            <c:forEach items="${sessionScope.collections}" var="c">
+                                                <option value="${c.collectionID}">${c.collectionName}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-6">
