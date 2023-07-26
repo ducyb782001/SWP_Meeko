@@ -24,8 +24,7 @@
             <main>
                 <div class="py-5 text-center">
                     <a href="/">
-                        <img class="logo__image logo__image--medium " alt="Meeko" style="width: 340px;"
-                             src="//bizweb.dktcdn.net/100/450/808/themes/855625/assets/logo.png?1681832246171">
+                        <img src="../../images/banner_logo.png" alt="Meeko" style="width: 340px;"/>
                     </a>
                 </div>
                 <div class="row g-5">

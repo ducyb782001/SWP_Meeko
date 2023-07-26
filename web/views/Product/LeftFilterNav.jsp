@@ -73,12 +73,12 @@
                 <div class="price-input">
                     <div class="field">
                         <fmt:formatNumber value="${sessionScope.minPrice}" pattern="#,##0.000" var="formatMin" />
-                        <input type="number" class="input-min price" name="minPrice" value="${formatMin}" style="border: none;outline: none"> 
+                        <input type="text" class="input-min price" name="minPrice" value="${formatMin}" style="border: none;outline: none"/>
                     </div>
                     <div class="separator">-</div>
                     <div class="field">
                         <fmt:formatNumber value="${sessionScope.maxPrice}" pattern="#,##0.000" var="formatMax" />
-                        <input type="text" class="input-max price" name="maxPrice" value="${formatMax}" style="border: none; outline: none">đ
+                        <input type="text" class="input-max price" name="maxPrice" value="${formatMax}" style="border: none; outline: none"/>đ
                     </div>
                 </div>
                 <div class="slider">
