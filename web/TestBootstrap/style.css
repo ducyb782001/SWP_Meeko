@@ -64,6 +64,9 @@
 }
 
 /* ----- v CAN BE DELETED v ----- */
+body {
+  background-color: #78909c;
+}
 
 .demo {
   padding-top: 60px;
@@ -337,81 +340,3 @@
 }
 
 /* Blog Carousel */
-
-/*From now,  Style for cart  */
-
-.cart_quantity {
-  font-size: 12px;
-  font-weight: normal;
-  color: #333;
-}
-
-.img_item_in_cart {
-  max-width: 80px;
-  max-height: 80px;
-  object-fit: cover;
-}
-
-.input_cart_width {
-  width: 100px;
-}
-
-/* CSS For hover to see more div  */
-.dropdown-item:hover {
-  background-color: lightsalmon;
-  color: #fff;
-}
-.dropdown .dropdown-menu {
-  display: none;
-}
-.dropdown:hover > .dropdown-menu,
-.dropend:hover > .dropdown-menu {
-  display: block;
-  margin-left: 0.125em;
-}
-
-/* Custom for product detail  */
-.custom_btn_add:hover {
-  background-color: #c83252 !important;
-}
-
-.custom_btn_buynow {
-  background-color: #c83252 !important;
-}
-
-.custom_btn_buynow:hover {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-}
-
-.custom__select__type.active {
-  color: #c83252 !important;
-  border: 1px solid #c83252 !important;
-}
-
-/* Custom CSS for Modal category  */
-.heading__category {
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-}
-
-.heading__category:hover {
-  color: #c83252;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.heading__sub_category {
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 400;
-  color: #333;
-}
-
-.heading__sub_category:hover {
-  color: #c83252;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}

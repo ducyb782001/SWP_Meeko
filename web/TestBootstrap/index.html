@@ -34,15 +34,8 @@
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="col-xl-2 col-lg-2 d-lg-flex d-none header-right align-items-center justify-content-end gap-3">
-                        <div class="dropdown">
-                            <i class="fa-regular fa-user fa-lg" data-bs-toggle="dropdown"></i>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Đăng nhập</a></li>
-                                <li><a class="dropdown-item" href="#">Đăng ký</a></li>
-                            </ul>
-                        </div>
+                    <div class="col-xl-2 col-lg-2 d-lg-flex d-none header-right justify-content-end gap-3">
+                        <i class="fa-regular fa-user fa-lg"></i>
                         <i class="fa-regular fa-heart fa-lg"></i>
                         <i class="fa-solid fa-cart-plus fa-lg"></i>
                     </div>
@@ -74,9 +67,7 @@
                                     <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link dropdown-toggle" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModalCenteredScrollable" style="cursor: pointer;">Sản
-                                        phẩm</a>
+                                    <a class="nav-link dropdown-toggle" href="#">Sản phẩm</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Premium</a>
@@ -94,112 +85,6 @@
             </div>
         </div>
     </header>
-
-    <!-- This section used to open modal when click on "Sản phẩm". Remember cut this section and put in on to header section  -->
-    <div class="modal fade" id="exampleModalCenteredScrollable" tabindex="-1"
-        aria-labelledby="exampleModalCenteredScrollableTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenteredScrollableTitle">Tất cả thể loại</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style="height: 600px;">
-                    <div class="row" style="height: 100%;">
-                        <div class="col-3" style="height: 100%; overflow-y: auto; overflow-x: hidden;">
-                            <!-- This section UL For each Category -->
-                            <ul class="" style="list-style: none; padding-left: 0px;">
-                                <li style="list-style: none;">
-                                    <a class="heading__category">
-                                        Mềm mại
-                                    </a>
-                                    <!-- This section UL For each Sub-category -->
-                                    <ul style="list-style: none; padding-left: 0px; margin-top: 12px;">
-                                        <!-- For loop from here  -->
-                                        <li style="list-style: none; margin-bottom: 8px;">
-                                            <a class="heading__sub_category">
-                                                Gấu bông
-                                            </a>
-                                        </li>
-                                        <li style="list-style: none; margin-bottom: 8px;">
-                                            <a class="heading__sub_category">
-                                                Gối ôm
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li style="list-style: none; margin-top: 22px;">
-                                    <a class="heading__category">
-                                        Thư giãn
-                                    </a>
-                                    <!-- This section UL For each Sub-category -->
-                                    <ul style="list-style: none; padding-left: 0px; margin-top: 12px;">
-                                        <!-- For loop from here  -->
-                                        <li style="list-style: none; margin-bottom: 8px;">
-                                            <a class="heading__sub_category">
-                                                Đèn ngủ
-                                            </a>
-                                        </li>
-                                        <li style="list-style: none; margin-bottom: 8px;">
-                                            <a class="heading__sub_category">
-                                                Máy phun sương
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li style="list-style: none; margin-top: 22px;">
-                                    <a class="heading__category">
-                                        Cuộc sống thường ngày
-                                    </a>
-                                    <!-- This section UL For each Sub-category -->
-                                    <ul style="list-style: none; padding-left: 0px; margin-top: 12px;">
-                                        <!-- For loop from here  -->
-                                        <li style="list-style: none; margin-bottom: 8px;">
-                                            <a class="heading__sub_category">
-                                                Cốc
-                                            </a>
-                                        </li>
-                                        <li style="list-style: none; margin-bottom: 8px;">
-                                            <a class="heading__sub_category">
-                                                Bình nước
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div class="col-9 row" style="height: 100%; overflow: hidden;">
-                            <div class="col-6">
-                                <img style="width: 100%; height: 100%;"
-                                    src="https://bizweb.dktcdn.net/100/450/808/themes/855625/assets/image_mega_1.jpg?1681832246171"
-                                    alt="meeko" />
-                            </div>
-                            <div class="col-6">
-                                <div style="height: 50%;">
-                                    <img style="width: 100%; height: 96%; object-fit: cover;"
-                                        src="https://bizweb.dktcdn.net/100/450/808/themes/855625/assets/image_mega_2.jpg?1681832246171" />
-                                </div>
-                                <div class="row" style="height: 50%;">
-                                    <div class="col-6">
-                                        <img style="width: 100%; height: 100%; object-fit: cover;"
-                                            src="https://bizweb.dktcdn.net/100/450/808/themes/855625/assets/image_mega_3.jpg?1681832246171"
-                                            alt="meeko">
-                                    </div>
-                                    <div class="col-6" style="height: 100%;">
-                                        <img style="width: 100%; height: 100%; object-fit: cover;"
-                                            src="https://bizweb.dktcdn.net/100/450/808/themes/855625/assets/image_mega_4.jpg?1681832246171"
-                                            alt="meeko">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div>
         <!-- Carousel wrapper -->
         <div id="carousel-starter" class="carousel slide" data-bs-ride="carousel">
@@ -269,35 +154,250 @@
                 <h2 class="head-title">Sản phẩm mới</h2>
                 <div style="width: 80px; height: 1px; background-color: black;"></div>
             </div>
-            <div class="list-new-product row g-4">
-                <div class="col-6 col-md-3 product-cart-wrapper">
-                    <div class="position-relative">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
-                            alt="new-prd" class="product-card-img w-100 h-auto" />
-                        <div class="love-prd">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
-                                    fill="#333333"></path>
-                            </svg>
+            <div class="list-new-poduct" style="padding-bottom: 40px;">
+                <div id="product-carousel-starter" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner product-carousel-starter">
+                        <div class="carousel-item active product-carousel-item">
+                            <div class="d-flex">
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 1
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 2
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 3
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 4
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item product-carousel-item">
+                            <div class="d-flex">
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 5
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 6
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 7
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="action-prd-cart">
-                        <i class="fa-solid fa-cart-plus fa-lg"></i>
-                    </div>
 
-                    <div class="prd-name">
-                        BÉ LỪA BÔNG WINNIE
-                    </div>
-                    <div class="prd-description">
-                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
-                    </div>
-                    <div class="prd-price">
-                        390000₫
-                    </div>
+                    <button class="carousel-control-prev" type="button" href="#product-carousel-starter"
+                        data-bs-slide="prev">
+                        <div class="btn btn-danger rounded-circle">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </div>
+                    </button>
+                    <button class="carousel-control-next" type="button" href="#product-carousel-starter"
+                        data-bs-slide="next">
+                        <div class="btn btn-danger rounded-circle">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                    </button>
                 </div>
             </div>
+
         </section>
         <section class="hot-product container-home">
             <div class="hot-product-header d-flex justify-content-center align-items-center gap-5 mt-5 mb-5">
@@ -305,35 +405,250 @@
                 <h2 class="head-title">Top sản phẩm bán chạy</h2>
                 <div style="width: 80px; height: 1px; background-color: black;"></div>
             </div>
-            <div class="list-hot-product row g-4">
-                <div class="col-6 col-md-3 product-cart-wrapper">
-                    <div class="position-relative">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
-                            alt="new-prd" class="product-card-img w-100 h-auto" />
-                        <div class="love-prd">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
-                                    fill="#333333"></path>
-                            </svg>
+            <div class="list-hot-poduct" style="padding-bottom: 40px;">
+                <div id="hot-product-carousel-starter" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner hot-product-carousel-starter">
+                        <div class="carousel-item active hot-product-carousel-item">
+                            <div class="d-flex">
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 1
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 2
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 3
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 4
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item product-carousel-item">
+                            <div class="d-flex">
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 5
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 6
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE 7
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 product-cart-wrapper px-2">
+                                    <div class="position-relative">
+                                        <img src="https://bizweb.dktcdn.net/thumb/large/100/450/808/products/a55404c7-9b14-45ee-9e9d-a91893f5d952.jpg?v=1682419487663"
+                                            alt="new-prd" class="product-card-img w-100 h-auto" />
+                                        <div class="love-prd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 5C11.6604 4.60884 11.2646 4.26729 10.8278 3.9824C9.86267 3.35284 8.69792 3 7.5 3C4.42 3 2 5.37384 2 8.3951C2 9.46861 2.25574 10.488 2.69383 11.4578C4.0526 14.4686 7.16576 17.0093 9.8455 19.1963C10.617 19.8259 11.3526 20.4262 12 21C12.6474 20.4262 13.383 19.8259 14.1545 19.1963C16.8342 17.0093 19.9473 14.4687 21.3061 11.458C21.7442 10.4881 22 9.46866 22 8.3951C22 5.37384 19.58 3 16.5 3C15.3021 3 14.1373 3.35284 13.1722 3.9824C12.7354 4.26729 12.3396 4.60884 12 5ZM12 18.3699C12.3228 18.1024 12.6527 17.8326 12.9822 17.5633C13.2612 17.3351 13.5399 17.1073 13.8136 16.8813C14.9091 15.9769 15.9814 15.058 16.9309 14.095C18.106 12.9033 18.9793 11.7563 19.4879 10.6242C19.8233 9.8767 20 9.13633 20 8.3951C20 6.51455 18.5119 5 16.5 5C15.3116 5 14.2025 5.51373 13.5103 6.31111L12 8.05084L10.4897 6.31111C9.79748 5.51373 8.68843 5 7.5 5C5.48808 5 4 6.51455 4 8.3951C4 9.13633 4.17674 9.8767 4.51214 10.6242C5.02069 11.7563 5.89402 12.9033 7.06909 14.095C8.01864 15.058 9.09095 15.9769 10.1864 16.8813C10.4601 17.1073 10.7388 17.3351 11.0178 17.5633C11.3473 17.8326 11.6772 18.1024 12 18.3699Z"
+                                                    fill="#333333"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="action-prd-cart">
+                                        <i class="fa-solid fa-cart-plus fa-lg"></i>
+                                    </div>
+
+                                    <div class="prd-name">
+                                        BÉ LỪA BÔNG WINNIE
+                                    </div>
+                                    <div class="prd-description">
+                                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
+                                    </div>
+                                    <div class="prd-price">
+                                        390000₫
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="action-prd-cart">
-                        <i class="fa-solid fa-cart-plus fa-lg"></i>
-                    </div>
 
-                    <div class="prd-name">
-                        BÉ LỪA BÔNG WINNIE
-                    </div>
-                    <div class="prd-description">
-                        * Thông tin chi tiết bé Lừa bông: - Chất liệu: Lông xù siêu mềm mịn.
-                    </div>
-                    <div class="prd-price">
-                        390000₫
-                    </div>
+                    <button class="carousel-control-prev" type="button" href="#hot-product-carousel-starter"
+                        data-bs-slide="prev">
+                        <div class="btn btn-danger rounded-circle">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </div>
+                    </button>
+                    <button class="carousel-control-next" type="button" href="#hot-product-carousel-starter"
+                        data-bs-slide="next">
+                        <div class="btn btn-danger rounded-circle">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                    </button>
                 </div>
             </div>
+
         </section>
         <section class="only-in-meeko container-home">
             <div class="only-in-meeko-header d-flex align-items-center gap-5 mt-5 mb-3">
@@ -583,99 +898,6 @@
             </div><!-- modal-dialog -->
         </div><!-- modal -->
         <!-- Modal mobile nav responsive-->
-
-        <footer class="text-center text-lg-start" style="background-color: #fafafa">
-            <!-- Grid container -->
-            <div class="container p-4 pb-0">
-                <!-- Section: Links -->
-                <section class="">
-                    <!--Grid row-->
-                    <div class="row">
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                            <h6 class="text-uppercase mb-4" style="color: #c83252; font-weight: bold;">
-                                Liên hệ
-                            </h6>
-                            <div class="text-decoration-none mb-2">
-                                Hà Nội
-                            </div>
-                            <div class="text-decoration-none mb-2">
-                                <a class="text-decoration-none" style="color: #333;"
-                                    href="mailto:meeko.vn@gmail.com">meeko.vn@gmail.com</a>
-                            </div>
-                            <div class="mb-2">
-                                <a class="text-decoration-none" style="color: #333;"
-                                    href="tel:0862204080">0862204080</a>
-                            </div>
-                        </div>
-                        <!-- Grid column -->
-                        <hr class="w-100 clearfix d-md-none" />
-                        <!-- Grid column -->
-                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                            <h6 class="text-uppercase mb-4 font-weight-bold" style="color: #c83252; font-weight: bold;">
-                                Chính sách</h6>
-                            <div class="mb-2">
-                                <a class="text-decoration-none" style="color: #333;" href="/chinh-sach"
-                                    title="Chính sách bảo mật" rel="nofollow">Chính sách bảo mật</a>
-                            </div>
-                            <div class="mb-2">
-                                <a class="text-decoration-none" style="color: #333;" href="/chinh-sach"
-                                    title="Chính sách vận chuyển" rel="nofollow">Chính sách vận
-                                    chuyển</a>
-                            </div>
-                            <div class="mb-2">
-                                <a class="text-decoration-none" style="color: #333;" href="/chinh-sach"
-                                    title="Chính sách đổi trả" rel="nofollow">Chính sách đổi trả</a>
-                            </div>
-                            <div>
-                                <a class="text-decoration-none" style="color: #333;" href="/dieu-khoan"
-                                    title="Quy định sử dụng" rel="nofollow">Quy định sử dụng</a>
-                            </div>
-                        </div>
-                        <!-- Grid column -->
-
-                        <hr class="w-100 clearfix d-md-none" />
-
-                        <!-- Grid column -->
-                        <hr class="w-100 clearfix d-md-none" />
-
-                        <!-- Grid column -->
-                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                            <h6 class="text-uppercase mb-4 font-weight-bold" style="color: #c83252; font-weight: bold;">
-                                About</h6>
-                            <div>1% Happier Everyday
-                            </div>
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-                            <h6 class="text-uppercase mb-4 font-weight-bold" style="color: #c83252; font-weight: bold;">
-                                Phương thức thanh toán</h6>
-
-                            <div class="payment">
-                                <a href="#" title="Thanh toán">
-                                    <img style="width: 100%;"
-                                        src="//bizweb.dktcdn.net/100/450/808/themes/855625/assets/payment.png?1681832246171"
-                                        alt="Thanh toán">
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!--Grid row-->
-                </section>
-                <!-- Section: Links -->
-            </div>
-            <!-- Grid container -->
-
-            <!-- Copyright -->
-
-            <div class="text-center p-3" style="background-color: #fafafa">
-                Copyright © 2022 Meeko.
-            </div>
-            <!-- Copyright -->
-        </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
